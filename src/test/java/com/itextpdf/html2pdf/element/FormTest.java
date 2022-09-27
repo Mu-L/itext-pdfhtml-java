@@ -340,6 +340,16 @@ public class FormTest extends ExtendedITextTest {
         runTest("textFieldStrikethrough");
     }
 
+    @Test
+    public void textFieldLetterSpacingTest() throws IOException, InterruptedException {
+        runTest("textFieldLetterSpacing");
+    }
+
+    @Test
+    public void textFieldWordSpacingTest() throws IOException, InterruptedException {
+        runTest("textFieldWordSpacing");
+    }
+
     private void runTest(String name) throws IOException, InterruptedException {
         runTest(name, true);
     }
