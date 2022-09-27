@@ -355,6 +355,11 @@ public class FormTest extends ExtendedITextTest {
         runTest("textFieldAlignment");
     }
 
+    @Test
+    public void checkBoxDisabledTest() throws IOException, InterruptedException {
+        runTest("checkBoxDisabled");
+    }
+
     private void runTest(String name) throws IOException, InterruptedException {
         runTest(name, true);
     }
