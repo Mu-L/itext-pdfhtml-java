@@ -350,6 +350,11 @@ public class FormTest extends ExtendedITextTest {
         runTest("textFieldWordSpacing");
     }
 
+    @Test
+    public void textFieldAlignmentTest() throws IOException, InterruptedException {
+        runTest("textFieldAlignment");
+    }
+
     private void runTest(String name) throws IOException, InterruptedException {
         runTest(name, true);
     }
