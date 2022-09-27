@@ -47,8 +47,8 @@ import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 @Tag("IntegrationTest")
 public class FormTest extends ExtendedITextTest {
@@ -328,6 +328,16 @@ public class FormTest extends ExtendedITextTest {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             HtmlConverter.convertToPdf(fileInputStream, baos);
         }
+    }
+
+    @Test
+    public void textFieldUnderlineTest() throws IOException, InterruptedException {
+        runTest("textFieldUnderline");
+    }
+
+    @Test
+    public void textFieldStrikethroughTest() throws IOException, InterruptedException {
+        runTest("textFieldStrikethrough");
     }
 
     private void runTest(String name) throws IOException, InterruptedException {
