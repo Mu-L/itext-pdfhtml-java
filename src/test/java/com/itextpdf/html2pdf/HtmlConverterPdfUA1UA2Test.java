@@ -25,6 +25,7 @@ package com.itextpdf.html2pdf;
 import com.itextpdf.commons.utils.MessageFormatUtil;
 import com.itextpdf.html2pdf.exceptions.Html2PdfException;
 import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
+import com.itextpdf.io.logs.IoLogMessageConstant;
 import com.itextpdf.io.source.ByteArrayOutputStream;
 import com.itextpdf.kernel.pdf.PdfAConformance;
 import com.itextpdf.kernel.pdf.PdfUAConformance;
@@ -193,7 +194,6 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
-    // TODO DEVSIX-8864 PDF 2.0: Destination in GoTo action is not a structure destination
     public void pageBreakAfterAvoidTest(PdfUAConformance conformance) throws IOException, InterruptedException {
         String sourceHtml = SOURCE_FOLDER + "pageBreakAfterAvoid.html";
 
@@ -206,28 +206,20 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
         if (conformance == PdfUAConformance.PDF_UA_2) {
             String cmpPdfUa2 = SOURCE_FOLDER + "cmp_pageBreakAfterAvoidUa2.pdf";
             String destinationPdfUa2 = DESTINATION_FOLDER + "pageBreakAfterAvoidUa2.pdf";
+            // Both structure destination and page destination are not created, because content is not rendered.
             convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa2, cmpPdfUa2, null, false, null);
         }
     }
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
-    // TODO DEVSIX-8864 PDF 2.0: Destination in GoTo action is not a structure destination
+    @LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.NAME_ALREADY_EXISTS_IN_THE_NAME_TREE)})
     public void linkWithPageBreakBeforeTest(PdfUAConformance conformance) throws IOException, InterruptedException {
         String sourceHtml = SOURCE_FOLDER + "linkWithPageBreakBefore.html";
-        if (conformance == PdfUAConformance.PDF_UA_1) {
-            String cmpPdfUa1 = SOURCE_FOLDER + "cmp_linkWithPageBreakBeforeUa1.pdf";
-            String destinationPdfUa1 = DESTINATION_FOLDER + "linkWithPageBreakBeforeUa1.pdf";
-            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa1, cmpPdfUa1, null, true, null);
-        }
-        if (conformance == PdfUAConformance.PDF_UA_2) {
-            String cmpPdfUa2 = SOURCE_FOLDER + "cmp_linkWithPageBreakBeforeUa2.pdf";
-            String destinationPdfUa2 = DESTINATION_FOLDER + "linkWithPageBreakBeforeUa2.pdf";
-            // TODO DEVSIX-8864 PDF 2.0: Destination in GoTo action is not a structure destination
-            Exception exception = Assertions.assertThrows(PdfUAConformanceException.class,
-                    () -> convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa2, cmpPdfUa2, null, false, null));
-            Assertions.assertEquals(PdfUAExceptionMessageConstants.DESTINATION_NOT_STRUCTURE_DESTINATION, exception.getMessage());
-        }
+        String cmpFile = SOURCE_FOLDER + "cmp_linkWithPageBreakBeforeUa" + conformance.getPart() + ".pdf";
+        String destinationPdf = DESTINATION_FOLDER + "linkWithPageBreakBeforeUa" + conformance.getPart() + ".pdf";
+
+        convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdf, cmpFile, null, true, null);
     }
 
     @ParameterizedTest
@@ -310,7 +302,8 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
-    @LogMessages(messages = {@LogMessage(messageTemplate = PdfUALogMessageConstants.PAGE_FLUSHING_DISABLED, count = 1)})
+    @LogMessages(messages = {@LogMessage(messageTemplate = PdfUALogMessageConstants.PAGE_FLUSHING_DISABLED),
+            @LogMessage(messageTemplate = IoLogMessageConstant.NAME_ALREADY_EXISTS_IN_THE_NAME_TREE, count = 12)})
     public void extensiveRepairTaggingStructRepairTest(PdfUAConformance conformance)
             throws IOException, InterruptedException {
         String sourceHtml = SOURCE_FOLDER + "tagStructureFixes.html";

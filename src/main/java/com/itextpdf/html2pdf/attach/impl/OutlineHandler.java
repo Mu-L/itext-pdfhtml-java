@@ -38,6 +38,8 @@ import com.itextpdf.styledxmlparser.CommonAttributeConstants;
 import com.itextpdf.styledxmlparser.node.IElementNode;
 import com.itextpdf.styledxmlparser.node.impl.jsoup.node.JsoupElementNode;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -328,7 +330,13 @@ public class OutlineHandler {
         if (null != tagWorker && hasMarkPriorityMapping(markName) && destinationsInProcess.size() > 0) {
             Tuple2<String, PdfDictionary> content = destinationsInProcess.pop();
             if (tagWorker.getElementResult() instanceof IElement) {
-                tagWorker.getElementResult().setProperty(Property.DESTINATION, content);
+                Set<Object> existingDestinations =
+                        tagWorker.getElementResult().<Set<Object>>getProperty(Property.DESTINATION);
+                if (existingDestinations == null) {
+                    existingDestinations = new HashSet<>();
+                }
+                existingDestinations.add(content);
+                tagWorker.getElementResult().setProperty(Property.DESTINATION, existingDestinations);
             } else {
                 Logger logger = LoggerFactory.getLogger(OutlineHandler.class);
                 logger.warn(MessageFormatUtil.format(

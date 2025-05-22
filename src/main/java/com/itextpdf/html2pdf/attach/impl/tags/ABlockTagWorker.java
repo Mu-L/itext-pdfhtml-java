@@ -29,6 +29,9 @@ import com.itextpdf.html2pdf.html.AttributeConstants;
 import com.itextpdf.layout.properties.Property;
 import com.itextpdf.styledxmlparser.node.IElementNode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * TagWorker class for a link block.
  */
@@ -61,7 +64,12 @@ public class ABlockTagWorker extends DivTagWorker {
 
         if (getElementResult() != null) {
             String name = element.getAttribute(AttributeConstants.NAME);
-            getElementResult().setProperty(Property.DESTINATION, name);
+            Set<Object> existingDestinations = getElementResult().<Set<Object>>getProperty(Property.DESTINATION);
+            if (existingDestinations == null) {
+                existingDestinations = new HashSet<>();
+            }
+            existingDestinations.add(name);
+            getElementResult().setProperty(Property.DESTINATION, existingDestinations);
         }
     }
 }

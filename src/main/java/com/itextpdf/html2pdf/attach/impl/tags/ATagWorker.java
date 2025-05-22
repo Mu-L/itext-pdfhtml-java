@@ -35,6 +35,9 @@ import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.Transform;
 import com.itextpdf.styledxmlparser.node.IElementNode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 /**
  * TagWorker class for the {@code a} element.
@@ -93,7 +96,12 @@ public class ATagWorker extends SpanTagWorker {
         if (!getAllElements().isEmpty()) {
             String name = element.getAttribute(AttributeConstants.NAME);
             IPropertyContainer firstElement = getAllElements().get(0);
-            firstElement.setProperty(Property.DESTINATION, name);
+            Set<Object> existingDestinations = firstElement.<Set<Object>>getProperty(Property.DESTINATION);
+            if (existingDestinations == null) {
+                existingDestinations = new HashSet<>();
+            }
+            existingDestinations.add(name);
+            firstElement.setProperty(Property.DESTINATION, existingDestinations);
             firstElement.setProperty(Property.ID, name);
         }
     }

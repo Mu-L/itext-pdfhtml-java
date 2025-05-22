@@ -40,10 +40,12 @@ import com.itextpdf.kernel.pdf.tagging.PdfNamespace;
 import com.itextpdf.kernel.pdf.tagging.StandardRoles;
 import com.itextpdf.kernel.pdf.tagutils.AccessibilityProperties;
 import com.itextpdf.layout.IPropertyContainer;
-import com.itextpdf.layout.element.ILeafElement;
 import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.tagging.IAccessibleElement;
 import com.itextpdf.styledxmlparser.node.IElementNode;
+
+import java.util.HashSet;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -147,8 +149,12 @@ public class LinkHelper {
                 context.getLinkContext().addLinkAnnotation(id, linkAnnotation);
             }
 
-            propertyContainer.setProperty(Property.DESTINATION, new Tuple2<String, PdfDictionary>(id,
-                    linkAnnotation.getAction()));
+            Set<Object> existingDestinations = propertyContainer.<Set<Object>>getProperty(Property.DESTINATION);
+            if (existingDestinations == null) {
+                existingDestinations = new HashSet<>();
+            }
+            existingDestinations.add(new Tuple2<String, PdfDictionary>(id, linkAnnotation.getAction()));
+            propertyContainer.setProperty(Property.DESTINATION, existingDestinations);
         }
         if (propertyContainer != null) {
             propertyContainer.setProperty(Property.ID, id);
