@@ -23,6 +23,9 @@
 package com.itextpdf.html2pdf.css;
 
 import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
+import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
+import com.itextpdf.test.annotations.LogMessage;
+import com.itextpdf.test.annotations.LogMessages;
 
 import java.io.IOException;
 import org.junit.jupiter.api.BeforeAll;
@@ -32,196 +35,317 @@ import org.junit.jupiter.api.Tag;
 @Tag("IntegrationTest")
 public class FlexColumnReverseTest extends ExtendedHtmlConversionITextTest {
 
-    public static final String sourceFolder = "./src/test/resources/com/itextpdf/html2pdf/css/FlexColumnReverseTest/";
-    public static final String destinationFolder = "./target/test/com/itextpdf/html2pdf/css/FlexColumnReverseTest/";
+    public static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/FlexColumnReverseTest/";
+    public static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/FlexColumnReverseTest/";
 
     @BeforeAll
     public static void beforeClass() {
-        createOrClearDestinationFolder(destinationFolder);
+        createOrClearDestinationFolder(DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignIItemsCenterTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignIItemsCenter", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignIItemsCenter", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsCenterJustifyContentCenterTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentCenter", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentCenter", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsCenterJustifyContentEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsCenterJustifyContentFlexEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentFlexEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentFlexEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsCenterJustifyContentFlexStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentFlexStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentFlexStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsCenterJustifyContentStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsCenterJustifyContentStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEnd", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsEndJustifyContentCenterTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentCenter", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentCenter", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsEndJustifyContentEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentEnd", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsEndJustifyContentFlexEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentFlexEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentFlexEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsEndJustifyContentFlexStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentFlexStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentFlexStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsEndJustifyContentStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsEndJustifyContentStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEnd", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexEndJustifyContentCenterTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentCenter", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentCenter", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexEndJustifyContentEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexEndJustifyContentFlexEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentFlexEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentFlexEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexEndJustifyContentFlexStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentFlexStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentFlexStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexEndJustifyContentStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexEndJustifyContentStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStart", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexStartJustifyContentCenterTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentCenter", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentCenter", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexStartJustifyContentEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexStartJustifyContentFlexEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentFlexEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentFlexEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexStartJustifyContentFlexStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentFlexStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentFlexStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsFlexStartJustifyContentStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsFlexStartJustifyContentStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStart", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsStartJustifyContentCenterTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentCenter", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentCenter", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsStartJustifyContentEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsStartJustifyContentFlexEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentFlexEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentFlexEnd", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsStartJustifyContentFlexStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentFlexStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentFlexStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseAlignItemsStartJustifyContentStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseAlignItemsStartJustifyContentStart", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseJustifyContentCenterTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentCenter", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentCenter", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseJustifyContentEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentEnd", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseJustifyContentFlexEndTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentFlexEnd", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentFlexEnd", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseJustifyContentFlexStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentFlexStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentFlexStart", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseJustifyContentStartTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentStart", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentStart", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseJustifyContentStartMaxSizeTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentStartMaxSize", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentStartMaxSize", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void ColumnReverseJustifyContentStartMinSizeTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentStartMinSize", sourceFolder, destinationFolder);
+        convertToPdfAndCompare("FlexDirColumnReverseJustifyContentStartMinSize", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 51)
+    })
+    public void flexDirColumnReverseAlignContentBaselineTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-baseline", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentCenterTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-center", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
+    })
+    public void flexDirColumnReverseAlignContentEndTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-end", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
+    })
+    public void flexDirColumnReverseAlignContentFirstBaselineTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-first-baseline", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentFlexEndTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-flex-end", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentFlexStartTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-flex-start", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentNormalTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-normal", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentSpaceAroundTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-space-around", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentSpaceBetweenTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-space-between", SOURCE_FOLDER,
+                DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentSpaceEvenlyTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-space-evenly", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
+    })
+    public void flexDirColumnReverseAlignContentStartTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-start", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.ELEMENT_DOES_NOT_FIT_CURRENT_AREA)
+    })
+    public void flexDirColumnReverseAlignContentStretchTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-stretch", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void columnReverseNonPagingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("column-reverse-non-paging", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void columnReversePagingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("column-reverse-paging", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void columnReversePagingMultiColumnTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("column-reverse-paging-multi-column", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void columnReversePagingLargeElementTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("column-reverse-paging-large-element", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 }
