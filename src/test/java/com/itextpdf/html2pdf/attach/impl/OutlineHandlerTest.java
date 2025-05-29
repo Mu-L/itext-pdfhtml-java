@@ -111,7 +111,6 @@ public class OutlineHandlerTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-5195 fix cmp after fix is introduced
     public void defaultOutlineHandlerWithHTagHavingIdTest() throws IOException, InterruptedException {
         String inFile = SOURCE_FOLDER + "defaultOutlineHandlerWithHTagHavingIdTest.html";
         String outFile = DESTINATION_FOLDER + "defaultOutlineHandlerWithHTagHavingIdTest.pdf";
@@ -177,6 +176,18 @@ public class OutlineHandlerTest extends ExtendedHtmlConversionITextTest {
                 new ConverterProperties().setOutlineHandler(handler));
         Assertions.assertNull(new CompareTool().compareByContent(outFile, cmpFile, DESTINATION_FOLDER,
                 "diff_ChangedOutlineHandler"));
+    }
+
+    @Test
+    public void linkOnOutlineElementTest() throws IOException, InterruptedException {
+        String inFile = SOURCE_FOLDER + "linkOnOutlineElement.html";
+        String outFile = DESTINATION_FOLDER + "linkOnOutlineElement.pdf";
+        String cmpFile = SOURCE_FOLDER + "cmp_linkOnOutlineElement.pdf";
+        OutlineHandler handler = OutlineHandler.createStandardHandler();
+        HtmlConverter.convertToPdf(new File(inFile), new File(outFile),
+                new ConverterProperties().setOutlineHandler(handler));
+        Assertions.assertNull(new CompareTool().compareByContent(outFile, cmpFile, DESTINATION_FOLDER,
+                "diff_LinkOnOutlineElement"));
     }
 
     public static class ChangedOutlineHandler extends OutlineHandler {

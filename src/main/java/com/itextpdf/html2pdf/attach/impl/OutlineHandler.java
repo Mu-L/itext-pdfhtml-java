@@ -34,6 +34,7 @@ import com.itextpdf.kernel.pdf.PdfOutline;
 import com.itextpdf.kernel.pdf.action.PdfAction;
 import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.properties.Property;
+import com.itextpdf.styledxmlparser.CommonAttributeConstants;
 import com.itextpdf.styledxmlparser.node.IElementNode;
 import com.itextpdf.styledxmlparser.node.impl.jsoup.node.JsoupElementNode;
 
@@ -299,7 +300,8 @@ public class OutlineHandler {
                 levelsInProcess.pop();
             }
             PdfOutline outline = parent.addOutline(generateOutlineName(element));
-            String destination = generateUniqueDestinationName(element);
+            String destination = element.getAttribute(CommonAttributeConstants.ID) == null
+                    ? generateUniqueDestinationName(element) : element.getAttribute(CommonAttributeConstants.ID);
             PdfAction action = PdfAction.createGoTo(destination);
             outline.addAction(action);
             destinationsInProcess.push(new Tuple2<String, PdfDictionary>(destination, action.getPdfObject()));

@@ -223,9 +223,11 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
         if (conformance == PdfUAConformance.PDF_UA_2) {
             String cmpPdfUa2 = SOURCE_FOLDER + "cmp_linkWithPageBreakBeforeUa2.pdf";
             String destinationPdfUa2 = DESTINATION_FOLDER + "linkWithPageBreakBeforeUa2.pdf";
-            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa2, cmpPdfUa2, null, false, null);
+            // TODO DEVSIX-8864 PDF 2.0: Destination in GoTo action is not a structure destination
+            Exception exception = Assertions.assertThrows(PdfUAConformanceException.class,
+                    () -> convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa2, cmpPdfUa2, null, false, null));
+            Assertions.assertEquals(PdfUAExceptionMessageConstants.DESTINATION_NOT_STRUCTURE_DESTINATION, exception.getMessage());
         }
-
     }
 
     @ParameterizedTest
