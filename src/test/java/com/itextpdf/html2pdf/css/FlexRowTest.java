@@ -77,8 +77,6 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("flex-dir-row-align-content-flex-end", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-9178: Adapt after fix
-    //TODO DEVSIX-9180: Adapt after fix
     @Test
     public void flexDirRowAlignContentFlexEndTest2() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-flex-end-2", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -99,8 +97,6 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("flex-dir-row-align-content-space-around", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-9178: Adapt after fix
-    //TODO DEVSIX-9180: Adapt after fix
     @Test
     public void flexDirRowAlignContentSpaceAroundTest2() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-space-around-2", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -111,8 +107,6 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("flex-dir-row-align-content-space-between", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-9178: Adapt after fix
-    //TODO DEVSIX-9180: Adapt after fix
     @Test
     public void flexDirRowAlignContentSpaceBetweenTest2() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-space-between-2", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -123,11 +117,34 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("flex-dir-row-align-content-space-evenly", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-9178: Adapt after fix
-    //TODO DEVSIX-9180: Adapt after fix
     @Test
     public void flexDirRowAlignContentSpaceEvenlyTest2() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-space-evenly-2", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentSpaceEvenlySplittingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-evenly-splitting", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentSpaceBetweenSplittingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-between-splitting", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentSpaceAroundSplittingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-around-splitting", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentFlexEndSplittingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-flex-end-splitting", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentCenterSplittingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-center-splitting", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
