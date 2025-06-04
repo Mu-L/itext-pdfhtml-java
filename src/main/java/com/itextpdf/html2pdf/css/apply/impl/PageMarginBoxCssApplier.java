@@ -111,7 +111,7 @@ public class PageMarginBoxCssApplier implements ICssApplier {
             marginBox.setProperty(Property.OVERFLOW_Y, OverflowPropertyValue.VISIBLE);
         }
 
-        //TODO DEVSIX-7024 Support outlines for page margin boxes
+        //TODO DEVSIX-5725 support 'ouline' property for page margin boxes
         OutlineApplierUtil.applyOutlines(boxStyles, context, marginBox);
 
         marginBox.setProperty(Property.FONT_PROVIDER, context.getFontProvider());
