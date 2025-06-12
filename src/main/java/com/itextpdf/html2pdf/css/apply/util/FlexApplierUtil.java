@@ -253,9 +253,11 @@ final public class FlexApplierUtil {
         if (alignContentString != null) {
             AlignContentPropertyValue alignContent;
             switch (alignContentString) {
+                case CommonCssConstants.START:
                 case CommonCssConstants.FLEX_START:
                     alignContent = AlignContentPropertyValue.FLEX_START;
                     break;
+                case CommonCssConstants.END:
                 case CommonCssConstants.FLEX_END:
                     alignContent = AlignContentPropertyValue.FLEX_END;
                     break;
