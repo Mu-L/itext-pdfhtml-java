@@ -71,6 +71,14 @@ public class FlexColumnTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 3)
+    })
+    public void flexDirColumnAlignContentWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-align-content-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void ColumnAlignItemsCenterJustifyContentStartTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("FlexDirColumnAlignItemsCenterJustifyContentStart", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

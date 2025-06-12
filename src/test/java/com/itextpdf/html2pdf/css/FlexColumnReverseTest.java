@@ -309,6 +309,14 @@ public class FlexColumnReverseTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 3)
+    })
+    public void flexDirColumnReverseAlignContentWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void flexDirColumnReverseAlignContentSpaceEvenlyTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-column-reverse-align-content-space-evenly", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

@@ -128,8 +128,18 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    public void flexDirRowAlignContentSpaceEvenlySplittingWithOneElementTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-evenly-splitting-one-element", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void flexDirRowAlignContentSpaceBetweenSplittingTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-space-between-splitting", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentSpaceBetweenSplittingOneElementTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-between-splitting-one-element", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
@@ -138,13 +148,36 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    public void flexDirRowAlignContentSpaceAroundSplittingOneElementTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-around-splitting-one-element", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void flexDirRowAlignContentFlexEndSplittingTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-flex-end-splitting", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
+    public void flexDirRowAlignContentFlexEndSplittingOneElementTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-flex-end-splitting-one-element", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void flexDirRowAlignContentCenterSplittingTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-center-splitting", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentCenterSplittingOneElementTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-center-splitting-one-element", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 3)
+    })
+    public void flexDirRowAlignContentWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
