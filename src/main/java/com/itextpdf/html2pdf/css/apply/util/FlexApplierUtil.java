@@ -332,7 +332,9 @@ final public class FlexApplierUtil {
         supportedAlignContentValues.add(CommonCssConstants.STRETCH);
         supportedAlignContentValues.add(CommonCssConstants.NORMAL);
         supportedAlignContentValues.add(CommonCssConstants.FLEX_START);
+        supportedAlignContentValues.add(CommonCssConstants.START);
         supportedAlignContentValues.add(CommonCssConstants.FLEX_END);
+        supportedAlignContentValues.add(CommonCssConstants.END);
         supportedAlignContentValues.add(CommonCssConstants.CENTER);
         supportedAlignContentValues.add(CommonCssConstants.SPACE_AROUND);
         supportedAlignContentValues.add(CommonCssConstants.SPACE_BETWEEN);

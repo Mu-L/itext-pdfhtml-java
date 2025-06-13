@@ -57,9 +57,6 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
     public void flexDirRowAlignContentEndTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-end", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -70,6 +67,36 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
     })
     public void flexDirRowAlignContentFirstBaselineTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-first-baseline", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentFlexStartWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-flex-start-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentFlexEndWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-flex-end-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentFlexCenterWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-flex-center-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentSpaceAroundWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-around-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentSpaceEvenlyWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-evenly-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowAlignContentSpaceBetweenWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-align-content-space-between-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
@@ -181,9 +208,6 @@ public class FlexRowTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
     public void flexDirRowAlignContentStartTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-align-content-start", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

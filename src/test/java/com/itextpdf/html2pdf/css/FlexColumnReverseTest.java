@@ -266,9 +266,6 @@ public class FlexColumnReverseTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
     public void flexDirColumnReverseAlignContentEndTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-column-reverse-align-content-end", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -309,11 +306,33 @@ public class FlexColumnReverseTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 3)
-    })
-    public void flexDirColumnReverseAlignContentWrapReverseTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("flex-dir-column-reverse-align-content-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    public void flexDirColumnReverseAlignContentFlexStartWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-flex-start-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentFlexEndWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-flex-end-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentFlexCenterWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-flex-center-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentSpaceAroundWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-space-around-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentSpaceEvenlyWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-space-evenly-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirColumnReverseAlignContentSpaceBetweenWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-column-reverse-align-content-space-between-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
@@ -322,9 +341,6 @@ public class FlexColumnReverseTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
     public void flexDirColumnReverseAlignContentStartTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-column-reverse-align-content-start", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

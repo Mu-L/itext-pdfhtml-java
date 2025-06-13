@@ -57,11 +57,38 @@ public class FlexRowReverseTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
     public void flexDirRowReverseAlignContentEndTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-reverse-align-content-end", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowReverseAlignContentFlexStartWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-reverse-align-content-flex-start-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowReverseAlignContentFlexEndWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-reverse-align-content-flex-end-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowReverseAlignContentFlexCenterWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-reverse-align-content-flex-center-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowReverseAlignContentSpaceAroundWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-reverse-align-content-space-around-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowReverseAlignContentSpaceEvenlyWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-reverse-align-content-space-evenly-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexDirRowReverseAlignContentSpaceBetweenWrapReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flex-dir-row-reverse-align-content-space-between-wrap-reverse", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
@@ -111,9 +138,6 @@ public class FlexRowReverseTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
     public void flexDirRowReverseAlignContentStartTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flex-dir-row-reverse-align-content-start", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
