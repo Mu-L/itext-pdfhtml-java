@@ -27,6 +27,7 @@ import com.itextpdf.commons.utils.DIContainer;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.attach.impl.DefaultTagWorkerFactory;
 import com.itextpdf.html2pdf.attach.impl.HtmlMetaInfoContainer;
+import com.itextpdf.html2pdf.attach.impl.LabelContext;
 import com.itextpdf.html2pdf.attach.impl.LinkContext;
 import com.itextpdf.html2pdf.attach.impl.OutlineHandler;
 import com.itextpdf.html2pdf.css.apply.ICssApplierFactory;
@@ -139,6 +140,11 @@ public class ProcessorContext {
     private LinkContext linkContext;
 
     /**
+     * The label context
+     */
+    private LabelContext labelContext;
+
+    /**
      * The PDF document.
      */
     private PdfDocument pdfDocument;
@@ -212,6 +218,7 @@ public class ProcessorContext {
         cssContext = new CssContext();
         cssStyleSheet = null;
         linkContext = new LinkContext();
+        labelContext = new LabelContext();
 
         createAcroForm = converterProperties.isCreateAcroForm();
         formFieldNameResolver = new FormFieldNameResolver();
@@ -343,6 +350,15 @@ public class ProcessorContext {
     }
 
     /**
+     * Gets the label context.
+     *
+     * @return the label context
+     */
+    public LabelContext getLabelContext() {
+        return labelContext;
+    }
+
+    /**
      * Checks if is an AcroForm needs to be created.
      *
      * @return true, an AcroForm should be created
@@ -443,6 +459,7 @@ public class ProcessorContext {
         this.cssContext = new CssContext();
         this.cssStyleSheet = null;
         this.linkContext = new LinkContext();
+        this.labelContext = new LabelContext();
         this.formFieldNameResolver.reset();
         //Reset font provider. PdfFonts shall be reseted.
         this.fontProvider.reset();

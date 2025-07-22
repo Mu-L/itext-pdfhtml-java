@@ -31,14 +31,13 @@ import com.itextpdf.forms.form.element.IPlaceholderable;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.ProcessorContextCreator;
 import com.itextpdf.html2pdf.actions.events.PdfHtmlProductEvent;
-import com.itextpdf.html2pdf.attach.IHtmlProcessor;
-import com.itextpdf.html2pdf.attach.ITagWorker;
-import com.itextpdf.html2pdf.attach.ProcessorContext;
+import com.itextpdf.html2pdf.attach.*;
 import com.itextpdf.html2pdf.attach.impl.layout.HtmlDocument;
 import com.itextpdf.html2pdf.attach.impl.layout.HtmlDocumentRenderer;
 import com.itextpdf.html2pdf.attach.impl.layout.RunningElementContainer;
 import com.itextpdf.html2pdf.attach.impl.tags.HtmlTagWorker;
 import com.itextpdf.html2pdf.attach.impl.tags.RunningElementTagWorker;
+import com.itextpdf.html2pdf.attach.util.AlternateDescriptionResolver;
 import com.itextpdf.html2pdf.attach.util.LinkHelper;
 import com.itextpdf.html2pdf.css.CssConstants;
 import com.itextpdf.html2pdf.css.apply.ICssApplier;
@@ -64,6 +63,7 @@ import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.RenderingMode;
 import com.itextpdf.layout.renderer.DocumentRenderer;
 import com.itextpdf.layout.renderer.MetaInfoContainer;
+import com.itextpdf.layout.tagging.IAccessibleElement;
 import com.itextpdf.styledxmlparser.css.CssDeclaration;
 import com.itextpdf.styledxmlparser.css.CssFontFaceRule;
 import com.itextpdf.styledxmlparser.css.ICssResolver;
@@ -185,11 +185,7 @@ public class DefaultHtmlProcessor implements IHtmlProcessor {
                 context.getMetaInfoContainer().getMetaInfo()));
 
         context.reset();
-        roots = new ArrayList<>();
-        cssResolver = new DefaultCssResolver(root, context);
-        context.setCssStyleSheet(((DefaultCssResolver) cssResolver).getCssStyleSheet());
-        context.getLinkContext().scanForIds(root);
-        addFontFaceFonts();
+        initContext(root);
         IElementNode html = findHtmlNode(root);
         IElementNode body = findBodyNode(root);
 
@@ -229,11 +225,7 @@ public class DefaultHtmlProcessor implements IHtmlProcessor {
         if (!context.hasFonts()) {
             throw new Html2PdfException(Html2PdfException.FONT_PROVIDER_CONTAINS_ZERO_FONTS);
         }
-        roots = new ArrayList<>();
-        cssResolver = new DefaultCssResolver(root, context);
-        context.setCssStyleSheet(((DefaultCssResolver) cssResolver).getCssStyleSheet());
-        context.getLinkContext().scanForIds(root);
-        addFontFaceFonts();
+        initContext(root);
         root = findHtmlNode(root);
 
         if (context.getCssContext().isNonPagesTargetCounterPresent()) {
@@ -263,6 +255,18 @@ public class DefaultHtmlProcessor implements IHtmlProcessor {
         cssResolver = null;
         roots = null;
         return doc;
+    }
+
+    private void initContext(INode root) {
+        roots = new ArrayList<>();
+        cssResolver = new DefaultCssResolver(root, context);
+        context.setCssStyleSheet(((DefaultCssResolver) cssResolver).getCssStyleSheet());
+        //Not using Arrays.asList because it can't derive types correctly in .NET
+        List<IDocumentTreeJob> jobs = new ArrayList<>();
+        jobs.add(context.getLinkContext());
+        jobs.add(context.getLabelContext());
+        DocumentTreeUtil.traverse(root, jobs);
+        addFontFaceFonts();
     }
 
     /**
@@ -366,6 +370,11 @@ public class DefaultHtmlProcessor implements IHtmlProcessor {
                 if (tagWorker.getElementResult() != null && context.isContinuousContainerEnabled()) {
                     tagWorker.getElementResult().setProperty(Property.COLLAPSING_MARGINS, Boolean.FALSE);
                     tagWorker.getElementResult().setProperty(Property.TREAT_AS_CONTINUOUS_CONTAINER, true);
+                }
+                IPropertyContainer result = tagWorker.getElementResult();
+                if (result instanceof IAccessibleElement) {
+                    context.getDIContainer().getInstance(AlternateDescriptionResolver.class)
+                            .resolveLabelableElement((IAccessibleElement) result, element, context);
                 }
             }
 

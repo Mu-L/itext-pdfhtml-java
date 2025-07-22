@@ -22,6 +22,7 @@
  */
 package com.itextpdf.html2pdf.attach.impl;
 
+import com.itextpdf.html2pdf.attach.IDocumentTreeJob;
 import com.itextpdf.html2pdf.html.AttributeConstants;
 import com.itextpdf.html2pdf.html.TagConstants;
 import com.itextpdf.kernel.pdf.annot.PdfLinkAnnotation;
@@ -42,7 +43,7 @@ import java.util.Stack;
  * <p>
  * This class is not reusable and a new instance shall be created for every new conversion process.
  */
-public class LinkContext {
+public class LinkContext implements IDocumentTreeJob {
 
     /**
      * the ids currently in use as valid link destinations
@@ -58,14 +59,17 @@ public class LinkContext {
      * Construct an (empty) LinkContext
      */
     public LinkContext() {
+        // Empty constructor, nothing to initialize
     }
 
     /**
      * Scan the DOM tree for all (internal) link targets
+     * Deprecated in favor of {@link #process(INode, int)}
      *
      * @param root the DOM tree root node
      * @return this LinkContext
      */
+    @Deprecated
     public LinkContext scanForIds(INode root) {
         // clear previous
         linkDestinations.clear();
@@ -94,6 +98,25 @@ public class LinkContext {
         }
 
         return this;
+    }
+
+    /**
+     * Check if an element is a link.
+     *
+     * @param node the node to process
+     * @param level the hierarchical level of the node in the document tree structure
+     */
+    @Override
+    public void process(INode node, int level) {
+        if (node instanceof IElementNode) {
+            IElementNode elem = (IElementNode) node;
+            if (TagConstants.A.equals(elem.name())) {
+                String href = elem.getAttribute(AttributeConstants.HREF);
+                if (href != null && href.startsWith("#")){
+                    linkDestinations.add(href.substring(1));
+                }
+            }
+        }
     }
 
     /**
