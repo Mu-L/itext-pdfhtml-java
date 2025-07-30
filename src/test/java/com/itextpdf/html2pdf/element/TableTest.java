@@ -41,16 +41,15 @@ import com.itextpdf.test.ExtendedITextTest;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Tag;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 @Tag("IntegrationTest")
 public class TableTest extends ExtendedITextTest {
@@ -644,6 +643,14 @@ public class TableTest extends ExtendedITextTest {
     })
     public void breakRendererTreeOnSplitupTest() throws IOException, InterruptedException {
         runTest("breakRendererTreeOnSplitup");
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = IoLogMessageConstant.TABLE_WIDTH_IS_MORE_THAN_EXPECTED_DUE_TO_MIN_WIDTH, count = 2)
+    })
+    public void nestedTableWithSpecifiedWidthTest() throws IOException, InterruptedException {
+        runTest("nestedTableWithSpecifiedWidth");
     }
 
     private void runTest(String testName) throws IOException, InterruptedException {
