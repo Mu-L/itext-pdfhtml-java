@@ -32,15 +32,20 @@ import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfArray;
 import com.itextpdf.kernel.pdf.PdfDictionary;
+import com.itextpdf.kernel.pdf.PdfVersion;
 import com.itextpdf.kernel.pdf.action.PdfAction;
 import com.itextpdf.kernel.pdf.annot.PdfAnnotation;
 import com.itextpdf.kernel.pdf.annot.PdfLinkAnnotation;
+import com.itextpdf.kernel.pdf.tagging.PdfNamespace;
 import com.itextpdf.kernel.pdf.tagging.StandardRoles;
+import com.itextpdf.kernel.pdf.tagutils.AccessibilityProperties;
 import com.itextpdf.layout.IPropertyContainer;
-import com.itextpdf.layout.element.ILeafElement;
 import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.tagging.IAccessibleElement;
 import com.itextpdf.styledxmlparser.node.IElementNode;
+
+import java.util.HashSet;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -100,11 +105,17 @@ public class LinkHelper {
 
             }
 
-
             linkAnnotation.setBorder(new PdfArray(new float[]{0, 0, 0}));
             container.setProperty(Property.LINK_ANNOTATION, linkAnnotation);
-            if (container instanceof ILeafElement && container instanceof IAccessibleElement) {
-                ((IAccessibleElement) container).getAccessibilityProperties().setRole(StandardRoles.LINK);
+            if (container instanceof IAccessibleElement) {
+                AccessibilityProperties accessibilityProperties =
+                        ((IAccessibleElement) container).getAccessibilityProperties();
+                String role = linkAnnotation.getRoleBasedOnDestination(context.getPdfDocument());
+                if (StandardRoles.REFERENCE.equals(role) && context.getPdfDocument() != null &&
+                        PdfVersion.PDF_2_0.compareTo(context.getPdfDocument().getPdfVersion()) <= 0) {
+                    accessibilityProperties.setNamespace(PdfNamespace.getDefault(context.getPdfDocument()));
+                }
+                accessibilityProperties.setRole(role);
             }
         }
     }
@@ -138,8 +149,12 @@ public class LinkHelper {
                 context.getLinkContext().addLinkAnnotation(id, linkAnnotation);
             }
 
-            propertyContainer.setProperty(Property.DESTINATION, new Tuple2<String, PdfDictionary>(id,
-                    linkAnnotation.getAction()));
+            Set<Object> existingDestinations = propertyContainer.<Set<Object>>getProperty(Property.DESTINATION);
+            if (existingDestinations == null) {
+                existingDestinations = new HashSet<>();
+            }
+            existingDestinations.add(new Tuple2<String, PdfDictionary>(id, linkAnnotation.getAction()));
+            propertyContainer.setProperty(Property.DESTINATION, existingDestinations);
         }
         if (propertyContainer != null) {
             propertyContainer.setProperty(Property.ID, id);

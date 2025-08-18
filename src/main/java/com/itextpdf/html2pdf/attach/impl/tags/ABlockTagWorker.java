@@ -23,15 +23,14 @@
 package com.itextpdf.html2pdf.attach.impl.tags;
 
 import com.itextpdf.html2pdf.attach.ProcessorContext;
+import com.itextpdf.html2pdf.attach.impl.tags.util.ATagUtil;
 import com.itextpdf.html2pdf.attach.util.LinkHelper;
-import com.itextpdf.kernel.pdf.tagging.StandardRoles;
-import com.itextpdf.layout.element.Div;
-import com.itextpdf.layout.properties.Property;
 import com.itextpdf.html2pdf.html.AttributeConstants;
+import com.itextpdf.layout.properties.Property;
 import com.itextpdf.styledxmlparser.node.IElementNode;
-import com.itextpdf.styledxmlparser.resolver.resource.UriResolver;
 
-import java.net.MalformedURLException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * TagWorker class for a link block.
@@ -57,26 +56,20 @@ public class ABlockTagWorker extends DivTagWorker {
 
         String url = element.getAttribute(AttributeConstants.HREF);
         if (url != null) {
-            String base = context.getBaseUri();
-            if (base != null) {
-                UriResolver uriResolver = new UriResolver(base);
-                if (!(url.startsWith("#") && uriResolver.isLocalBaseUri()))
-                    try {
-                        String resolvedUri = uriResolver.resolveAgainstBaseUri(url).toExternalForm();
-                        if (!url.endsWith("/") && resolvedUri.endsWith("/"))
-                            resolvedUri = resolvedUri.substring(0, resolvedUri.length() - 1);
-                        if (!resolvedUri.startsWith("file:"))
-                            url = resolvedUri;
-                    } catch (MalformedURLException exception) {
-                    }
-            }
-            ((Div) getElementResult()).getAccessibilityProperties().setRole(StandardRoles.LINK);
-            LinkHelper.applyLinkAnnotation(getElementResult(), url, context, element);
+            String anchorLink = element.getAttribute(AttributeConstants.HREF);
+            String baseUri = context.getBaseUri();
+            String modifiedUrl = ATagUtil.resolveAnchorLink(anchorLink, baseUri);
+            LinkHelper.applyLinkAnnotation(getElementResult(), modifiedUrl, context, element);
         }
 
         if (getElementResult() != null) {
             String name = element.getAttribute(AttributeConstants.NAME);
-            getElementResult().setProperty(Property.DESTINATION, name);
+            Set<Object> existingDestinations = getElementResult().<Set<Object>>getProperty(Property.DESTINATION);
+            if (existingDestinations == null) {
+                existingDestinations = new HashSet<>();
+            }
+            existingDestinations.add(name);
+            getElementResult().setProperty(Property.DESTINATION, existingDestinations);
         }
     }
 }

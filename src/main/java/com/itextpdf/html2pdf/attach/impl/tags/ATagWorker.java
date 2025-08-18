@@ -24,19 +24,19 @@ package com.itextpdf.html2pdf.attach.impl.tags;
 
 import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.attach.impl.layout.RunningElement;
+import com.itextpdf.html2pdf.attach.impl.tags.util.ATagUtil;
 import com.itextpdf.html2pdf.attach.util.LinkHelper;
-import com.itextpdf.kernel.pdf.tagging.StandardRoles;
+import com.itextpdf.html2pdf.html.AttributeConstants;
 import com.itextpdf.layout.IPropertyContainer;
 import com.itextpdf.layout.element.Div;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.properties.FloatPropertyValue;
 import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.Transform;
-import com.itextpdf.html2pdf.html.AttributeConstants;
 import com.itextpdf.styledxmlparser.node.IElementNode;
-import com.itextpdf.styledxmlparser.resolver.resource.UriResolver;
 
-import java.net.MalformedURLException;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -63,26 +63,15 @@ public class ATagWorker extends SpanTagWorker {
 
         String url = element.getAttribute(AttributeConstants.HREF);
         if (url != null) {
-            String base = context.getBaseUri();
-            if (base != null) {
-                UriResolver uriResolver = new UriResolver(base);
-                if (!(url.startsWith("#") && uriResolver.isLocalBaseUri()))
-                    try {
-                        String resolvedUri = uriResolver.resolveAgainstBaseUri(url).toExternalForm();
-                        if (!url.endsWith("/") && resolvedUri.endsWith("/"))
-                            resolvedUri = resolvedUri.substring(0, resolvedUri.length() - 1);
-                        if (!resolvedUri.startsWith("file:"))
-                            url = resolvedUri;
-                    } catch (MalformedURLException exception) {
-                    }
-            }
+            String anchorLink = element.getAttribute(AttributeConstants.HREF);
+            String baseUri = context.getBaseUri();
+            String modifiedUrl = ATagUtil.resolveAnchorLink(anchorLink, baseUri);
             for (int i = 0; i < getAllElements().size(); i++) {
                 if (getAllElements().get(i) instanceof RunningElement) {
                     continue;
                 }
                 if (getAllElements().get(i) instanceof IBlockElement) {
                     Div simulatedDiv = new Div();
-                    simulatedDiv.getAccessibilityProperties().setRole(StandardRoles.LINK);
                     Transform cssTransform = getAllElements().get(i).<Transform>getProperty(Property.TRANSFORM);
                     if (cssTransform != null) {
                         getAllElements().get(i).deleteOwnProperty(Property.TRANSFORM);
@@ -100,14 +89,19 @@ public class ATagWorker extends SpanTagWorker {
                     }
                     getAllElements().set(i, simulatedDiv);
                 }
-                LinkHelper.applyLinkAnnotation(getAllElements().get(i), url, context, element);
+                LinkHelper.applyLinkAnnotation(getAllElements().get(i), modifiedUrl, context, element);
             }
         }
 
         if (!getAllElements().isEmpty()) {
             String name = element.getAttribute(AttributeConstants.NAME);
             IPropertyContainer firstElement = getAllElements().get(0);
-            firstElement.setProperty(Property.DESTINATION, name);
+            Set<Object> existingDestinations = firstElement.<Set<Object>>getProperty(Property.DESTINATION);
+            if (existingDestinations == null) {
+                existingDestinations = new HashSet<>();
+            }
+            existingDestinations.add(name);
+            firstElement.setProperty(Property.DESTINATION, existingDestinations);
             firstElement.setProperty(Property.ID, name);
         }
     }

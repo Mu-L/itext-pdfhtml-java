@@ -26,6 +26,7 @@ import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
 import sharpen.config.MappingConfiguration;
 import sharpen.config.MappingConfigurator;
 import sharpen.config.ModuleOption;
@@ -95,5 +96,10 @@ public class SharpenConfigMapping implements MappingConfiguration {
     @Override
     public List<SimpleImmutableEntry<String, String>> getOverwrittenResources() {
         return Collections.EMPTY_LIST;
+    }
+
+    @Override
+    public void setConfigModuleSettings(ModulesConfigurator modulesConfigurator) {
+
     }
 }

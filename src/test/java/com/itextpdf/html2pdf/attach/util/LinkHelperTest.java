@@ -38,6 +38,8 @@ import com.itextpdf.styledxmlparser.jsoup.nodes.Element;
 import com.itextpdf.styledxmlparser.jsoup.parser.Tag;
 import com.itextpdf.styledxmlparser.node.impl.jsoup.node.JsoupElementNode;
 import com.itextpdf.test.ExtendedITextTest;
+
+import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -54,10 +56,12 @@ public class LinkHelperTest extends ExtendedITextTest {
         ProcessorContext context = new ProcessorContext(new ConverterProperties());
         context.getLinkContext().scanForIds(elementNode);
         LinkHelper.createDestination(worker, elementNode, context);
-        Object destination = worker.getElementResult().<Object>getProperty(Property.DESTINATION);
-        Tuple2<String, PdfDictionary> destTuple = (Tuple2<String, PdfDictionary>)destination;
-        Assertions.assertEquals("some_id", destTuple.getFirst());
-        Assertions.assertEquals(new PdfString("some_id"), destTuple.getSecond().get(PdfName.D));
+        Object destinations = worker.getElementResult().<Object>getProperty(Property.DESTINATION);
+        for (Object destination : (Set<Object>) destinations) {
+            Tuple2<String, PdfDictionary> destTuple = (Tuple2<String, PdfDictionary>) destination;
+            Assertions.assertEquals("some_id", destTuple.getFirst());
+            Assertions.assertEquals(new PdfString("some_id"), destTuple.getSecond().get(PdfName.D));
+        }
     }
 
     @Test

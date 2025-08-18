@@ -41,8 +41,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 @Tag("IntegrationTest")
 public class DisplayTest extends ExtendedHtmlConversionITextTest {
@@ -108,6 +108,9 @@ public class DisplayTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = IoLogMessageConstant.TABLE_WIDTH_IS_MORE_THAN_EXPECTED_DUE_TO_MIN_WIDTH),
+    })
     public void displayTable06Test() throws IOException, InterruptedException {
         convertToPdfAndCompare("display_table06", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
