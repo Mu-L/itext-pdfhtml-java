@@ -22,6 +22,7 @@
  */
 package com.itextpdf.html2pdf.css;
 
+import com.itextpdf.commons.utils.FileUtil;
 import com.itextpdf.forms.form.element.TextArea;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
@@ -37,6 +38,7 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.font.FontProvider;
+import com.itextpdf.layout.logs.LayoutLogMessageConstant;
 import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.layout.renderer.FlexContainerRenderer;
@@ -51,8 +53,9 @@ import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 @Tag("IntegrationTest")
 public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
@@ -615,10 +618,55 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
         fontProvider.addFont(robotoFont);
         props.setFontProvider(fontProvider);
 
-        HtmlConverter.convertToPdf(new FileInputStream(htmlFile), pdfDocument, props);
+        HtmlConverter.convertToPdf(FileUtil.getInputStreamForFile(htmlFile), pdfDocument, props);
 
         Assertions.assertNull(new CompareTool().compareByContent(outFile, cmpFile, DESTINATION_FOLDER,
                 "diff_displayFlexWithRobotoFont_"));
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA),
+    })
+    // TODO DEVSIX-8951 Nullpointer exception if using display: inline-block with display: flex on page split
+    public void inlineBlockInsideFlexWithFixedSizeSiblingTest() {
+        String html = "inlineBlockInsideFlexWithFixedSizeSibling";
+        File htmlFile = new File(SOURCE_FOLDER + html + ".html");
+        File output = new File(DESTINATION_FOLDER + html + ".pdf");
+        Assertions.assertThrows(Exception.class, () -> HtmlConverter.convertToPdf(htmlFile, output));
+    }
+
+    @Test
+    @Disabled("TODO DEVSIX-8951 Infinite loop if using display: inline-block with display: flex on page split")
+    public void inlineBlockInsideFlexWithFixedWidthOnlySiblingTest() throws IOException {
+        String html = "inlineBlockInsideFlexWithFixedWidthOnlySibling";
+        File htmlFile = new File(SOURCE_FOLDER + html + ".html");
+        File output = new File(DESTINATION_FOLDER + html + ".pdf");
+        HtmlConverter.convertToPdf(htmlFile, output);
+    }
+
+    @Test
+    // TODO DEVSIX-8005 NPE for column width in layout when converting a html
+    public void tableInsideDoubleFlexTest() {
+        String html = "tableInsideDoubleFlex";
+        File htmlFile = new File(SOURCE_FOLDER + html + ".html");
+        File output = new File(DESTINATION_FOLDER + html + ".pdf");
+        Assertions.assertThrows(Exception.class, () -> HtmlConverter.convertToPdf(htmlFile, output));
+    }
+
+    @Test
+    // TODO DEVSIX-9266 NPE flex on header: Cannot read field "maxPositiveMargin" because "marginsCollapse" is null
+    public void displayFlexOnHeaderTagTest() {
+        String html = "displayFlexOnHeaderTag";
+        File htmlFile = new File(SOURCE_FOLDER + html + ".html");
+        File output = new File(DESTINATION_FOLDER + html + ".pdf");
+        Assertions.assertThrows(Exception.class, () -> HtmlConverter.convertToPdf(htmlFile, output));
+    }
+
+    @Test
+    @Disabled("TODO DEVSIX-9342 Flex: keep together property can lead to infinite loop on page split")
+    public void flexWithPageBreakInsideAvoidAndPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flexWithPageBreakInsideAvoidAndPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     private static List<IElement> convertToElements(String name) throws IOException {
