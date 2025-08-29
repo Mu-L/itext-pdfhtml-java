@@ -23,6 +23,12 @@
 
   <properties>
     <itext.version>${project.parent.version}</itext.version>
+
+    <sharpen.phase>install</sharpen.phase>
+    <sharpen.projectName>html2pdf</sharpen.projectName>
+    <sharpen.cSharpTargetFolder>./../../sharp/html2pdf</sharpen.cSharpTargetFolder>
+    <sharpen.cSharpSourceCodeDestination>itext/itext.html2pdf</sharpen.cSharpSourceCodeDestination>
+    <sharpen.cSharpTestCodeDestination>itext.tests/itext.html2pdf.tests</sharpen.cSharpTestCodeDestination>
   </properties>
 
   <dependencies>
@@ -129,50 +135,7 @@
       </plugin>
     </plugins>
   </build>
-
   <profiles>
-    <profile>
-      <id>with-sharpen</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>sharpen</groupId>
-            <artifactId>sharpen-maven-plugin</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <executions>
-              <execution>
-                <phase>install</phase>
-                <goals>
-                  <goal>sharpen</goal>
-                </goals>
-              </execution>
-            </executions>
-            <dependencies>
-              <dependency>
-                <groupId>sharpen</groupId>
-                <artifactId>standard-framework-mapping</artifactId>
-                <version>1.0-SNAPSHOT</version>
-              </dependency>
-            </dependencies>
-            <configuration>
-              <projectName>html2pdf</projectName>
-              <cSharpTargetFolder>./../../sharp/html2pdf</cSharpTargetFolder>
-              <cSharpSourceCodeDestination>itext/itext.html2pdf</cSharpSourceCodeDestination>
-              <cSharpTestCodeDestination>itext.tests/itext.html2pdf.tests</cSharpTestCodeDestination>
-              <buildDotnet>${sharpen.builddotnet}</buildDotnet>
-              <showDiff>${sharpen.showdiff}</showDiff>
-              <sourceCodeFiles>
-                <file>**/src/main/java/**/*.java</file>
-              </sourceCodeFiles>
-              <testCodeFiles>
-                <file>**/src/test/java/**/*.java</file>
-              </testCodeFiles>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
     <profile>
       <id>native</id>
       <dependencies>
