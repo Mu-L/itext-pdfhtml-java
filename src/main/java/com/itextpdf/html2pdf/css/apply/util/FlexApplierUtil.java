@@ -22,10 +22,10 @@
  */
 package com.itextpdf.html2pdf.css.apply.util;
 
+import com.itextpdf.commons.utils.MessageFormatUtil;
 import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.css.CssConstants;
 import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
-import com.itextpdf.commons.utils.MessageFormatUtil;
 import com.itextpdf.layout.IPropertyContainer;
 import com.itextpdf.layout.properties.AlignContentPropertyValue;
 import com.itextpdf.layout.properties.AlignmentPropertyValue;
@@ -36,13 +36,13 @@ import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.styledxmlparser.css.CommonCssConstants;
 import com.itextpdf.styledxmlparser.css.util.CssDimensionParsingUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Utilities class to apply flex properties.
@@ -264,12 +264,6 @@ final public class FlexApplierUtil {
                     break;
                 case CommonCssConstants.FLEX_END:
                     justifyContent = JustifyContent.FLEX_END;
-                    break;
-                case CommonCssConstants.SELF_START:
-                    justifyContent = JustifyContent.SELF_START;
-                    break;
-                case CommonCssConstants.SELF_END:
-                    justifyContent = JustifyContent.SELF_END;
                     break;
                 case CommonCssConstants.LEFT:
                     justifyContent = JustifyContent.LEFT;

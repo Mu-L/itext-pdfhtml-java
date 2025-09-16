@@ -41,8 +41,8 @@ import com.itextpdf.test.annotations.LogMessages;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 @Tag("UnitTest")
 public class FlexApplierUtilTest extends ExtendedITextTest {
@@ -161,8 +161,6 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
                 CssConstants.CENTER,
                 CssConstants.FLEX_START,
                 CssConstants.FLEX_END,
-                CssConstants.SELF_START,
-                CssConstants.SELF_END,
                 CssConstants.LEFT,
                 CssConstants.RIGHT,
                 CssConstants.NORMAL,
@@ -174,8 +172,6 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
                 JustifyContent.CENTER,
                 JustifyContent.FLEX_START,
                 JustifyContent.FLEX_END,
-                JustifyContent.SELF_START,
-                JustifyContent.SELF_END,
                 JustifyContent.LEFT,
                 JustifyContent.RIGHT,
                 JustifyContent.NORMAL,

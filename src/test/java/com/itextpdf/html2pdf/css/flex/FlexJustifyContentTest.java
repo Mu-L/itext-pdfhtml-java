@@ -46,6 +46,12 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    @LogMessages(messages = @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION))
+    public void selfEndTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("selfEnd", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 8)
     })
