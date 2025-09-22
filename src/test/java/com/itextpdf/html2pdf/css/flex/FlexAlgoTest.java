@@ -20,7 +20,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.itextpdf.html2pdf.css;
+package com.itextpdf.html2pdf.css.flex;
 
 import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
 
@@ -42,8 +42,8 @@ public class FlexAlgoTest extends ExtendedHtmlConversionITextTest {
     - the names are preserved: one can go to FlexUtilTest and see the corresponding tests, but be aware that with
     time they might change and we will not maintain such correspondance */
 
-    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/FlexAlgoTest/";
-    public static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/FlexAlgoTest/";
+    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/flex/FlexAlgoTest/";
+    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/flex/FlexAlgoTest/";
 
     @BeforeAll
     public static void beforeClass() {

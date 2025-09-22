@@ -20,7 +20,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.itextpdf.html2pdf.css;
+package com.itextpdf.html2pdf.css.flex;
 
 import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
 import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
@@ -37,8 +37,8 @@ import org.junit.jupiter.api.Test;
 //TODO DEVSIX-5163: Update cmp files
 public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
-    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/FlexJustifyContentTest/";
-    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/FlexJustifyContentTest/";
+    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/flex/FlexJustifyContentTest/";
+    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/flex/FlexJustifyContentTest/";
 
     @BeforeAll
     public static void beforeClass() {

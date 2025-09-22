@@ -20,7 +20,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.itextpdf.html2pdf.css;
+package com.itextpdf.html2pdf.css.flex;
 
 import com.itextpdf.commons.utils.FileUtil;
 import com.itextpdf.forms.form.element.TextArea;
@@ -61,8 +61,8 @@ import org.junit.jupiter.api.Test;
 public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
 
     private static final float EPS = 1e-6f;
-    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/DisplayFlexTest/";
-    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/DisplayFlexTest/";
+    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/flex/DisplayFlexTest/";
+    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/flex/DisplayFlexTest/";
 
 
     @BeforeAll

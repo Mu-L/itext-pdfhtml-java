@@ -20,7 +20,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.itextpdf.html2pdf.css;
+package com.itextpdf.html2pdf.css.flex;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
@@ -39,8 +39,8 @@ import org.junit.jupiter.api.Tag;
 
 @Tag("IntegrationTest")
 public class FloatAndFlexTest extends ExtendedHtmlConversionITextTest {
-    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/FloatAndFlexTest/";
-    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/FloatAndFlexTest/";
+    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/flex/FloatAndFlexTest/";
+    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/flex/FloatAndFlexTest/";
 
     @BeforeAll
     public static void beforeClass() {
