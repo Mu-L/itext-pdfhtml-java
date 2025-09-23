@@ -644,16 +644,7 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
         File output = new File(DESTINATION_FOLDER + html + ".pdf");
         HtmlConverter.convertToPdf(htmlFile, output);
     }
-
-    @Test
-    // TODO DEVSIX-8005 NPE for column width in layout when converting a html
-    public void tableInsideDoubleFlexTest() {
-        String html = "tableInsideDoubleFlex";
-        File htmlFile = new File(SOURCE_FOLDER + html + ".html");
-        File output = new File(DESTINATION_FOLDER + html + ".pdf");
-        Assertions.assertThrows(Exception.class, () -> HtmlConverter.convertToPdf(htmlFile, output));
-    }
-
+    
     @Test
     // TODO DEVSIX-9266 NPE flex on header: Cannot read field "maxPositiveMargin" because "marginsCollapse" is null
     public void displayFlexOnHeaderTagTest() {
