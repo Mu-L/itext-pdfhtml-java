@@ -123,25 +123,21 @@ public class OverflowTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    //TODO DEVSIX-5212 CSS parsing: implement correct handling of css tokens with escaped code point
     public void overflowYVisibleOverflowXAllValuesTest() throws IOException, InterruptedException {
         runTest("overflowYVisibleOverflowXAllValues", new PageSize(1200, 1400));
     }
 
     @Test
-    //TODO DEVSIX-5212 CSS parsing: implement correct handling of css tokens with escaped code point
     public void overflowYHiddenOverflowXAllValuesTest() throws IOException, InterruptedException {
         runTest("overflowYHiddenOverflowXAllValues", new PageSize(1200, 1400));
     }
 
     @Test
-    //TODO DEVSIX-5212 CSS parsing: implement correct handling of css tokens with escaped code point
     public void overflowYScrollOverflowXAllValuesTest() throws IOException, InterruptedException {
         runTest("overflowYScrollOverflowXAllValues", new PageSize(1200, 1400));
     }
 
     @Test
-    //TODO DEVSIX-5212 CSS parsing: implement correct handling of css tokens with escaped code point
     public void overflowYAutoOverflowXAllValues() throws IOException, InterruptedException {
         runTest("overflowYAutoOverflowXAllValues", new PageSize(1200, 1400));
     }
