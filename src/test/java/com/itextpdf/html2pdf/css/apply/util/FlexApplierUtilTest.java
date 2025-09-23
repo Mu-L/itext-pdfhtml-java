@@ -263,7 +263,7 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
         ProcessorContext context = new ProcessorContext(new ConverterProperties());
         Map<String, String> cssProps = new HashMap<>();
         cssProps.put(CssConstants.ORDER, "1");
-        cssProps.put(CssConstants.ALIGN_SELF, CssConstants.STRETCH);
+        cssProps.put(CssConstants.ALIGN_SELF, CssConstants.SAFE);
         IElement element = new Div();
 
         FlexApplierUtil.applyFlexItemProperties(cssProps, context, element);

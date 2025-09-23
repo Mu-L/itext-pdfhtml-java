@@ -24,7 +24,6 @@ package com.itextpdf.html2pdf.css.w3c.css_grid.abspos;
 
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
 
-//TODO DEVSIX-5166 change after align-self is supported is supported
 public class GridAbsposStaticposAlignSelf001Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

@@ -28,8 +28,7 @@ import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
 //TODO DEVSIX-5167 change after align-items:baseline is supported
-//TODO DEVSIX-5166 change after align-self: stretch is implemented
-@LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2))
+@LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET))
 public class FlexboxAlignSelfBaselineHoriz005Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

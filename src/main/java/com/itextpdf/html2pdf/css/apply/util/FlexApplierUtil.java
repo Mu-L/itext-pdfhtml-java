@@ -67,6 +67,8 @@ final public class FlexApplierUtil {
 
         logWarningIfThereAreNotSupportedPropertyValues(createSupportedFlexItemPropertiesAndValuesMap(), cssProps);
 
+        applyAlignSelf(cssProps, element);
+
         final String flexGrow = cssProps.get(CommonCssConstants.FLEX_GROW);
         if (flexGrow != null) {
             final Float flexGrowValue = CssDimensionParsingUtils.parseFloat(flexGrow);
@@ -109,6 +111,52 @@ final public class FlexApplierUtil {
         applyAlignContent(cssProps, element);
         applyWrap(cssProps, element);
         applyDirection(cssProps, element);
+    }
+
+    private static void applyAlignSelf(Map<String, String> cssProps, IPropertyContainer element) {
+        final String alignSelfString = cssProps.get(CommonCssConstants.ALIGN_SELF);
+        if (alignSelfString != null) {
+            if (CommonCssConstants.AUTO.equals(alignSelfString)) {
+                // "auto" computes to the parent's align-items value.
+                return;
+            }
+            AlignmentPropertyValue alignSelf;
+            switch (alignSelfString) {
+                // TODO DEVSIX-5167 Support baseline value for align-items and align-self
+                case CommonCssConstants.START:
+                    alignSelf = AlignmentPropertyValue.START;
+                    break;
+                case CommonCssConstants.END:
+                    alignSelf = AlignmentPropertyValue.END;
+                    break;
+                case CommonCssConstants.FLEX_START:
+                    alignSelf = AlignmentPropertyValue.FLEX_START;
+                    break;
+                case CommonCssConstants.FLEX_END:
+                    alignSelf = AlignmentPropertyValue.FLEX_END;
+                    break;
+                case CommonCssConstants.CENTER:
+                    alignSelf = AlignmentPropertyValue.CENTER;
+                    break;
+                case CommonCssConstants.SELF_START:
+                    alignSelf = AlignmentPropertyValue.SELF_START;
+                    break;
+                case CommonCssConstants.SELF_END:
+                    alignSelf = AlignmentPropertyValue.SELF_END;
+                    break;
+                // For flex items, the "normal" behaves as stretch.
+                case CommonCssConstants.NORMAL:
+                case CommonCssConstants.STRETCH:
+                    alignSelf = AlignmentPropertyValue.STRETCH;
+                    break;
+                default:
+                    LOGGER.warn(MessageFormatUtil.format(Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET,
+                            CommonCssConstants.ALIGN_SELF, alignSelfString));
+                    alignSelf = AlignmentPropertyValue.START;
+                    break;
+            }
+            element.setProperty(Property.ALIGN_SELF, alignSelf);
+        }
     }
 
     private static void applyWrap(Map<String, String> cssProps, IPropertyContainer element) {
@@ -303,16 +351,7 @@ final public class FlexApplierUtil {
 
     private static Map<String, Set<String>> createSupportedFlexItemPropertiesAndValuesMap() {
         final Map<String, Set<String>> supportedPairs = new HashMap<>();
-
-        final Set<String> supportedAlignSelfValues = new HashSet<>();
-        supportedAlignSelfValues.add(CommonCssConstants.AUTO);
-
-        supportedPairs.put(CommonCssConstants.ALIGN_SELF, supportedAlignSelfValues);
-
-        final Set<String> supportedOrderValues = new HashSet<>();
-
-        supportedPairs.put(CommonCssConstants.ORDER, supportedOrderValues);
-
+        supportedPairs.put(CommonCssConstants.ORDER, new HashSet<>());
         return supportedPairs;
     }
 

@@ -293,7 +293,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 5)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
     public void stretchAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -342,7 +342,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 5)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 1)
     })
     public void spaceAroundMarginAndAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundMarginAndAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -390,7 +390,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
     })
     public void spaceAroundAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -430,7 +430,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 5)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
     public void spaceBetweenMarginAndAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenMarginAndAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -470,7 +470,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
     })
     public void spaceBetweenAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -510,7 +510,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
     })
     public void spaceEvenlyAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -526,7 +526,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 5)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
     public void spaceEvenlyMarginAndAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyMarginAndAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);

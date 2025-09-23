@@ -27,7 +27,6 @@ import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-//TODO DEVSIX-5166 change after align-self: baseline is implemented
 @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET))
 public class FlexAlignSelfBaselineTest extends W3CCssTest {
     @Override

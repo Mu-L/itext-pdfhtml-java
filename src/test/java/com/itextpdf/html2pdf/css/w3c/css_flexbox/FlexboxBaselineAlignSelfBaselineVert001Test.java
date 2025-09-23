@@ -24,7 +24,7 @@ package com.itextpdf.html2pdf.css.w3c.css_flexbox;
 
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
 
-//TODO DEVSIX-5166 change after align-self: baseline is implemented
+// TODO DEVSIX-5167 Support baseline value for align-items and align-self
 public class FlexboxBaselineAlignSelfBaselineVert001Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {
