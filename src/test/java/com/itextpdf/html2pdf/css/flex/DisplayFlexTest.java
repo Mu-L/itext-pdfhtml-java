@@ -477,14 +477,28 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    public void marginsCollapseInsideFlexContainer2Test() throws IOException, InterruptedException {
+        convertToPdfAndCompare("marginsCollapseInsideFlexContainer2", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void marginsCollapseFlexContainerAndItsChildTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("marginsCollapseFlexContainerAndItsChild", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    // TODO DEVSIX-5196 Support collapsing margins for flex item's children
     public void marginsCollapseInsideFlexItemTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("marginsCollapseInsideFlexItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void marginsCollapseInsideFlexItem2Test() throws IOException, InterruptedException {
+        convertToPdfAndCompare("marginsCollapseInsideFlexItem2", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void marginsCollapseInsideFlexItemBiggerThanItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("marginsCollapseInsideFlexItemBiggerThanItem", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
@@ -646,12 +660,9 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     }
     
     @Test
-    // TODO DEVSIX-9266 NPE flex on header: Cannot read field "maxPositiveMargin" because "marginsCollapse" is null
-    public void displayFlexOnHeaderTagTest() {
-        String html = "displayFlexOnHeaderTag";
-        File htmlFile = new File(SOURCE_FOLDER + html + ".html");
-        File output = new File(DESTINATION_FOLDER + html + ".pdf");
-        Assertions.assertThrows(Exception.class, () -> HtmlConverter.convertToPdf(htmlFile, output));
+    // TODO DEVSIX-7402 Add display:flex support for all relevant tags
+    public void displayFlexOnHeaderTagTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("displayFlexOnHeaderTag", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test

@@ -63,7 +63,6 @@ final public class FlexApplierUtil {
      */
     public static void applyFlexItemProperties(Map<String, String> cssProps, ProcessorContext context,
             IPropertyContainer element) {
-        element.setProperty(Property.COLLAPSING_MARGINS, null);
 
         logWarningIfThereAreNotSupportedPropertyValues(createSupportedFlexItemPropertiesAndValuesMap(), cssProps);
 

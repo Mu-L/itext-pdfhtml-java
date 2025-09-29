@@ -24,7 +24,7 @@ package com.itextpdf.html2pdf.css.w3c.css_flexbox;
 
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
 
-//TODO DEVSIX-5196 change after collapse is supported on flex items
+// TODO DEVSIX-7603 Flex container float property is ignored
 public class FlexboxCollapsedItemHoriz002Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {
