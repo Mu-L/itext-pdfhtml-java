@@ -35,6 +35,7 @@ import org.junit.jupiter.api.Test;
 
 @Tag("IntegrationTest")
 public class GridGapTest extends ExtendedHtmlConversionITextTest {
+    //TODO DEVSIX-7616: Update cmp's
     public static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/grid/GridGapTest/";
     public static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/grid/GridGapTest/";
 
@@ -150,9 +151,60 @@ public class GridGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    public void colGapLargeMarginItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("colGapLargeMarginItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void colGapLargeMarginsTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("colGapLargeMargins", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void paddingTest() throws IOException, InterruptedException {
         runTest("padding");
     }
+
+    @Test
+    public void colGapLargePaddingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("colGapLargePadding", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void colGapLargePaddingItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("colGapLargePaddingItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void colGapLargePaddingOverflowItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("colGapLargePaddingOverflowItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void rowGapLargeMarginItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("rowGapLargeMarginItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void rowGapLargeMarginsTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("rowGapLargeMargins", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void rowGapLargePaddingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("rowGapLargePadding", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void rowGapLargePaddingItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("rowGapLargePaddingItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void rowGapLargePaddingOverflowItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("rowGapLargePaddingOverflowItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
 
     @Test
     @LogMessages(messages = @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION))
@@ -200,6 +252,83 @@ public class GridGapTest extends ExtendedHtmlConversionITextTest {
     @Test
     public void gridRowGapTest() throws IOException, InterruptedException {
         runTest("gridRowGapTest");
+    }
+
+    @Test
+    public void autoColumnsLargeGapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("autoColumnsLargeGap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void autoRowsLargeGapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("autoRowsLargeGap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 32)
+    })
+    public void colGapRtlDirectionTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("colGapRtlDirection", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 32)
+    })
+    public void rowGapRtlDirectionTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("rowGapRtlDirection", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void colGapLongGridTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("colGapLongGrid", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void largeColGapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("largeColGap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void rowGapLongGridTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("rowGapLongGrid", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void largeRowGapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("largeRowGap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void longGridTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("longGrid", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    //TODO DEVSIX-9402: Update cmp's
+    public void orderOnItemsTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("orderOnItems", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void percentageColGapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("percentageColGap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void percentageRowGapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("percentageRowGap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void zeroSpaceColGapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("zeroSpaceColGap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void zeroSpaceRowGapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("zeroSpaceRowGap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     private void runTest(String testName) throws IOException, InterruptedException {
