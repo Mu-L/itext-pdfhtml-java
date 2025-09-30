@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 @Tag("IntegrationTest")
-//TODO DEVSIX-5163: Update cmp files
 public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/flex/FlexJustifyContentTest/";
@@ -52,26 +51,20 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 8)
-    })
     public void inheritFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("inheritFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 12)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
     })
     public void inheritSpaceValuesTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("inheritSpaceValues", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6),
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
-    })
+    // TODO DEVSIX-9449 Flex: wrong items order in nested flex container with flex-wrap: wrap-reverse
     public void inheritWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("inheritWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -90,9 +83,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
-    })
     public void initialWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("initialWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -101,6 +91,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     @LogMessages(messages = {
             @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 24)
     })
+    // TODO DEVSIX-9436 Flex: alignment/justify-content doesn't work correctly with direction: rtl
     public void leftValueTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("leftValue", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -115,18 +106,16 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
     public void simpleCombinedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("simpleCombined", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4),
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3),
             @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 2)
     })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void multipleValuesMarginAutoOverridesTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("otherValuesMarginAutoOverrides", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -137,19 +126,18 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void startEndCenterValuesWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("startEndCenterValuesWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 7)
-    })
     public void startEndCenterValuesNoWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("startEndCenterValuesNoWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void startEndCenterValuesWrapReverseTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("startEndCenterValuesWrapReverse", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -175,13 +163,36 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    public void centerOnPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("centerOnPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void startColumnWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("startColumnWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void flexEndColumnReverseWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexEndColumnReverseWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexEndFlexWrapOnPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flexEndFlexWrapOnPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void flexEndFlexWrapFlexDirOnPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flexEndFlexWrapFlexDirOnPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    // TODO DEVSIX-9456 Flex: in column direction take into account margins while calculating justify-content shift
+    public void flexEndDirColumnWrapLongTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flexEndDirColumnWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
@@ -191,7 +202,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 5),
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4),
             @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
     })
     public void revertSimpleTest() throws IOException, InterruptedException {
@@ -200,7 +211,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6),
             @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 8)
     })
     public void revertFlexDirTest() throws IOException, InterruptedException {
@@ -209,7 +219,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 5),
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4),
             @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
     })
     public void revertLayerTest() throws IOException, InterruptedException {
@@ -218,9 +228,9 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6),
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 8)
+            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 6)
     })
+    // TODO DEVSIX-9449 Flex: wrong items order in nested flex container with flex-wrap: wrap-reverse
     public void revertWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("revertWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -235,8 +245,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 12),
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 2)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 12)
     })
     public void safeCenterWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("safeCenterWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -252,8 +261,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 15),
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 3)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 15)
     })
     public void unsafeCenterWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("unsafeCenterWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -263,6 +271,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
     })
+    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void stretchTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretch", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -271,15 +280,16 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 8)
     })
+    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void stretchFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6),
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
     })
+    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void stretchWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -288,11 +298,13 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
+    // TODO DEVSIX-5167 Support baseline value for align-items and align-self
     public void stretchAlignItemsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchAlignItems", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void stretchAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -301,13 +313,14 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
+    // TODO DEVSIX-5167 Support baseline value for align-items and align-self
     public void stretchAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 1)
     })
     public void unsetTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("unset", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -315,7 +328,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 8)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4)
     })
     public void unsetFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("unsetFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -323,330 +336,301 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6),
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
     })
+    // TODO DEVSIX-9449 Flex: wrong items order in nested flex container with flex-wrap: wrap-reverse
     public void unsetWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("unsetWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
     public void spaceAroundSimpleTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundSimple", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4)
-    })
     public void spaceAroundFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 1)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceAroundMarginAndAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundMarginAndAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceAroundMarginAutoTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundMarginAuto", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceAroundMarginAuto2Test() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundMarginAuto2", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceAroundMarginAutoOverrideTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundMarginAutoOverride", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
+    // TODO DEVSIX-5167 Support baseline value for align-items and align-self
     public void spaceAroundAlignItemsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundAlignItems", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
-    })
     public void spaceAroundAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
+    // TODO DEVSIX-5167 Support baseline value for align-items and align-self
     public void spaceAroundAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void spaceAroundWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    // TODO DEVSIX-9446 Support continuous container logic for flex
+    // TODO DEVSIX-9456 Flex: in column direction take into account margins while calculating justify-content shift
     public void spaceAroundColumnWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundColumnWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    public void spaceAroundOnPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("spaceAroundOnPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void spaceAroundFlexWrapFlexDirOnPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("spaceAroundFlexWrapFlexDirOnPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void spaceAroundFlexWrapFlexDirOnPageSplit2Test() throws IOException, InterruptedException {
+        convertToPdfAndCompare("spaceAroundFlexWrapFlexDirOnPageSplit2", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void spaceBetweenSimpleTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenSimple", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4)
-    })
     public void spaceBetweenFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceBetweenMarginAndAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenMarginAndAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceBetweenMarginAutoOverrideTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenMarginAutoOverride", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceBetweenAllMarginOptionsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenAllMarginOptions", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 1)
     })
+    // TODO DEVSIX-5167 Support baseline value for align-items and align-self
     public void spaceBetweenAlignItemsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenAlignItems", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
-    })
     public void spaceBetweenAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
+    // TODO DEVSIX-5167 Support baseline value for align-items and align-self
     public void spaceBetweenAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    // TODO DEVSIX-9446 Support continuous container logic for flex
+    // TODO DEVSIX-9456 Flex: in column direction take into account margins while calculating justify-content shift
     public void spaceBetweenColumnReverseWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenColumnReverseWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    public void spaceBetweenOnPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("spaceBetweenOnPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void spaceEvenlySimpleTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlySimple", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 1)
     })
+    // TODO DEVSIX-5167 Support baseline value for align-items and align-self
     public void spaceEvenlyAlignItemsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyAlignItems", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
-    })
     public void spaceEvenlyAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
     })
     public void spaceEvenlyAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4)
-    })
     public void spaceEvenlyFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceEvenlyMarginAndAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyMarginAndAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
-    })
+    // TODO DEVSIX-5002 pdfHTML: support 'margin: auto'
     public void spaceEvenlyMarginAutoOverrideTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyMarginAutoOverride", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 1)
-    })
+    // TODO DEVSIX-9446 Support continuous container logic for flex
+    // TODO DEVSIX-9456 Flex: in column direction take into account margins while calculating justify-content shift
     public void spaceEvenlyColumnReverseWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyColumnReverseWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
+    public void spaceEvenlyOnPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("spaceEvenlyOnPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void spaceValuesBorderAndMarginsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesBorderAndMargins", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 9)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
     })
+    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void spaceValuesFlexGrowTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesFlexGrow", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void spaceValuesPaddingBordersMarginTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesPaddingBordersMargin", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
     public void spaceValuesSingleElementTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesSingleElement", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
+    public void spaceValuesOneElemDirRowReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("spaceValuesOneElemDirRowReverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void spaceValuesOneElemDirColumnReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("spaceValuesOneElemDirColumnReverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void spaceValuesOneElemDirRowTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("spaceValuesOneElemDirRow", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void spaceValuesWithBordersTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesWithBorders", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void spaceValuesWithMarginsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesWithMargins", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
     public void spaceValuesWithPaddingTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesWithPadding", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 9)
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
     })
+    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void spaceValuesFlexShrinkTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesFlexShrink", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3),
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 3)
-    })
     public void spaceValuesNoWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesNoWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void spaceValuesWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 12)
-    })
     public void spaceValuesWrapAlignItemsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesWrapAlignItems", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
-    })
+    // TODO DEVSIX-9446 Support continuous container logic for flex
     public void spaceValuesWrapReverseTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesWrapReverse", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

@@ -256,11 +256,17 @@ final public class FlexApplierUtil {
                 case CommonCssConstants.NORMAL:
                     justifyContent = JustifyContent.NORMAL;
                     break;
+                case CommonCssConstants.CENTER:
+                    justifyContent = JustifyContent.CENTER;
+                    break;
                 case CommonCssConstants.START:
                     justifyContent = JustifyContent.START;
                     break;
                 case CommonCssConstants.END:
                     justifyContent = JustifyContent.END;
+                    break;
+                case CommonCssConstants.FLEX_START:
+                    justifyContent = JustifyContent.FLEX_START;
                     break;
                 case CommonCssConstants.FLEX_END:
                     justifyContent = JustifyContent.FLEX_END;
@@ -271,14 +277,17 @@ final public class FlexApplierUtil {
                 case CommonCssConstants.RIGHT:
                     justifyContent = JustifyContent.RIGHT;
                     break;
-                case CommonCssConstants.CENTER:
-                    justifyContent = JustifyContent.CENTER;
+                case CommonCssConstants.SPACE_BETWEEN:
+                    justifyContent =JustifyContent.SPACE_BETWEEN;
+                    break;
+                case CommonCssConstants.SPACE_AROUND:
+                    justifyContent = JustifyContent.SPACE_AROUND;
+                    break;
+                case CommonCssConstants.SPACE_EVENLY:
+                    justifyContent = JustifyContent.SPACE_EVENLY;
                     break;
                 case CommonCssConstants.STRETCH:
                     justifyContent = JustifyContent.STRETCH;
-                    break;
-                case CommonCssConstants.FLEX_START:
-                    justifyContent = JustifyContent.FLEX_START;
                     break;
                 default:
                     LOGGER.warn(MessageFormatUtil.format(Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET,

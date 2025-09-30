@@ -221,7 +221,7 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
     @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET))
     public void applyJustifyContentUnsupportedValuesTest() {
         Map<String, String> cssProps = new HashMap<>();
-        cssProps.put(CssConstants.JUSTIFY_CONTENT, CommonCssConstants.SPACE_BETWEEN);
+        cssProps.put(CssConstants.JUSTIFY_CONTENT, "safe center");
         IElement element = new Div();
         FlexApplierUtil.applyFlexContainerProperties(cssProps, element);
         Assertions.assertEquals(JustifyContent.FLEX_START, (JustifyContent) element.<JustifyContent>getProperty(Property.JUSTIFY_CONTENT));
