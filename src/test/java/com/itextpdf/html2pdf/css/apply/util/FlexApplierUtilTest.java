@@ -120,6 +120,7 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
     @Test
     @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET))
     public void applyAlignItemsTest() {
+        ProcessorContext context = new ProcessorContext(new ConverterProperties());
         String[] alignItemsStrings = {
                 CssConstants.START,
                 CssConstants.END,
@@ -148,13 +149,14 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
             Map<String, String> cssProps = new HashMap<>();
             cssProps.put(CssConstants.ALIGN_ITEMS, alignItemsStrings[i]);
             IElement element = new Div();
-            FlexApplierUtil.applyFlexContainerProperties(cssProps, element);
+            FlexApplierUtil.applyFlexContainerProperties(cssProps, element, context);
             Assertions.assertEquals(alignItemsValues[i], (AlignmentPropertyValue) element.<AlignmentPropertyValue>getProperty(Property.ALIGN_ITEMS));
         }
     }
 
     @Test
     public void applyJustifyContentTest() {
+        ProcessorContext context = new ProcessorContext(new ConverterProperties());
         String[] justifyContentStrings = {
                 CssConstants.START,
                 CssConstants.END,
@@ -181,13 +183,14 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
             Map<String, String> cssProps = new HashMap<>();
             cssProps.put(CssConstants.JUSTIFY_CONTENT, justifyContentStrings[i]);
             IElement element = new Div();
-            FlexApplierUtil.applyFlexContainerProperties(cssProps, element);
+            FlexApplierUtil.applyFlexContainerProperties(cssProps, element, context);
             Assertions.assertEquals(justifyContentValues[i], (JustifyContent) element.<JustifyContent>getProperty(Property.JUSTIFY_CONTENT));
         }
     }
 
     @Test
     public void applyFlexWrapTest() {
+        ProcessorContext context = new ProcessorContext(new ConverterProperties());
         String[] wrapStrings = {
                 CssConstants.NOWRAP,
                 CssConstants.WRAP,
@@ -202,7 +205,7 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
             Map<String, String> cssProps = new HashMap<>();
             cssProps.put(CssConstants.FLEX_WRAP, wrapStrings[i]);
             IElement element = new Div();
-            FlexApplierUtil.applyFlexContainerProperties(cssProps, element);
+            FlexApplierUtil.applyFlexContainerProperties(cssProps, element, context);
             Assertions.assertEquals(wrapValues[i], (FlexWrapPropertyValue) element.<FlexWrapPropertyValue>getProperty(Property.FLEX_WRAP));
         }
     }
@@ -213,7 +216,8 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
         Map<String, String> cssProps = new HashMap<>();
         cssProps.put(CommonCssConstants.ALIGN_ITEMS, CssConstants.SAFE + " " + CommonCssConstants.FLEX_END);
         IElement element = new Div();
-        FlexApplierUtil.applyFlexContainerProperties(cssProps, element);
+        ProcessorContext context = new ProcessorContext(new ConverterProperties());
+        FlexApplierUtil.applyFlexContainerProperties(cssProps, element, context);
         Assertions.assertEquals(AlignmentPropertyValue.STRETCH, (AlignmentPropertyValue) element.<AlignmentPropertyValue>getProperty(Property.ALIGN_ITEMS));
     }
 
@@ -223,30 +227,29 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
         Map<String, String> cssProps = new HashMap<>();
         cssProps.put(CssConstants.JUSTIFY_CONTENT, "safe center");
         IElement element = new Div();
-        FlexApplierUtil.applyFlexContainerProperties(cssProps, element);
+        ProcessorContext context = new ProcessorContext(new ConverterProperties());
+        FlexApplierUtil.applyFlexContainerProperties(cssProps, element, context);
         Assertions.assertEquals(JustifyContent.FLEX_START, (JustifyContent) element.<JustifyContent>getProperty(Property.JUSTIFY_CONTENT));
     }
 
     @Test
     @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2))
     public void applyFlexContainerUnsupportedPropertiesUnsupportedValuesTest() {
+        ProcessorContext context = new ProcessorContext(new ConverterProperties());
         String[] unsupportedProperties = {
                 CssConstants.FLEX_DIRECTION,
-                CssConstants.ROW_GAP,
-                CssConstants.COLUMN_GAP,
                 CssConstants.ALIGN_CONTENT
         };
+        // Invalid values are used for testing.
         String[] unsupportedValues = {
-                CssConstants.COLUMN,
-                "20px",
-                "10em",
-                CssConstants.SPACE_AROUND
+                CssConstants.NORMAL,
+                CssConstants.RIGHT
         };
         for (int i = 0; i < unsupportedValues.length; ++i) {
             Map<String, String> cssProps = new HashMap<>();
             cssProps.put(unsupportedProperties[i], unsupportedValues[i]);
             IElement element = new Div();
-            FlexApplierUtil.applyFlexContainerProperties(cssProps, element);
+            FlexApplierUtil.applyFlexContainerProperties(cssProps, element, context);
         }
 
         // This test checks that there are log messages so assertions are not required
@@ -270,6 +273,7 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
 
     @Test
     public void applyFlexContainerUnsupportedPropertiesSupportedValuesTest() {
+        ProcessorContext context = new ProcessorContext(new ConverterProperties());
         String[] unsupportedProperties = {
                 CssConstants.FLEX_DIRECTION,
                 CssConstants.ALIGN_CONTENT
@@ -282,7 +286,7 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
             Map<String, String> cssProps = new HashMap<>();
             cssProps.put(unsupportedProperties[i], supportedValues[i]);
             IElement element = new Div();
-            FlexApplierUtil.applyFlexContainerProperties(cssProps, element);
+            FlexApplierUtil.applyFlexContainerProperties(cssProps, element, context);
         }
 
         // This test checks that there are no log messages so assertions are not required

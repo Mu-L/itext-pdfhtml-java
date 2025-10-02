@@ -27,7 +27,8 @@ import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-//TODO DEVSIX-5167 change after align-items:baseline is supported
+// TODO DEVSIX-5167 change after align-items:baseline is supported
+// DEVSIX-5002 margin: auto is not supported
 @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 9))
 public class FlexboxAlignSelfBaselineHoriz003Test extends W3CCssTest {
     @Override

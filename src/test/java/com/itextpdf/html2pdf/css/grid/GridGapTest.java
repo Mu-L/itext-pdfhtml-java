@@ -35,7 +35,6 @@ import org.junit.jupiter.api.Test;
 
 @Tag("IntegrationTest")
 public class GridGapTest extends ExtendedHtmlConversionITextTest {
-    //TODO DEVSIX-7616: Update cmp's
     public static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/grid/GridGapTest/";
     public static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/grid/GridGapTest/";
 

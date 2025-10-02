@@ -197,7 +197,6 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
     }
 
     // TODO DEVSIX-5167 Support baseline value for align-items and align-self
-    // TODO DEVSIX-9435 Flex: fix items align-self in case of flex-wrap: wrap-reverse
     @Test
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 12)
@@ -207,7 +206,6 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
     }
 
     // TODO DEVSIX-5167 Support baseline value for align-items and align-self
-    // TODO DEVSIX-9435 Flex: fix items align-self in case of flex-wrap: wrap-reverse
     @Test
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 12)
@@ -221,7 +219,6 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("autoFlexDirRowFlexWrapTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    // TODO DEVSIX-9435 Flex: fix items align-self in case of flex-wrap: wrap-reverse
     @Test
     public void normalFlexDirRowFlexWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("normalFlexDirRowFlexWrapTest", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -263,25 +260,21 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("selfEndFlexDirColumnFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    // TODO DEVSIX-9435 Flex: fix items align-self in case of flex-wrap: wrap-reverse
     @Test
     public void stretchFlexDirRowFlexWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchFlexDirRowFlexWrapTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    // TODO DEVSIX-9435 Flex: fix items align-self in case of flex-wrap: wrap-reverse
     @Test
     public void stretchFlexDirRowReverseFlexWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchFlexDirRowReverseFlexWrapTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    // TODO DEVSIX-9435 Flex: fix items align-self in case of flex-wrap: wrap-reverse
     @Test
     public void stretchFlexDirColumnFlexWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchFlexDirColumnFlexWrapTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    // TODO DEVSIX-9435 Flex: fix items align-self in case of flex-wrap: wrap-reverse
     @Test
     public void stretchFlexDirColumnReverseFlexWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchFlexDirColumnReverseFlexWrapTest", SOURCE_FOLDER, DESTINATION_FOLDER);

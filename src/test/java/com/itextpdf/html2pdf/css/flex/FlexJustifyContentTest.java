@@ -56,9 +56,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
-    })
     public void inheritSpaceValuesTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("inheritSpaceValues", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -70,9 +67,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
-    })
     public void initialSimpleTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("initialSimple", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -202,7 +196,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4),
             @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
     })
     public void revertSimpleTest() throws IOException, InterruptedException {
@@ -219,7 +212,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4),
             @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
     })
     public void revertLayerTest() throws IOException, InterruptedException {
@@ -268,28 +260,16 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2)
-    })
-    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void stretchTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretch", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 8)
-    })
-    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void stretchFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
-    })
-    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void stretchWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("stretchWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -554,10 +534,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
-    })
-    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void spaceValuesFlexGrowTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesFlexGrow", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -605,10 +581,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 6)
-    })
-    // TODO DEVSIX-7616 Flex: add support for row/column-gap & gap CSS property
     public void spaceValuesFlexShrinkTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceValuesFlexShrink", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

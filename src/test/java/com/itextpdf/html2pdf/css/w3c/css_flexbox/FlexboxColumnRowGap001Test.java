@@ -23,12 +23,10 @@
 package com.itextpdf.html2pdf.css.w3c.css_flexbox;
 
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
-import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
-import com.itextpdf.test.annotations.LogMessage;
-import com.itextpdf.test.annotations.LogMessages;
 
-//TODO DEVSIX-7616 change after row-gap is supported
-@LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 4))
+// TODO DEVSIX-5087 Support float property for FlexContainerRenderer
+// TODO DEVSIX-5002 Support 'margin: auto'
+// TODO DEVSIX-9472 Support percentage values for column/row-gap property
 public class FlexboxColumnRowGap001Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

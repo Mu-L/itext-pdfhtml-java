@@ -23,6 +23,7 @@
 package com.itextpdf.html2pdf.css.apply.util;
 
 import com.itextpdf.commons.utils.MessageFormatUtil;
+import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.css.CssConstants;
 import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
@@ -36,13 +37,13 @@ import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.styledxmlparser.css.CommonCssConstants;
 import com.itextpdf.styledxmlparser.css.util.CssDimensionParsingUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Utilities class to apply flex properties.
@@ -58,11 +59,11 @@ final public class FlexApplierUtil {
      * Applies properties to a flex item.
      *
      * @param cssProps the map of the CSS properties
-     * @param context  the context of the converter processor
-     * @param element  the element to set the properties
+     * @param context the context of the converter processor
+     * @param element the element to set the properties
      */
     public static void applyFlexItemProperties(Map<String, String> cssProps, ProcessorContext context,
-            IPropertyContainer element) {
+                                               IPropertyContainer element) {
 
         logWarningIfThereAreNotSupportedPropertyValues(createSupportedFlexItemPropertiesAndValuesMap(), cssProps);
 
@@ -101,15 +102,31 @@ final public class FlexApplierUtil {
      * Applies properties to a flex container.
      *
      * @param cssProps the CSS properties
-     * @param element  the element
+     * @param element the element
+     *
+     * @deprecated in favour of {@link #applyFlexContainerProperties(Map, IPropertyContainer, ProcessorContext)}
      */
+    @Deprecated
     public static void applyFlexContainerProperties(Map<String, String> cssProps, IPropertyContainer element) {
+        applyFlexContainerProperties(cssProps, element, new ProcessorContext(new ConverterProperties()));
+    }
+
+    /**
+     * Applies properties to a flex container.
+     *
+     * @param cssProps the CSS properties
+     * @param element the element
+     * @param context the context of the converter processor
+     */
+    public static void applyFlexContainerProperties(Map<String, String> cssProps, IPropertyContainer element,
+                                                    ProcessorContext context) {
         logWarningIfThereAreNotSupportedPropertyValues(createSupportedFlexContainerPropertiesAndValuesMap(), cssProps);
         applyAlignItems(cssProps, element);
         applyJustifyContent(cssProps, element);
         applyAlignContent(cssProps, element);
         applyWrap(cssProps, element);
         applyDirection(cssProps, element);
+        applyGap(cssProps, element, context);
     }
 
     private static void applyAlignSelf(Map<String, String> cssProps, IPropertyContainer element) {
@@ -277,7 +294,7 @@ final public class FlexApplierUtil {
                     justifyContent = JustifyContent.RIGHT;
                     break;
                 case CommonCssConstants.SPACE_BETWEEN:
-                    justifyContent =JustifyContent.SPACE_BETWEEN;
+                    justifyContent = JustifyContent.SPACE_BETWEEN;
                     break;
                 case CommonCssConstants.SPACE_AROUND:
                     justifyContent = JustifyContent.SPACE_AROUND;
@@ -290,7 +307,7 @@ final public class FlexApplierUtil {
                     break;
                 default:
                     LOGGER.warn(MessageFormatUtil.format(Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET,
-                        CommonCssConstants.JUSTIFY_CONTENT, justifyContentString));
+                            CommonCssConstants.JUSTIFY_CONTENT, justifyContentString));
                     justifyContent = JustifyContent.FLEX_START;
                     break;
             }
@@ -338,6 +355,21 @@ final public class FlexApplierUtil {
         }
     }
 
+    private static void applyGap(Map<String, String> cssProps, IPropertyContainer element, ProcessorContext context) {
+        final float emValue = CssDimensionParsingUtils.parseAbsoluteFontSize(cssProps.get(CssConstants.FONT_SIZE));
+        final float remValue = context.getCssContext().getRootFontSize();
+        applyGap(element, emValue, remValue, cssProps.get(CssConstants.COLUMN_GAP), Property.COLUMN_GAP);
+        applyGap(element, emValue, remValue, cssProps.get(CssConstants.ROW_GAP), Property.ROW_GAP);
+    }
+
+    private static void applyGap(IPropertyContainer container, float em, float rem, String gap, int property) {
+        String gapLength = CommonCssConstants.NORMAL.equals(gap) ? "0px" : gap;
+        final UnitValue gapValue = CssDimensionParsingUtils.parseLengthValueToPt(gapLength, em, rem);
+        if (gapValue != null) {
+            container.setProperty(property, gapValue.getValue());
+        }
+    }
+
     private static void logWarningIfThereAreNotSupportedPropertyValues(Map<String, Set<String>> supportedPairs,
                                                                        Map<String, String> cssProps) {
         for (Map.Entry<String, Set<String>> entry : supportedPairs.entrySet()) {
@@ -382,16 +414,6 @@ final public class FlexApplierUtil {
         supportedAlignContentValues.add(CommonCssConstants.SPACE_EVENLY);
 
         supportedPairs.put(CommonCssConstants.ALIGN_CONTENT, supportedAlignContentValues);
-
-        final Set<String> supportedRowGapValues = new HashSet<>();
-        supportedRowGapValues.add(CommonCssConstants.NORMAL);
-
-        supportedPairs.put(CommonCssConstants.ROW_GAP, supportedRowGapValues);
-
-        final Set<String> supportedColumnGapValues = new HashSet<>();
-        supportedColumnGapValues.add(CommonCssConstants.NORMAL);
-
-        supportedPairs.put(CommonCssConstants.COLUMN_GAP, supportedColumnGapValues);
 
         return supportedPairs;
     }
