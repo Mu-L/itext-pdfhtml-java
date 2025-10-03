@@ -27,8 +27,6 @@ import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-// TODO DEVSIX-9402 Flex: basic support of CSS order property for flex items
-@LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3))
 public class FlexboxItemsAsStackingContexts002Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

@@ -257,11 +257,10 @@ public class FlexApplierUtilTest extends ExtendedITextTest {
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 2))
+    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET))
     public void applyFlexItemUnsupportedPropertiesUnsupportedValuesTest() {
         ProcessorContext context = new ProcessorContext(new ConverterProperties());
         Map<String, String> cssProps = new HashMap<>();
-        cssProps.put(CssConstants.ORDER, "1");
         cssProps.put(CssConstants.ALIGN_SELF, CssConstants.SAFE);
         IElement element = new Div();
 

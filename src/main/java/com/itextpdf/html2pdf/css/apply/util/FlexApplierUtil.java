@@ -69,6 +69,8 @@ final public class FlexApplierUtil {
 
         applyAlignSelf(cssProps, element);
 
+        applyOrder(cssProps, element);
+
         final String flexGrow = cssProps.get(CommonCssConstants.FLEX_GROW);
         if (flexGrow != null) {
             final Float flexGrowValue = CssDimensionParsingUtils.parseFloat(flexGrow);
@@ -264,6 +266,10 @@ final public class FlexApplierUtil {
         }
     }
 
+    private static void applyOrder(Map<String, String> cssProps, IPropertyContainer element) {
+        element.setProperty(Property.ORDER, CssDimensionParsingUtils.parseInteger(cssProps.get(CommonCssConstants.ORDER)));
+    }
+
     private static void applyJustifyContent(Map<String, String> cssProps, IPropertyContainer element) {
         final String justifyContentString = cssProps.get(CommonCssConstants.JUSTIFY_CONTENT);
         if (justifyContentString != null) {
@@ -384,9 +390,7 @@ final public class FlexApplierUtil {
     }
 
     private static Map<String, Set<String>> createSupportedFlexItemPropertiesAndValuesMap() {
-        final Map<String, Set<String>> supportedPairs = new HashMap<>();
-        supportedPairs.put(CommonCssConstants.ORDER, new HashSet<>());
-        return supportedPairs;
+        return new HashMap<>();
     }
 
     private static Map<String, Set<String>> createSupportedFlexContainerPropertiesAndValuesMap() {
