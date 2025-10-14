@@ -666,9 +666,15 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @Disabled("TODO DEVSIX-9342 Flex: keep together property can lead to infinite loop on page split")
+    @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
     public void flexWithPageBreakInsideAvoidAndPageSplitTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexWithPageBreakInsideAvoidAndPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
+    public void flexWithPageBreakInsideAvoidAndPageSplit2Test() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flexWithPageBreakInsideAvoidAndPageSplit2", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     private static List<IElement> convertToElements(String name) throws IOException {
