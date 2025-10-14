@@ -369,6 +369,9 @@ public class FlexColumnReverseTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.ELEMENT_DOES_NOT_FIT_CURRENT_AREA)
+    })
     public void columnReversePagingLargeElementTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("column-reverse-paging-large-element", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

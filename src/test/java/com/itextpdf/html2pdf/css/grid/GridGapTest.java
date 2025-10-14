@@ -305,7 +305,6 @@ public class GridGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    //TODO DEVSIX-9402: Update cmp's
     public void orderOnItemsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("orderOnItems", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

@@ -184,7 +184,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9456 Flex: in column direction take into account margins while calculating justify-content shift
     public void flexEndDirColumnWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexEndDirColumnWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -388,7 +387,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     // TODO DEVSIX-9446 Support continuous container logic for flex
-    // TODO DEVSIX-9456 Flex: in column direction take into account margins while calculating justify-content shift
     public void spaceAroundColumnWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceAroundColumnWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -461,7 +459,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     // TODO DEVSIX-9446 Support continuous container logic for flex
-    // TODO DEVSIX-9456 Flex: in column direction take into account margins while calculating justify-content shift
     public void spaceBetweenColumnReverseWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceBetweenColumnReverseWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -517,7 +514,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     // TODO DEVSIX-9446 Support continuous container logic for flex
-    // TODO DEVSIX-9456 Flex: in column direction take into account margins while calculating justify-content shift
     public void spaceEvenlyColumnReverseWrapLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("spaceEvenlyColumnReverseWrapLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

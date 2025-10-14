@@ -46,6 +46,11 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    public void itemsHigherThanContainerTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("itemsHigherThanContainer", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void aBasicTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("aBasic", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
