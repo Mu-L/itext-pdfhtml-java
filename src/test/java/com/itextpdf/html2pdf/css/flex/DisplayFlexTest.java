@@ -46,16 +46,15 @@ import com.itextpdf.styledxmlparser.resolver.font.BasicFontProvider;
 import com.itextpdf.test.LogLevelConstants;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 
 @Tag("IntegrationTest")
 public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
@@ -63,7 +62,6 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     private static final float EPS = 1e-6f;
     private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/flex/DisplayFlexTest/";
     private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/flex/DisplayFlexTest/";
-
 
     @BeforeAll
     public static void beforeClass() {
@@ -623,7 +621,7 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
         String outFile = DESTINATION_FOLDER + "displayFlexWithRobotoFont.pdf";
         String cmpFile = SOURCE_FOLDER + "cmp_displayFlexWithRobotoFont.pdf";
         String htmlFile = SOURCE_FOLDER + "displayFlexWithRobotoFont.html";
-        String robotoFont ="./src/test/resources/com/itextpdf/html2pdf/fonts/Roboto-Regular.ttf";
+        String robotoFont = "./src/test/resources/com/itextpdf/html2pdf/fonts/Roboto-Regular.ttf";
 
         PdfWriter writer = new PdfWriter(new File(outFile));
         PdfDocument pdfDocument = new PdfDocument(writer);
@@ -639,26 +637,72 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA),
-    })
-    // TODO DEVSIX-8951 Nullpointer exception if using display: inline-block with display: flex on page split
-    public void inlineBlockInsideFlexWithFixedSizeSiblingTest() {
-        String html = "inlineBlockInsideFlexWithFixedSizeSibling";
-        File htmlFile = new File(SOURCE_FOLDER + html + ".html");
-        File output = new File(DESTINATION_FOLDER + html + ".pdf");
-        Assertions.assertThrows(Exception.class, () -> HtmlConverter.convertToPdf(htmlFile, output));
+    public void inlineBlockInsideFlexWithFixedSizeSiblingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexWithFixedSizeSibling", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @Disabled("TODO DEVSIX-8951 Infinite loop if using display: inline-block with display: flex on page split")
-    public void inlineBlockInsideFlexWithFixedWidthOnlySiblingTest() throws IOException {
-        String html = "inlineBlockInsideFlexWithFixedWidthOnlySibling";
-        File htmlFile = new File(SOURCE_FOLDER + html + ".html");
-        File output = new File(DESTINATION_FOLDER + html + ".pdf");
-        HtmlConverter.convertToPdf(htmlFile, output);
+    public void inlineBlockInsideFlexWithFixedWidthOnlySiblingTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexWithFixedWidthOnlySibling", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
-    
+
+    @Test
+    // TODO DEVSIX-9509 Move flex container to the next page since inline-block flex item is not fit and not 1st
+    public void inlineBlockInsideFlexWithFixedWidthOnlySiblingAfterParagraphTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexWithFixedWidthOnlySiblingAfterParagraph", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    // TODO DEVSIX-9509 Move flex container to the next page since inline-block flex item is not fit and not 1st
+    public void inlineBlockInsideFlexAfterParagraphTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexAfterParagraph", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void inlineBlockInsideFlexSingleItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexSingleItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void inlineBlockInsideFlexFirstItemTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexFirstItem", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void inlineBlockInsideFlexSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void inlineBlockInsideFlexSeveralItemsTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexSeveralItems", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void inlineBlockInsideFlexWrapTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void inlineBlockInsideFlexColumnTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexColumn", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void inlineBlockInsideFlexColumnReverseTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexColumnReverse", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void blockInsideFlexSimpleColumnTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("blockInsideFlexSimpleColumn", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void inlineBlockInsideFlexSimpleColumnTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inlineBlockInsideFlexSimpleColumn", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
     @Test
     // TODO DEVSIX-7402 Add display:flex support for all relevant tags
     public void displayFlexOnHeaderTagTest() throws IOException, InterruptedException {

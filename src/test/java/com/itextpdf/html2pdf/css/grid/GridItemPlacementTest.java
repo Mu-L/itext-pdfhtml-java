@@ -222,6 +222,17 @@ public class GridItemPlacementTest extends ExtendedHtmlConversionITextTest {
         runTest("noTemplate2");
     }
 
+    @Test
+    public void blockInsideGridTest() throws IOException, InterruptedException {
+        runTest("blockInsideGrid");
+    }
+
+    @Test
+    // TODO DEVSIX-9509 Move inline-block item to the next page
+    public void inlineBlockInsideGridTest() throws IOException, InterruptedException {
+        runTest("inlineBlockInsideGrid");
+    }
+
     private void runTest(String testName) throws IOException, InterruptedException {
         convertToPdfAndCompare(testName, SOURCE_FOLDER, DESTINATION_FOLDER, false,
                 new ConverterProperties().setBaseUri(SOURCE_FOLDER));
