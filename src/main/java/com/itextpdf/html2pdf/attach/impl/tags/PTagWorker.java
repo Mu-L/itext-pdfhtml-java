@@ -153,6 +153,9 @@ public class PTagWorker implements ITagWorker, IDisplayAware {
                 }
             }
             return allChildrenProcessed;
+        } else if (childTagWorker instanceof DisplayFlexTagWorker){
+            processBlockElement((Div)element);
+            return true;
         }
         return false;
     }

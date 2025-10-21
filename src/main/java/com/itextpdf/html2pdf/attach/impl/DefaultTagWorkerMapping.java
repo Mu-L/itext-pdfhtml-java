@@ -90,6 +90,8 @@ class DefaultTagWorkerMapping {
         workerMapping.putMapping(TagConstants.ABBR, (lhs, rhs) -> new AbbrTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.ADDRESS, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.ARTICLE, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
+        workerMapping.putMapping(TagConstants.ARTICLE, CssConstants.FLEX,
+                (lhs, rhs) -> new DisplayFlexTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.ASIDE, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.B, (lhs, rhs) -> new SpanTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.BDI, (lhs, rhs) -> new SpanTagWorker(lhs, rhs));
@@ -114,9 +116,14 @@ class DefaultTagWorkerMapping {
         workerMapping.putMapping(TagConstants.FIELDSET, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.FIGCAPTION, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.FIGURE, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
+        workerMapping.putMapping(TagConstants.FIGURE, CssConstants.FLEX,
+                (lhs, rhs) -> new DisplayFlexTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.FONT, (lhs, rhs) -> new SpanTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.FOOTER, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
+        workerMapping.putMapping(TagConstants.FOOTER, CssConstants.FLEX,
+                (lhs, rhs) -> new DisplayFlexTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.FORM, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
+        workerMapping.putMapping(TagConstants.FORM, CssConstants.FLEX, (lhs, rhs) -> new DisplayFlexTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.H1, (lhs, rhs) -> new HTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.H2, (lhs, rhs) -> new HTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.H3, (lhs, rhs) -> new HTagWorker(lhs, rhs));
@@ -124,6 +131,8 @@ class DefaultTagWorkerMapping {
         workerMapping.putMapping(TagConstants.H5, (lhs, rhs) -> new HTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.H6, (lhs, rhs) -> new HTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.HEADER, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
+        workerMapping.putMapping(TagConstants.HEADER, CssConstants.FLEX,
+                (lhs, rhs) -> new DisplayFlexTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.HR, (lhs, rhs) -> new HrTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.HTML, (lhs, rhs) -> new HtmlTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.I, (lhs, rhs) -> new SpanTagWorker(lhs, rhs));
@@ -149,6 +158,8 @@ class DefaultTagWorkerMapping {
         workerMapping.putMapping(TagConstants.S, (lhs, rhs) -> new SpanTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.SAMP, (lhs, rhs) -> new SpanTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.SECTION, (lhs, rhs) -> new DivTagWorker(lhs, rhs));
+        workerMapping.putMapping(TagConstants.SECTION, CssConstants.FLEX,
+                (lhs, rhs) -> new DisplayFlexTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.SELECT, (lhs, rhs) -> new SelectTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.SMALL, (lhs, rhs) -> new SpanTagWorker(lhs, rhs));
         workerMapping.putMapping(TagConstants.SPAN, (lhs, rhs) -> new SpanTagWorker(lhs, rhs));

@@ -50,6 +50,7 @@ class DefaultTagCssApplierMapping {
         mapping.putMapping(TagConstants.ABBR, () -> new SpanTagCssApplier());
         mapping.putMapping(TagConstants.ADDRESS, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.ARTICLE, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.ARTICLE, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.ASIDE, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.B, () -> new SpanTagCssApplier());
         mapping.putMapping(TagConstants.BDI, () -> new SpanTagCssApplier());
@@ -57,6 +58,7 @@ class DefaultTagCssApplierMapping {
         mapping.putMapping(TagConstants.BLOCKQUOTE, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.BODY, () -> new BodyTagCssApplier());
         mapping.putMapping(TagConstants.BUTTON, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.BUTTON, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.CAPTION, () -> new CaptionCssApplier());
         mapping.putMapping(TagConstants.CENTER, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.CITE, () -> new SpanTagCssApplier());
@@ -73,9 +75,12 @@ class DefaultTagCssApplierMapping {
         mapping.putMapping(TagConstants.FIELDSET, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.FIGCAPTION, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.FIGURE, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.FIGURE, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.FONT, () -> new SpanTagCssApplier());
         mapping.putMapping(TagConstants.FOOTER, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.FOOTER, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.FORM, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.FORM, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.H1, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.H2, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.H3, () -> new BlockCssApplier());
@@ -83,6 +88,7 @@ class DefaultTagCssApplierMapping {
         mapping.putMapping(TagConstants.H5, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.H6, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.HEADER, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.HEADER, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.HR, () -> new HrTagCssApplier());
         mapping.putMapping(TagConstants.HTML, () -> new HtmlTagCssApplier());
         mapping.putMapping(TagConstants.I, () -> new SpanTagCssApplier());
@@ -101,11 +107,13 @@ class DefaultTagCssApplierMapping {
         mapping.putMapping(TagConstants.OPTGROUP, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.OPTION, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.P, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.P, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.PRE, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.Q, () -> new SpanTagCssApplier());
         mapping.putMapping(TagConstants.S, () -> new SpanTagCssApplier());
         mapping.putMapping(TagConstants.SAMP, () -> new SpanTagCssApplier());
         mapping.putMapping(TagConstants.SECTION, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.SECTION, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.SELECT, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.SMALL, () -> new SpanTagCssApplier());
         mapping.putMapping(TagConstants.SPAN, () -> new SpanTagCssApplier());
@@ -143,15 +151,18 @@ class DefaultTagCssApplierMapping {
         mapping.putMapping(TagConstants.A, CssConstants.INLINE_BLOCK, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.A, CssConstants.BLOCK, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.A, CssConstants.TABLE_CELL, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.A, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
 
         mapping.putMapping(TagConstants.LABEL, CssConstants.BLOCK, () -> new BlockCssApplier());
         mapping.putMapping(TagConstants.LABEL, CssConstants.INLINE_BLOCK, () -> new BlockCssApplier());
+        mapping.putMapping(TagConstants.LABEL, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
 
         mapping.putMapping(TagConstants.DIV, CssConstants.TABLE, () -> new TableTagCssApplier());
         mapping.putMapping(TagConstants.DIV, CssConstants.TABLE_CELL, () -> new TdTagCssApplier());
         mapping.putMapping(TagConstants.DIV, CssConstants.TABLE_ROW, () -> new DisplayTableRowTagCssApplier());
         mapping.putMapping(TagConstants.DIV, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
         mapping.putMapping(TagConstants.SPAN, CssConstants.FLEX, () -> new DisplayFlexTagCssApplier());
+
         mapping.putMapping(TagConstants.DIV, CssConstants.GRID, () -> new DisplayGridTagCssApplier());
 
         // pseudo elements mapping

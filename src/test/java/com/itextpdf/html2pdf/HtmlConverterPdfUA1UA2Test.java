@@ -324,6 +324,16 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
+    public void flexTagsUA2Test(PdfUAConformance conformance) throws IOException, InterruptedException {
+        String sourceHtml = SOURCE_FOLDER + "flexTagsUA2.html";
+        String cmpFile = SOURCE_FOLDER + "cmp_flexTagsUA" + conformance.getPart() + ".pdf";
+        String destinationPdf = DESTINATION_FOLDER + "flexTagsUA" + conformance.getPart() + ".pdf";
+
+        convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdf, cmpFile, null, true, null);
+    }
+
+    @ParameterizedTest
+    @MethodSource("conformanceLevels")
     @LogMessages(messages = {@LogMessage(messageTemplate = PdfUALogMessageConstants.PAGE_FLUSHING_DISABLED, count = 1)})
     public void tableUa2Test(PdfUAConformance conformance) throws IOException, InterruptedException {
         String sourceHtml = SOURCE_FOLDER + "table.html";

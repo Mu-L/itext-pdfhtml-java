@@ -25,6 +25,7 @@ package com.itextpdf.html2pdf.css.flex;
 import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
 import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.io.logs.IoLogMessageConstant;
+import com.itextpdf.layout.logs.LayoutLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
@@ -39,7 +40,7 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
     private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/flex/FlexContainerTest/";
     private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/flex/FlexContainerTest/";
 
-    //TODO DEVSIX-7402: Update cmp / tests
+    //TODO DEVSIX-9519: Update cmp / tests for ul ol li button p tags
     @BeforeAll
     public static void beforeClass() {
         createOrClearDestinationFolder(DESTINATION_FOLDER);
@@ -70,7 +71,6 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("aNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void aUlNestedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("aUlNested", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -101,7 +101,6 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("articleNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void articleUlNestedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("articleUlNested", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -114,28 +113,28 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     public void buttonBasicTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("buttonBasic", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("buttonBasic", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
     public void buttonBasic2ColTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("buttonBasic2Col", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("buttonBasic2Col", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.ELEMENT_DOES_NOT_FIT_CURRENT_AREA))
+    @LogMessages(messages = @LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA))
     public void buttonLongTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("buttonLong", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("buttonLong", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
     public void buttonNestedTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("buttonNested", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("buttonNested", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
     public void buttonWideTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("buttonWide", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("buttonWide", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
@@ -300,31 +299,28 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     public void pBasicTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pBasic", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("pBasic", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 80))
+    @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT))
     public void pLongTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pLong", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("pLong", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
-    @LogMessages(messages =
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void pNestedTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pNested", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("pNested", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 8))
     public void pWideTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pWide", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("pWide", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
     public void pBasic2ColTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pBasic2Col", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("pBasic2Col", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
@@ -352,31 +348,26 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("sectionWide", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void ulBasicTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("ulBasic", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void ulBasic2ColTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("ulBasic2Col", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void ulLongTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("ulLong", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void ulNestedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("ulNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void ulWideTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("ulWide", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -392,7 +383,6 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("deepNesting", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void deepNesting2Test() throws IOException, InterruptedException {
         convertToPdfAndCompare("deepNesting2", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -408,23 +398,17 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("sectionFormNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void largeMarginTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("largeMargin", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void largeMarginsAndPaddingsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("largeMarginsAndPaddings", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void largePaddingTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("largePadding", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -439,16 +423,15 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("articleJustifyContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     public void ulJustifyContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("ulJustifyContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 36))
+    @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 6))
     public void pJustifyContentTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pJustifyContent", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("pJustifyContent", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
@@ -488,11 +471,10 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     public void buttonJustifyContentTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("buttonJustifyContent", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("buttonJustifyContent", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 6))
     public void articleAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("articleAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -502,7 +484,6 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("aAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 6))
     public void ulAlignContentTest() throws IOException, InterruptedException {
@@ -522,69 +503,60 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 6))
     public void formAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("formAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 6))
     public void figureAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("figureAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     public void buttonAlignContentTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("buttonAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
-    }
-
-    @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 42))
-    public void pAlignContentTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("buttonAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
     @Test
     @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 6))
+    public void pAlignContentTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("pAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER, true);
+    }
+
+    @Test
     public void footerAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("footerAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 6))
     public void headerAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("headerAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 6))
     public void sectionAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("sectionAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void gapOnFlexTagsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("gapOnFlexTags", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 10),
-            @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 8)})
+            @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT, count = 2)})
     public void flexTagAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexTagAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET),
-            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 5)})
+        @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT)})
     public void pAlignSelfTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("pAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
     @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 10))
     public void flexTagAlignItemsTest() throws IOException, InterruptedException {
@@ -592,34 +564,27 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET))
     public void pAlignItemsTest() throws IOException, InterruptedException {
-        convertToPdfAndCompare("pAlignItems", SOURCE_FOLDER, DESTINATION_FOLDER);
+        convertToPdfAndCompare("pAlignItems", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void gapOnFlexTags2Test() throws IOException, InterruptedException {
         convertToPdfAndCompare("gapOnFlexTags2", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void flexWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void flexNoWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexNoWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO DEVSIX-8730: Update after fix
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 4))
     public void flexWrapReverseTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexWrapReverse", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

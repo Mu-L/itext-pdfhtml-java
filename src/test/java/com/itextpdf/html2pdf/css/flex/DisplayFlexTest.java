@@ -611,7 +611,6 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    //TODO: DEVSIX-8730 bullet is not drawn
     public void unorderedListFlexTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("UnorderedListWithFlex", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -704,7 +703,6 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-7402 Add display:flex support for all relevant tags
     public void displayFlexOnHeaderTagTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("displayFlexOnHeaderTag", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

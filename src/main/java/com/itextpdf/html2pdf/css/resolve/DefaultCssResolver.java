@@ -200,7 +200,7 @@ public class DefaultCssResolver implements ICssResolver {
                     final String currentElementDisplay = elementStyles.get(CssConstants.DISPLAY);
                     if (isFlexItem(entry, currentElementDisplay) &&
                             !CommonCssConstants.NONE.equals(currentElementDisplay) &&
-                            !CommonCssConstants.GRID.equals(currentElementDisplay)) {
+                            !CommonCssConstants.GRID.equals(currentElementDisplay) && !CssConstants.LIST_ITEM.equals(currentElementDisplay)) {
                         elementStyles.put(CssConstants.DISPLAY, CssConstants.BLOCK);
                     }
                 }
