@@ -686,7 +686,7 @@ public class FloatTest extends ExtendedITextTest {
     }
 
     @Test
-    //TODO DEVSIX-5291 change cmp file
+    // TODO DEVSIX-5291 floating elements are not included in the div
     public void floatElementInDivTest() throws IOException, InterruptedException {
         runTest("floatElementInDiv", "diff_floatElementInDiv_");
     }

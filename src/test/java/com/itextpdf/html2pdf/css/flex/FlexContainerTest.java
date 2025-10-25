@@ -383,6 +383,11 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    public void flexNestedTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flexNested", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void deepNestingTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("deepNesting", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

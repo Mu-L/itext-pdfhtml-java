@@ -46,7 +46,6 @@ public class PageSplitTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9477 Fix issue on page split
     public void mixedSizesTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("mixedSizes", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

@@ -362,7 +362,7 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-5091 change cmp file when working on the thicket
+    // TODO DEVSIX-5091 Support flex-basis: content
     public void flexBasisContentMaxWidth() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexBasisContentMaxWidth", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -719,6 +719,16 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
     public void flexWithPageBreakInsideAvoidAndPageSplit2Test() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexWithPageBreakInsideAvoidAndPageSplit2", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
+    // Result for image width differs from browser, although min width and flexible lengths are determined according
+    // to the CSS specification algorithms. Not sure why browser behaves like this: min main size is calculated based on
+    // transferred size suggestion instead of content size suggestion and aspect ratio is based on specified properties
+    // (we calculate it based on original image width / height).
+    public void imageSizeTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("imageSize", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     private static List<IElement> convertToElements(String name) throws IOException {

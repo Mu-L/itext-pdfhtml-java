@@ -382,7 +382,6 @@ public class FlexGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9477 Fix issue on page split: cross-size calculated incorrectly
     public void colGapMixedSizesTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("colGapMixedSizes", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -495,7 +494,6 @@ public class FlexGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9477 Fix issue on page split: cross-size calculated incorrectly
     public void rowGapMixedSizesTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("rowGapMixedSizes", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

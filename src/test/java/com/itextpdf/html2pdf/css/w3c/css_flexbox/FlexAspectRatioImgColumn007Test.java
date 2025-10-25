@@ -23,12 +23,7 @@
 package com.itextpdf.html2pdf.css.w3c.css_flexbox;
 
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
-import com.itextpdf.layout.logs.LayoutLogMessageConstant;
-import com.itextpdf.test.annotations.LogMessage;
-import com.itextpdf.test.annotations.LogMessages;
 
-
-// TODO DEVSIX-5269 ImageRenderer#getMinMaxWidth does not return initial image width
 public class FlexAspectRatioImgColumn007Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

@@ -24,7 +24,7 @@ package com.itextpdf.html2pdf.css.w3c.css21.linebox;
 
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
 
-// TODO DEVSIX-3757 change cmp file after completing the ticket
+// TODO DEVSIX-3757 Support vertical-align css property
 public class LineHeight126Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {
