@@ -628,4 +628,19 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
     public void headerArticleNestedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("headerArticleNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
+
+    @Test
+    public void flexThirdLevelNestingSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("flexThirdLevelNestingSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void severalFlexNestedSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("severalFlexNestedSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void severalFlexThirdLevelNestingSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("severalFlexThirdLevelNestingSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
 }

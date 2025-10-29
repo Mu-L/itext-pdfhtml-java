@@ -61,7 +61,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9449 Flex: wrong items order in nested flex container with flex-wrap: wrap-reverse
     public void inheritWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("inheritWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -221,9 +220,17 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     @LogMessages(messages = {
             @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 6)
     })
-    // TODO DEVSIX-9449 Flex: wrong items order in nested flex container with flex-wrap: wrap-reverse
+
     public void revertWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("revertWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 5)
+    })
+    public void nestedSplitOverflowRevertWrap() throws IOException, InterruptedException {
+        convertToPdfAndCompare("nestedSplitOverflowRevertWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
@@ -317,7 +324,7 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 3)
     })
-    // TODO DEVSIX-9449 Flex: wrong items order in nested flex container with flex-wrap: wrap-reverse
+
     public void unsetWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("unsetWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
