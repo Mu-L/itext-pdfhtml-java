@@ -165,13 +165,11 @@ public class FlexGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9473 Fix issues on page split
     public void gapAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("gapAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    // TODO DEVSIX-9473 Fix issues on page split
     public void gapAlignContentRowRevDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("gapAlignContentRowRevDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -189,7 +187,6 @@ public class FlexGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9473 Fix issues on page split
     public void gapAlignContentWrapRevTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("gapAlignContentWrapRev", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -347,7 +344,6 @@ public class FlexGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9473 Fix issues on page split
     public void colGapAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("colGapAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -459,7 +455,6 @@ public class FlexGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9473 Fix issues on page split
     public void rowGapAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("rowGapAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

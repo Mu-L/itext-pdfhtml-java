@@ -134,7 +134,7 @@ public class PTagWorker implements ITagWorker, IDisplayAware {
         } else if (isBlockWithDisplay(childTagWorker, element, CssConstants.INLINE_BLOCK, false)) {
             inlineHelper.add((IBlockElement) element);
             return true;
-        } else if (isBlockWithDisplay(childTagWorker, element,CssConstants.BLOCK, false)) {
+        } else if (isBlockWithDisplay(childTagWorker, element, CssConstants.BLOCK, false)) {
             IPropertyContainer propertyContainer = childTagWorker.getElementResult();
             processBlockElement((IBlockElement) propertyContainer);
             return true;

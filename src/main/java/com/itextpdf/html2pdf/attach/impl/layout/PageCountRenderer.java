@@ -22,11 +22,11 @@
  */
 package com.itextpdf.html2pdf.attach.impl.layout;
 
+import com.itextpdf.commons.utils.MessageFormatUtil;
 import com.itextpdf.html2pdf.css.resolve.func.counter.CounterDigitsGlyphStyle;
 import com.itextpdf.html2pdf.html.HtmlUtils;
-import com.itextpdf.io.logs.IoLogMessageConstant;
 import com.itextpdf.io.font.otf.GlyphLine;
-import com.itextpdf.commons.utils.MessageFormatUtil;
+import com.itextpdf.io.logs.IoLogMessageConstant;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.layout.LayoutContext;
@@ -36,11 +36,11 @@ import com.itextpdf.layout.renderer.AbstractRenderer;
 import com.itextpdf.layout.renderer.DocumentRenderer;
 import com.itextpdf.layout.renderer.IRenderer;
 import com.itextpdf.layout.renderer.TextRenderer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * {@link TextRenderer} implementation for the page count.
@@ -61,7 +61,7 @@ class PageCountRenderer extends TextRenderer {
 
     protected PageCountRenderer(TextRenderer other) {
         super(other);
-        this.digitsGlyphStyle = ((PageCountRenderer)other).digitsGlyphStyle;
+        this.digitsGlyphStyle = ((PageCountRenderer) other).digitsGlyphStyle;
     }
 
     /* (non-Javadoc)
@@ -69,7 +69,7 @@ class PageCountRenderer extends TextRenderer {
      */
     @Override
     public LayoutResult layout(LayoutContext layoutContext) {
-        PageCountType pageCountType = (PageCountType)this.<PageCountType>getProperty(Html2PdfProperty.PAGE_COUNT_TYPE);
+        PageCountType pageCountType = (PageCountType) this.<PageCountType>getProperty(Html2PdfProperty.PAGE_COUNT_TYPE);
         String previousText = getText().toString();
         // If typography is enabled and the page counter element has a non-default direction,
         // iText processes its content (see LineRenderer#updateBidiLevels) before layouting it.

@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 @Tag("IntegrationTest")
-// TODO DEVSIX-9473 Fix issues on page split
 public class PageSplitTest extends ExtendedHtmlConversionITextTest {
 
     private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/flex/PageSplitTest/";

@@ -268,9 +268,11 @@ class DefaultTagWorkerMapping {
     public interface ITagWorkerCreator {
         /**
          * Creates an {@link ITagWorker} instance.
-         * @param elementNode tag worker element node.
-         * @param processorContext processor context.
-         * @return {@link ITagWorker} instance.
+         *
+         * @param elementNode tag worker element node
+         * @param processorContext processor context
+         *
+         * @return {@link ITagWorker} instance
          */
         ITagWorker create(IElementNode elementNode, ProcessorContext processorContext);
     }

@@ -28,11 +28,11 @@ import com.itextpdf.io.logs.IoLogMessageConstant;
 import com.itextpdf.layout.logs.LayoutLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
-
-import java.io.IOException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 @Tag("IntegrationTest")
 public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
@@ -552,7 +552,7 @@ public class FlexContainerTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET),
-        @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT)})
+            @LogMessage(messageTemplate = IoLogMessageConstant.CLIP_ELEMENT)})
     public void pAlignSelfTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("pAlignSelf", SOURCE_FOLDER, DESTINATION_FOLDER, true);
     }

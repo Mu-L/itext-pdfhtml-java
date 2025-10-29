@@ -43,6 +43,7 @@ class DefaultTagCssApplierMapping {
 
     /** The default mapping. */
     private static TagProcessorMapping<ICssApplierCreator> mapping;
+
     static {
         mapping = new TagProcessorMapping<>();
 
@@ -205,7 +206,8 @@ class DefaultTagCssApplierMapping {
     public interface ICssApplierCreator {
         /**
          * Creates an {@link ICssApplier} instance.
-         * @return {@link ICssApplier} instance.
+         *
+         * @return {@link ICssApplier} instance
          */
         ICssApplier create();
     }

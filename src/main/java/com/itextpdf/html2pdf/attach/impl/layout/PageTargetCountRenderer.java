@@ -22,12 +22,12 @@
  */
 package com.itextpdf.html2pdf.attach.impl.layout;
 
+import com.itextpdf.commons.utils.MessageFormatUtil;
 import com.itextpdf.html2pdf.css.resolve.func.counter.CounterDigitsGlyphStyle;
 import com.itextpdf.html2pdf.html.HtmlUtils;
-import com.itextpdf.io.logs.IoLogMessageConstant;
-import com.itextpdf.io.font.otf.GlyphLine;
 import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
-import com.itextpdf.commons.utils.MessageFormatUtil;
+import com.itextpdf.io.font.otf.GlyphLine;
+import com.itextpdf.io.logs.IoLogMessageConstant;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.layout.layout.LayoutContext;
 import com.itextpdf.layout.layout.LayoutResult;
@@ -67,8 +67,8 @@ class PageTargetCountRenderer extends TextRenderer {
 
     protected PageTargetCountRenderer(TextRenderer other) {
         super(other);
-        this.digitsGlyphStyle = ((PageTargetCountRenderer)other).digitsGlyphStyle;
-        this.target = ((PageTargetCountRenderer)other).target;
+        this.digitsGlyphStyle = ((PageTargetCountRenderer) other).digitsGlyphStyle;
+        this.target = ((PageTargetCountRenderer) other).target;
     }
 
     /**

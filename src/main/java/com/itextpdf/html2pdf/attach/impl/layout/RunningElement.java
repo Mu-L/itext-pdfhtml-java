@@ -37,10 +37,11 @@ import com.itextpdf.layout.renderer.IRenderer;
  * from the normal flow. This element is designed to register where particular running element would have been placed.
  */
 public class RunningElement extends Div {
-    private RunningElementContainer runningElementContainer;
+    private final RunningElementContainer runningElementContainer;
 
     /**
      * Creates a new instance of {@link RunningElement}.
+     *
      * @param runningElementContainer a container for the actual running element removed from the normal flow.
      */
     public RunningElement(RunningElementContainer runningElementContainer) {
@@ -57,7 +58,7 @@ public class RunningElement extends Div {
      * It's an empty div so it's not expected to be ever split between areas.
      */
     static class RunningElementRenderer extends DivRenderer {
-        private RunningElementContainer runningElementContainer;
+        private final RunningElementContainer runningElementContainer;
         private boolean isFirstOnRootArea;
 
         public RunningElementRenderer(Div modelElement, RunningElementContainer runningElementContainer) {
