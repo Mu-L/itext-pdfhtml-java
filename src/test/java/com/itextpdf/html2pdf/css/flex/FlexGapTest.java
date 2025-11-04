@@ -175,13 +175,28 @@ public class FlexGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-9473 Fix issues on page split
     public void gapAlignContentColumnDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("gapAlignContentColumnDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    // TODO DEVSIX-9473 Fix issues on page split
+    public void gapAlignContentColumnDirPageSplitTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("gapAlignContentColumnDirPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    // TODO DEVSIX-9559 Fix align-content in case free space is negative
+    public void gapAlignContentColumnDirSmallHeightTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("gapAlignContentColumnDirSmallHeight", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    // TODO DEVSIX-9559 Fix align-content in case free space is negative
+    public void gapAlignContentColumnDirSmallHeightWrapRevTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("gapAlignContentColumnDirSmallHeightWrapRev", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
     public void gapAlignContentColumnRevDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("gapAlignContentColumnRevDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
