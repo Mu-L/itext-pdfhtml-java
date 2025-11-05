@@ -74,11 +74,9 @@ public class ListCssTest extends ExtendedHtmlConversionITextTest {
         convertToPdfAndCompare("1Type", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
-    //TODO: DEVSIX-6128 NullPointerException when trying to convert html with non-existing ol type.
     @Test
-    public void unsupportedType() {
-        Assertions.assertThrows(NullPointerException.class,
-                () -> convertToPdfAndCompare("unsupportedType", SOURCE_FOLDER, DESTINATION_FOLDER));
+    public void unsupportedType() throws IOException, InterruptedException {
+        convertToPdfAndCompare("unsupportedType", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
