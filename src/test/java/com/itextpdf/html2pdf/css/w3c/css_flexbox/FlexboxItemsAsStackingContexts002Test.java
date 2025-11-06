@@ -27,8 +27,6 @@ import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-//TODO DEVSIX-5163 change after more complex justify-content values are supported
-@LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET, count = 9))
 public class FlexboxItemsAsStackingContexts002Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

@@ -48,6 +48,15 @@ public final class AttributeConstants extends CommonAttributeConstants {
     /** The Constant ARIA-LABEL. */
     public static final String ARIA_LABEL = "aria-label";
 
+    /** The Constant ARIA-DESCRIPTION. */
+    public static final String ARIA_DESCRIPTION = "aria-description";
+
+    /** The Constant ARIA-LABELLEDBY. */
+    public static final String ARIA_LABELLEDBY = "aria-labelledby";
+
+    /** The Constant ARIA-DESCRIBEDBY. */
+    public static final String ARIA_DESCRIBEDBY = "aria-describedby";
+
     /** The Constant APPLICATION_NAME. */
     public static final String APPLICATION_NAME = "application-name";
 
@@ -95,6 +104,9 @@ public final class AttributeConstants extends CommonAttributeConstants {
 
     /** The Constant FACE. */
     public static final String FACE = "face";
+
+    /** The Constant FOR. */
+    public static final String FOR = "for";
 
     /** The Constant HEIGHT. */
     public static final String HEIGHT = "height";

@@ -39,7 +39,7 @@ public class DisplayFlexTagCssApplier extends BlockCssApplier {
         super.apply(context, stylesContainer, tagWorker);
         final IPropertyContainer container = tagWorker.getElementResult();
         if (container != null) {
-            FlexApplierUtil.applyFlexContainerProperties(stylesContainer.getStyles(), container);
+            FlexApplierUtil.applyFlexContainerProperties(stylesContainer.getStyles(), container, context);
             //TODO DEVSIX-5087 remove these lines when working on a ticket
             container.deleteOwnProperty(Property.FLOAT);
             container.deleteOwnProperty(Property.CLEAR);

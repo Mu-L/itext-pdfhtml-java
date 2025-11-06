@@ -28,6 +28,8 @@ import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
 // TODO DEVSIX-2449 z-index is not supported
+// Result for image width differs from browser, although min width and flexible lengths are determined according to
+// the CSS specification algorithms
 @LogMessages(messages = {
         @LogMessage(messageTemplate = Html2PdfLogMessageConstant.ELEMENT_DOES_NOT_FIT_CURRENT_AREA)
 })

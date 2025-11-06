@@ -721,6 +721,31 @@ public class GridTemplatesTest extends ExtendedHtmlConversionITextTest {
         runTest("gridSplitPaddingMarginBorderTest8");
     }
 
+    @Test
+    public void unexistingColumnSpanTest() throws IOException, InterruptedException {
+        runTest("unexistingColumnSpan");
+    }
+
+    @Test
+    public void negativeColumnSpanTest() throws IOException, InterruptedException {
+        runTest("negativeColumnSpan");
+    }
+
+    @Test
+    public void endBeforeStartColumnTest() throws IOException, InterruptedException {
+        runTest("endBeforeStartColumn");
+    }
+
+    @Test
+    public void biggerThanExistingColumnSpanTest() throws IOException, InterruptedException {
+        runTest("biggerThanExistingColumnSpan");
+    }
+
+    @Test
+    public void sameStartEndColumnTest() throws IOException, InterruptedException {
+        runTest("sameStartEndColumn");
+    }
+
     private void runTest(String testName) throws IOException, InterruptedException {
         convertToPdfAndCompare(testName,
                 SOURCE_FOLDER, DESTINATION_FOLDER, false,

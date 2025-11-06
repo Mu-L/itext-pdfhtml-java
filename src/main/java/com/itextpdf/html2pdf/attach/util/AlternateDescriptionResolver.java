@@ -22,8 +22,12 @@
  */
 package com.itextpdf.html2pdf.attach.util;
 
+import com.itextpdf.forms.form.FormProperty;
+import com.itextpdf.html2pdf.attach.ProcessorContext;
+import com.itextpdf.html2pdf.attach.impl.LabelUtil;
 import com.itextpdf.html2pdf.html.AttributeConstants;
 import com.itextpdf.html2pdf.html.TagConstants;
+import com.itextpdf.layout.IPropertyContainer;
 import com.itextpdf.layout.tagging.IAccessibleElement;
 import com.itextpdf.styledxmlparser.node.IElementNode;
 import com.itextpdf.styledxmlparser.node.INode;
@@ -41,7 +45,9 @@ import java.util.List;
  * 1) alt attribute
  * 2) title attribute
  * 3) aria-label attribute
- * 4) aria-labelledby attribute
+ * 4) aria-description attribute
+ * 5) aria-describedby attribute
+ * 6) aria-labelledby attribute
  * <p>
  * If none of the above attributes are present, the alternate description is not set.
  */
@@ -49,8 +55,9 @@ public class AlternateDescriptionResolver {
 
     private static final List<String> ALTERNATIVE_DESCRIPTION_RESOLUTION_ORDER = Arrays.asList(
             AttributeConstants.ALT,
+            AttributeConstants.TITLE,
             AttributeConstants.ARIA_LABEL,
-            AttributeConstants.TITLE
+            AttributeConstants.ARIA_DESCRIPTION
     );
 
     /**
@@ -79,6 +86,22 @@ public class AlternateDescriptionResolver {
         }
 
         resolveFallback(accessibleElement, element);
+    }
+
+    /**
+     * Resolves the alternate description of the labeled {@link IAccessibleElement} based on the attributes of the
+     * {@link IElementNode} and {@link ProcessorContext}.
+     *
+     * @param accessibleElement the {@link IAccessibleElement} to which the alternate description should be applied.
+     * @param element           the {@link IElementNode} from which properties the alternate description should be resolved.
+     * @param context           the {@link ProcessorContext} from which the alternate description should be resolved.
+     */
+    public void resolveLabelableElement(IAccessibleElement accessibleElement, IElementNode element, ProcessorContext context) {
+        if (LabelUtil.isLabelable(element)) {
+            setAltDescForActivelyLabeledElements(accessibleElement, element, context);
+            setAltDescForPassivelyLabelledElements(accessibleElement, element, context, AttributeConstants.ARIA_LABELLEDBY);
+            setAltDescForPassivelyLabelledElements(accessibleElement, element, context, AttributeConstants.ARIA_DESCRIBEDBY);
+        }
     }
 
     /**
@@ -153,5 +176,35 @@ public class AlternateDescriptionResolver {
             }
         }
         return false;
+    }
+
+    private static void setAltDescForPassivelyLabelledElements(IAccessibleElement accessibleElement,
+                                                               IElementNode element,
+                                                               ProcessorContext context,
+                                                               String property) {
+        if (element.getAttribute(property) != null) {
+            String[] ids = element.getAttribute(property).split(" ");
+            StringBuilder alt = new StringBuilder();
+            for (String id : ids) {
+                String description = context.getLabelContext().getAltDescription(id);
+                if (description != null) {
+                    alt.append(description);
+                }
+            }
+            ((IPropertyContainer)accessibleElement).setProperty(FormProperty.FORM_CONFORMANCE_LEVEL, context.getConformance());
+            accessibleElement.getAccessibilityProperties().setAlternateDescription(alt.toString());
+        }
+    }
+
+    private static void setAltDescForActivelyLabeledElements(IAccessibleElement accessibleElement,
+                                                             IElementNode element,
+                                                             ProcessorContext context) {
+        String id = element.getAttribute(AttributeConstants.ID);
+        if (id == null) {
+            return;
+        }
+        ((IPropertyContainer)accessibleElement).setProperty(FormProperty.FORM_CONFORMANCE_LEVEL, context.getConformance());
+        String text = context.getLabelContext().getAltDescription(id);
+        accessibleElement.getAccessibilityProperties().setAlternateDescription(text);
     }
 }

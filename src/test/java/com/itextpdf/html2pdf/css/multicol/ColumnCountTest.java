@@ -433,6 +433,16 @@ public class ColumnCountTest extends ExtendedHtmlConversionITextTest {
         runTest("shortHandResolverTest01");
     }
 
+    @Test
+    public void blockInsideMulticolTest() throws IOException, InterruptedException {
+        runTest("blockInsideMulticol");
+    }
+
+    @Test
+    public void inlineBlockInsideMulticolTest() throws IOException, InterruptedException {
+        runTest("inlineBlockInsideMulticol");
+    }
+
     private void runTest(String testName) throws IOException, InterruptedException {
         convertToPdfAndCompare(testName,
                 SOURCE_FOLDER, DESTINATION_FOLDER, false,

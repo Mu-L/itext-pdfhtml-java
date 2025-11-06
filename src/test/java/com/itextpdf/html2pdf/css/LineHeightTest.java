@@ -157,7 +157,7 @@ public class LineHeightTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-2485 change cmp after fixing the ticket
+    // TODO DEVSIX-2485 Html2Pdf inline context handling: support phrasing content in HTML+CSS way
     public void inlineElementLineHeightTest() throws IOException, InterruptedException {
         testLineHeight("inlineElementLineHeightTest");
     }

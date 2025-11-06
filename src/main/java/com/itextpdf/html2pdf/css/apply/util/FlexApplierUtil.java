@@ -22,10 +22,11 @@
  */
 package com.itextpdf.html2pdf.css.apply.util;
 
+import com.itextpdf.commons.utils.MessageFormatUtil;
+import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.css.CssConstants;
 import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
-import com.itextpdf.commons.utils.MessageFormatUtil;
 import com.itextpdf.layout.IPropertyContainer;
 import com.itextpdf.layout.properties.AlignContentPropertyValue;
 import com.itextpdf.layout.properties.AlignmentPropertyValue;
@@ -58,14 +59,17 @@ final public class FlexApplierUtil {
      * Applies properties to a flex item.
      *
      * @param cssProps the map of the CSS properties
-     * @param context  the context of the converter processor
-     * @param element  the element to set the properties
+     * @param context the context of the converter processor
+     * @param element the element to set the properties
      */
     public static void applyFlexItemProperties(Map<String, String> cssProps, ProcessorContext context,
-            IPropertyContainer element) {
-        element.setProperty(Property.COLLAPSING_MARGINS, null);
+                                               IPropertyContainer element) {
 
         logWarningIfThereAreNotSupportedPropertyValues(createSupportedFlexItemPropertiesAndValuesMap(), cssProps);
+
+        applyAlignSelf(cssProps, element);
+
+        applyOrder(cssProps, element);
 
         final String flexGrow = cssProps.get(CommonCssConstants.FLEX_GROW);
         if (flexGrow != null) {
@@ -100,15 +104,77 @@ final public class FlexApplierUtil {
      * Applies properties to a flex container.
      *
      * @param cssProps the CSS properties
-     * @param element  the element
+     * @param element the element
+     *
+     * @deprecated in favour of {@link #applyFlexContainerProperties(Map, IPropertyContainer, ProcessorContext)}
      */
+    @Deprecated
     public static void applyFlexContainerProperties(Map<String, String> cssProps, IPropertyContainer element) {
+        applyFlexContainerProperties(cssProps, element, new ProcessorContext(new ConverterProperties()));
+    }
+
+    /**
+     * Applies properties to a flex container.
+     *
+     * @param cssProps the CSS properties
+     * @param element the element
+     * @param context the context of the converter processor
+     */
+    public static void applyFlexContainerProperties(Map<String, String> cssProps, IPropertyContainer element,
+                                                    ProcessorContext context) {
         logWarningIfThereAreNotSupportedPropertyValues(createSupportedFlexContainerPropertiesAndValuesMap(), cssProps);
         applyAlignItems(cssProps, element);
         applyJustifyContent(cssProps, element);
         applyAlignContent(cssProps, element);
         applyWrap(cssProps, element);
         applyDirection(cssProps, element);
+        applyGap(cssProps, element, context);
+    }
+
+    private static void applyAlignSelf(Map<String, String> cssProps, IPropertyContainer element) {
+        final String alignSelfString = cssProps.get(CommonCssConstants.ALIGN_SELF);
+        if (alignSelfString != null) {
+            if (CommonCssConstants.AUTO.equals(alignSelfString)) {
+                // "auto" computes to the parent's align-items value.
+                return;
+            }
+            AlignmentPropertyValue alignSelf;
+            switch (alignSelfString) {
+                // TODO DEVSIX-5167 Support baseline value for align-items and align-self
+                case CommonCssConstants.START:
+                    alignSelf = AlignmentPropertyValue.START;
+                    break;
+                case CommonCssConstants.END:
+                    alignSelf = AlignmentPropertyValue.END;
+                    break;
+                case CommonCssConstants.FLEX_START:
+                    alignSelf = AlignmentPropertyValue.FLEX_START;
+                    break;
+                case CommonCssConstants.FLEX_END:
+                    alignSelf = AlignmentPropertyValue.FLEX_END;
+                    break;
+                case CommonCssConstants.CENTER:
+                    alignSelf = AlignmentPropertyValue.CENTER;
+                    break;
+                case CommonCssConstants.SELF_START:
+                    alignSelf = AlignmentPropertyValue.SELF_START;
+                    break;
+                case CommonCssConstants.SELF_END:
+                    alignSelf = AlignmentPropertyValue.SELF_END;
+                    break;
+                // For flex items, the "normal" behaves as stretch.
+                case CommonCssConstants.NORMAL:
+                case CommonCssConstants.STRETCH:
+                    alignSelf = AlignmentPropertyValue.STRETCH;
+                    break;
+                default:
+                    LOGGER.warn(MessageFormatUtil.format(Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET,
+                            CommonCssConstants.ALIGN_SELF, alignSelfString));
+                    alignSelf = AlignmentPropertyValue.START;
+                    break;
+            }
+            element.setProperty(Property.ALIGN_SELF, alignSelf);
+        }
     }
 
     private static void applyWrap(Map<String, String> cssProps, IPropertyContainer element) {
@@ -200,6 +266,10 @@ final public class FlexApplierUtil {
         }
     }
 
+    private static void applyOrder(Map<String, String> cssProps, IPropertyContainer element) {
+        element.setProperty(Property.ORDER, CssDimensionParsingUtils.parseInteger(cssProps.get(CommonCssConstants.ORDER)));
+    }
+
     private static void applyJustifyContent(Map<String, String> cssProps, IPropertyContainer element) {
         final String justifyContentString = cssProps.get(CommonCssConstants.JUSTIFY_CONTENT);
         if (justifyContentString != null) {
@@ -208,20 +278,20 @@ final public class FlexApplierUtil {
                 case CommonCssConstants.NORMAL:
                     justifyContent = JustifyContent.NORMAL;
                     break;
+                case CommonCssConstants.CENTER:
+                    justifyContent = JustifyContent.CENTER;
+                    break;
                 case CommonCssConstants.START:
                     justifyContent = JustifyContent.START;
                     break;
                 case CommonCssConstants.END:
                     justifyContent = JustifyContent.END;
                     break;
+                case CommonCssConstants.FLEX_START:
+                    justifyContent = JustifyContent.FLEX_START;
+                    break;
                 case CommonCssConstants.FLEX_END:
                     justifyContent = JustifyContent.FLEX_END;
-                    break;
-                case CommonCssConstants.SELF_START:
-                    justifyContent = JustifyContent.SELF_START;
-                    break;
-                case CommonCssConstants.SELF_END:
-                    justifyContent = JustifyContent.SELF_END;
                     break;
                 case CommonCssConstants.LEFT:
                     justifyContent = JustifyContent.LEFT;
@@ -229,18 +299,21 @@ final public class FlexApplierUtil {
                 case CommonCssConstants.RIGHT:
                     justifyContent = JustifyContent.RIGHT;
                     break;
-                case CommonCssConstants.CENTER:
-                    justifyContent = JustifyContent.CENTER;
+                case CommonCssConstants.SPACE_BETWEEN:
+                    justifyContent = JustifyContent.SPACE_BETWEEN;
+                    break;
+                case CommonCssConstants.SPACE_AROUND:
+                    justifyContent = JustifyContent.SPACE_AROUND;
+                    break;
+                case CommonCssConstants.SPACE_EVENLY:
+                    justifyContent = JustifyContent.SPACE_EVENLY;
                     break;
                 case CommonCssConstants.STRETCH:
                     justifyContent = JustifyContent.STRETCH;
                     break;
-                case CommonCssConstants.FLEX_START:
-                    justifyContent = JustifyContent.FLEX_START;
-                    break;
                 default:
                     LOGGER.warn(MessageFormatUtil.format(Html2PdfLogMessageConstant.FLEX_PROPERTY_IS_NOT_SUPPORTED_YET,
-                        CommonCssConstants.JUSTIFY_CONTENT, justifyContentString));
+                            CommonCssConstants.JUSTIFY_CONTENT, justifyContentString));
                     justifyContent = JustifyContent.FLEX_START;
                     break;
             }
@@ -288,6 +361,21 @@ final public class FlexApplierUtil {
         }
     }
 
+    private static void applyGap(Map<String, String> cssProps, IPropertyContainer element, ProcessorContext context) {
+        final float emValue = CssDimensionParsingUtils.parseAbsoluteFontSize(cssProps.get(CssConstants.FONT_SIZE));
+        final float remValue = context.getCssContext().getRootFontSize();
+        applyGap(element, emValue, remValue, cssProps.get(CssConstants.COLUMN_GAP), Property.COLUMN_GAP);
+        applyGap(element, emValue, remValue, cssProps.get(CssConstants.ROW_GAP), Property.ROW_GAP);
+    }
+
+    private static void applyGap(IPropertyContainer container, float em, float rem, String gap, int property) {
+        String gapLength = CommonCssConstants.NORMAL.equals(gap) ? "0px" : gap;
+        final UnitValue gapValue = CssDimensionParsingUtils.parseLengthValueToPt(gapLength, em, rem);
+        if (gapValue != null) {
+            container.setProperty(property, gapValue.getValue());
+        }
+    }
+
     private static void logWarningIfThereAreNotSupportedPropertyValues(Map<String, Set<String>> supportedPairs,
                                                                        Map<String, String> cssProps) {
         for (Map.Entry<String, Set<String>> entry : supportedPairs.entrySet()) {
@@ -302,18 +390,7 @@ final public class FlexApplierUtil {
     }
 
     private static Map<String, Set<String>> createSupportedFlexItemPropertiesAndValuesMap() {
-        final Map<String, Set<String>> supportedPairs = new HashMap<>();
-
-        final Set<String> supportedAlignSelfValues = new HashSet<>();
-        supportedAlignSelfValues.add(CommonCssConstants.AUTO);
-
-        supportedPairs.put(CommonCssConstants.ALIGN_SELF, supportedAlignSelfValues);
-
-        final Set<String> supportedOrderValues = new HashSet<>();
-
-        supportedPairs.put(CommonCssConstants.ORDER, supportedOrderValues);
-
-        return supportedPairs;
+        return new HashMap<>();
     }
 
     private static Map<String, Set<String>> createSupportedFlexContainerPropertiesAndValuesMap() {
@@ -341,16 +418,6 @@ final public class FlexApplierUtil {
         supportedAlignContentValues.add(CommonCssConstants.SPACE_EVENLY);
 
         supportedPairs.put(CommonCssConstants.ALIGN_CONTENT, supportedAlignContentValues);
-
-        final Set<String> supportedRowGapValues = new HashSet<>();
-        supportedRowGapValues.add(CommonCssConstants.NORMAL);
-
-        supportedPairs.put(CommonCssConstants.ROW_GAP, supportedRowGapValues);
-
-        final Set<String> supportedColumnGapValues = new HashSet<>();
-        supportedColumnGapValues.add(CommonCssConstants.NORMAL);
-
-        supportedPairs.put(CommonCssConstants.COLUMN_GAP, supportedColumnGapValues);
 
         return supportedPairs;
     }

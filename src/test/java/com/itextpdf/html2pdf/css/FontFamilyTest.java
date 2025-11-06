@@ -66,8 +66,8 @@ public class FontFamilyTest extends ExtendedITextTest {
         String cmpPdfPath = SOURCE_FOLDER + "cmp_selectFontInGroup.pdf";
 
         HtmlConverter.convertToPdf(new File(htmlPath), new File(pdfPath));
-        //TODO DEVSIX-1104: Change cmp file after supporting ttc#id when selecting font from ttc
-        //Currently it will look for a font file where #{id} is part of the font path.
+        // TODO DEVSIX-1104: Change cmp file after supporting ttc#id when selecting font from ttc
+        //  Currently it will look for a font file where #{id} is part of the font path.
         Assertions.assertNull(new CompareTool().compareByContent(pdfPath, cmpPdfPath, DESTINATION_FOLDER, "diff_"));
     }
 }

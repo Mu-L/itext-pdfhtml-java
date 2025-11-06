@@ -25,13 +25,13 @@ package com.itextpdf.html2pdf.attach.impl.layout;
 import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.attach.impl.layout.HtmlBodyStylesApplierHandler.LowestAndHighest;
 import com.itextpdf.html2pdf.attach.impl.layout.HtmlBodyStylesApplierHandler.PageStylesProperties;
-import com.itextpdf.kernel.pdf.event.AbstractPdfDocumentEventHandler;
-import com.itextpdf.kernel.pdf.event.AbstractPdfDocumentEvent;
-import com.itextpdf.kernel.pdf.event.PdfDocumentEvent;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfPage;
+import com.itextpdf.kernel.pdf.event.AbstractPdfDocumentEvent;
+import com.itextpdf.kernel.pdf.event.AbstractPdfDocumentEventHandler;
+import com.itextpdf.kernel.pdf.event.PdfDocumentEvent;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.IPropertyContainer;
 import com.itextpdf.layout.element.AreaBreak;
@@ -64,6 +64,10 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
      */
     private static final boolean TRIM_LAST_BLANK_PAGE = true;
 
+    private final HtmlBodyStylesApplierHandler htmlBodyHandler;
+
+    private final Map<Integer, PageStylesProperties> pageStylesPropertiesMap = new HashMap<>();
+
     /** The page context processor for the first page. */
     private PageContextProcessor firstPageProc;
 
@@ -82,12 +86,9 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
     private boolean evenPagesAreLeft = true;
 
     private PageMarginBoxesDrawingHandler marginBoxesHandler;
-    private HtmlBodyStylesApplierHandler htmlBodyHandler;
-
-    private Map<Integer, PageStylesProperties> pageStylesPropertiesMap = new HashMap<>();
 
     /**
-     * The waiting element, an child element is kept waiting for the
+     * The waiting element, a child element is kept waiting for the
      * next element to process the "keep with previous" property.
      */
     private IRenderer waitingElement;
@@ -107,7 +108,7 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
     /**
      * Instantiates a new {@link HtmlDocumentRenderer} instance.
      *
-     * @param document       an iText {@link Document} instance
+     * @param document an iText {@link Document} instance
      * @param immediateFlush the immediate flush indicator
      */
     public HtmlDocumentRenderer(Document document, boolean immediateFlush) {
@@ -119,9 +120,9 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
     /**
      * Processes the page rules.
      *
-     * @param rootNode    the root node
+     * @param rootNode the root node
      * @param cssResolver the CSS resolver
-     * @param context     the processor context
+     * @param context the processor context
      */
     public void processPageRules(INode rootNode, ICssResolver cssResolver, ProcessorContext context) {
         PageContextProperties firstPageProps = PageContextProperties.resolve(rootNode, cssResolver, context.getCssContext(),
@@ -217,7 +218,7 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
     }
 
     @Override
-    public void flush(){
+    public void flush() {
         processWaitingElement();
         super.flush();
     }
@@ -225,7 +226,7 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
     /**
      * Layouts waiting element.
      */
-    public void processWaitingElement(){
+    public void processWaitingElement() {
         if (waitingElement != null) {
             IRenderer r = this.waitingElement;
             waitingElement = null;
@@ -327,7 +328,7 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
         nextProcessor.processNewPage(addedPage);
 
         float[] margins = nextProcessor.computeLayoutMargins();
-        BodyHtmlStylesContainer[] styles = new BodyHtmlStylesContainer[] {
+        BodyHtmlStylesContainer[] styles = new BodyHtmlStylesContainer[]{
                 ((IPropertyContainer) document).<BodyHtmlStylesContainer>getProperty(Html2PdfProperty.HTML_STYLING),
                 ((IPropertyContainer) document).<BodyHtmlStylesContainer>getProperty(Html2PdfProperty.BODY_STYLING)};
         pageStylesPropertiesMap.put(pageNumber, new PageStylesProperties(styles));
@@ -358,6 +359,7 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
 
     /**
      * Returns the number of pages that will be trimmed on {@link #close()}
+     *
      * @return 0 if no pages will be trimmed, or positive number of trimmed pages in case any are trimmed
      */
     int simulateTrimLastPage() {
@@ -389,6 +391,7 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
      * Gets a page processor for the page.
      *
      * @param pageNum the number of the page for which the {@link PageContextProcessor} shall be obtained
+     *
      * @return a page processor
      */
     PageContextProcessor getPageProcessor(int pageNum) {

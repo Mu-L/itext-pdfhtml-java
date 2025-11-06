@@ -58,6 +58,8 @@ import com.itextpdf.styledxmlparser.node.IStylesContainer;
 import com.itextpdf.styledxmlparser.resolver.resource.ResourceResolver;
 import com.itextpdf.styledxmlparser.util.CssVariableUtil;
 import com.itextpdf.styledxmlparser.util.StyleUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -68,9 +70,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Default implementation of the {@link ICssResolver} interface.
@@ -102,9 +101,9 @@ public class DefaultCssResolver implements ICssResolver {
     /**
      * Creates a new {@link DefaultCssResolver} instance.
      *
-     * @param treeRoot               the root node
+     * @param treeRoot the root node
      * @param mediaDeviceDescription the media device description
-     * @param resourceResolver       the resource resolver
+     * @param resourceResolver the resource resolver
      */
     public DefaultCssResolver(INode treeRoot, MediaDeviceDescription mediaDeviceDescription, ResourceResolver resourceResolver) {
         this.deviceDescription = mediaDeviceDescription;
@@ -116,7 +115,7 @@ public class DefaultCssResolver implements ICssResolver {
      * Creates a new {@link DefaultCssResolver} instance.
      *
      * @param treeRoot the root node
-     * @param context  the processor context
+     * @param context the processor context
      */
     public DefaultCssResolver(INode treeRoot, ProcessorContext context) {
         this.deviceDescription = context.getDeviceDescription();
@@ -191,7 +190,7 @@ public class DefaultCssResolver implements ICssResolver {
                 for (Map.Entry<String, String> entry : parentStyles.entrySet()) {
                     elementStyles = StyleUtil
                             .mergeParentStyleDeclaration(elementStyles, entry.getKey(), entry.getValue(), parentStyles.get(
-                            CommonCssConstants.FONT_SIZE), INHERITANCE_RULES);
+                                    CommonCssConstants.FONT_SIZE), INHERITANCE_RULES);
 
                     // If the parent has display: flex, the flex item is blockified
                     // no matter what display value is set for it (except 'none' and 'grid' values).
@@ -200,7 +199,7 @@ public class DefaultCssResolver implements ICssResolver {
                     final String currentElementDisplay = elementStyles.get(CssConstants.DISPLAY);
                     if (isFlexItem(entry, currentElementDisplay) &&
                             !CommonCssConstants.NONE.equals(currentElementDisplay) &&
-                            !CommonCssConstants.GRID.equals(currentElementDisplay)) {
+                            !CommonCssConstants.GRID.equals(currentElementDisplay) && !CssConstants.LIST_ITEM.equals(currentElementDisplay)) {
                         elementStyles.put(CssConstants.DISPLAY, CssConstants.BLOCK);
                     }
                 }
@@ -271,9 +270,9 @@ public class DefaultCssResolver implements ICssResolver {
     /**
      * Resolves a content property.
      *
-     * @param styles           the styles map
+     * @param styles the styles map
      * @param contentContainer the content container
-     * @param context          the CSS context
+     * @param context the CSS context
      */
     private void resolveContentProperty(Map<String, String> styles, INode contentContainer, CssContext context) {
         if (contentContainer instanceof CssPseudoElementNode || contentContainer instanceof PageMarginBoxContextNode) {
@@ -293,9 +292,9 @@ public class DefaultCssResolver implements ICssResolver {
     /**
      * Collects CSS declarationss.
      *
-     * @param rootNode         the root node
+     * @param rootNode the root node
      * @param resourceResolver the resource resolver
-     * @param cssContext       the CSS context
+     * @param cssContext the CSS context
      */
     private void collectCssDeclarations(INode rootNode, ResourceResolver resourceResolver, CssContext cssContext) {
         cssStyleSheet = new CssStyleSheet();
@@ -308,7 +307,7 @@ public class DefaultCssResolver implements ICssResolver {
                 if (TagConstants.STYLE.equals(element.name())) {
                     if (!element.childNodes().isEmpty() && element.childNodes().get(0) instanceof IDataNode) {
                         String styleData = ((IDataNode) element.childNodes().get(0)).getWholeData();
-                        CssStyleSheet styleSheet  = CssStyleSheetParser.parse(styleData, resourceResolver.getBaseUri());
+                        CssStyleSheet styleSheet = CssStyleSheetParser.parse(styleData, resourceResolver.getBaseUri());
                         styleSheet = wrapStyleSheetInMediaQueryIfNecessary(element, styleSheet);
                         cssStyleSheet.appendCssStyleSheet(styleSheet);
                     }
@@ -375,7 +374,8 @@ public class DefaultCssResolver implements ICssResolver {
      * Wraps a {@link CssMediaRule} into the style sheet if the head child element has a media attribute.
      *
      * @param headChildElement the head child element
-     * @param styleSheet       the style sheet
+     * @param styleSheet the style sheet
+     *
      * @return the css style sheet
      */
     private CssStyleSheet wrapStyleSheetInMediaQueryIfNecessary(IElementNode headChildElement, CssStyleSheet styleSheet) {
