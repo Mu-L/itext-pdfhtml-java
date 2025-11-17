@@ -265,26 +265,25 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
-    // TODO DDEVSIX-9036 current VeraPdf version behaves incorrectly.
     public void svgBase64Test(PdfUAConformance conformance) throws IOException, InterruptedException {
         String sourceHtml = SOURCE_FOLDER + "svgBase64.html";
 
         if (conformance == PdfUAConformance.PDF_UA_1) {
             String cmpPdfUa1 = SOURCE_FOLDER + "cmp_svgBase64Ua1.pdf";
             String destinationPdfUa1 = DESTINATION_FOLDER + "svgBase64Ua1.pdf";
-            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa1, cmpPdfUa1, null, false, null);
+            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa1, cmpPdfUa1, null, true, null);
         }
 
         if (conformance == PdfUAConformance.PDF_UA_2) {
             String cmpPdfUa2 = SOURCE_FOLDER + "cmp_svgBase64Ua2.pdf";
             String destinationPdfUa2 = DESTINATION_FOLDER + "svgBase64Ua2.pdf";
-            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa2, cmpPdfUa2, null, false, null);
+            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa2, cmpPdfUa2, null, true, null);
         }
     }
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
-    // TODO DDEVSIX-9036 current VeraPdf version behaves incorrectly.
+    // TODO DEVSIX-9580 current VeraPdf version behaves incorrectly.
     public void pngInDivStyleTest(PdfUAConformance conformance) throws IOException, InterruptedException {
         // Investigate why VeraPdf doesn't complain about the missing tag.
         String sourceHtml = SOURCE_FOLDER + "pngInDivStyle.html";
