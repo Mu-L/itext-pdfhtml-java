@@ -88,6 +88,16 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
+    public void longLinkBrokenAcrossPagesTest(PdfUAConformance conformance) throws IOException, InterruptedException {
+        String sourceHtml = SOURCE_FOLDER + "longLinkBrokenAcrossPages.html";
+
+        String cmpPdf = SOURCE_FOLDER + "cmp_longLinkBrokenAcrossPagesUa" + conformance.getPart() + ".pdf";
+        String destinationPdf = DESTINATION_FOLDER + "twolongLinkBrokenAcrossPagesUa" + conformance.getPart() + ".pdf";
+        convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdf, cmpPdf, null, true, null);
+    }
+
+    @ParameterizedTest
+    @MethodSource("conformanceLevels")
     public void imageLinkTest(PdfUAConformance conformance) throws IOException, InterruptedException {
         String sourceHtml = SOURCE_FOLDER + "imageLink.html";
         String cmpFile = SOURCE_FOLDER + "cmp_imageLinkUa" + conformance.getPart() + ".pdf";
