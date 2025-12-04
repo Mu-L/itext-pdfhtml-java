@@ -43,12 +43,6 @@ The easiest way to get started is to use Maven, just add the following entries t
         <artifactId>html2pdf</artifactId>
         <version>${html2pdf.version}</version>
     </dependency>
-    <!-- optional dependency if you intend on creating PDF/UA documents -->
-    <dependency>
-        <groupId>com.itextpdf</groupId>
-        <artifactId>pdfua</artifactId>
-        <version>${pdfua.version}</version>
-    </dependency>
 </dependencies>
 ```
 
