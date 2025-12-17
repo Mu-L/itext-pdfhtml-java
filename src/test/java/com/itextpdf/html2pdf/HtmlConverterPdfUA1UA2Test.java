@@ -371,6 +371,16 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
         convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdf, cmpPdf, null, true, null);
     }
 
+    @ParameterizedTest
+    @MethodSource("conformanceLevels")
+    public void zeroFontSizeTest(PdfUAConformance conformance) throws IOException, InterruptedException {
+        String sourceHtml = SOURCE_FOLDER + "zeroFontSize.html";
+
+        String cmpPdf = SOURCE_FOLDER + "cmp_zeroFontSizeUa" + conformance.getPart() + ".pdf";
+        String destinationPdf = DESTINATION_FOLDER + "zeroFontSizeUa" + conformance.getPart() + ".pdf";
+        convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdf, cmpPdf, null, true, null);
+    }
+
     @Test
     public void duplicateConformanceLevelAAndUAThrows() {
         ConverterProperties converterProperties = new ConverterProperties();

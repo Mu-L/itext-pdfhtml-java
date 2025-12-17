@@ -89,11 +89,9 @@ public final class FontStyleApplierUtil {
      */
     public static void applyFontStyles(Map<String, String> cssProps, ProcessorContext context,
             IStylesContainer stylesContainer, IPropertyContainer element) {
-        float em = CssDimensionParsingUtils.parseAbsoluteLength(cssProps.get(CssConstants.FONT_SIZE));
-        float rem = context.getCssContext().getRootFontSize();
-        if (em != 0) {
-            element.setProperty(Property.FONT_SIZE, UnitValue.createPointValue(em));
-        }
+        final float em = CssDimensionParsingUtils.parseAbsoluteLength(cssProps.get(CssConstants.FONT_SIZE));
+        final float rem = context.getCssContext().getRootFontSize();
+        element.setProperty(Property.FONT_SIZE, UnitValue.createPointValue(em));
 
         if (cssProps.get(CssConstants.FONT_FAMILY) != null) {
             // TODO DEVSIX-2534
