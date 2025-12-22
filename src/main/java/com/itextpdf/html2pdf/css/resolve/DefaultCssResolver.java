@@ -224,7 +224,19 @@ public class DefaultCssResolver implements ICssResolver {
             // Format to 4 decimal places to prevent differences between Java and C#
             elementStyles.put(CssConstants.FONT_SIZE, DecimalFormatUtil.formatNumber(absoluteFontSize, "0.####") + CssConstants.PT);
         } else {
-            elementStyles.put(CssConstants.FONT_SIZE, Float.toString(CssDimensionParsingUtils.parseAbsoluteFontSize(elementFontSize)) + CssConstants.PT);
+            float fontSize;
+            if (CssTypesValidationUtils.isInitialOrInheritOrUnset(elementFontSize)) {
+                // font-size is inheritable property so we can always process initial/inherit/unset identically
+                if (parentFontSizeStr == null) {
+                    fontSize = CssDimensionParsingUtils.parseAbsoluteFontSize(
+                            CssDefaults.getDefaultValue(CssConstants.FONT_SIZE));
+                } else {
+                    fontSize = CssDimensionParsingUtils.parseAbsoluteLength(parentFontSizeStr);
+                }
+            } else {
+                fontSize = CssDimensionParsingUtils.parseAbsoluteFontSize(elementFontSize);
+            }
+            elementStyles.put(CssConstants.FONT_SIZE, Float.toString(fontSize) + CssConstants.PT);
         }
 
         // Update root font size

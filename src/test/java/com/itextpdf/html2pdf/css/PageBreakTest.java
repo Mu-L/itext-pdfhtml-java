@@ -195,28 +195,48 @@ public class PageBreakTest extends ExtendedHtmlConversionITextTest {
 
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
-    // TODO: DEVSIX-5263 inconsistent behavior when page-break-inside: avoid set in td and td contains inline elements
+    public void pageBreakInsideAvoidInOlLiWithDivTest() throws IOException, InterruptedException {
+        runTest("pageBreakInsideAvoidInOlLiWithDiv");
+    }
+
+    @Test
+    @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
+    public void pageBreakInsideAvoidInOlLiSecondPageTest() throws IOException, InterruptedException {
+        runTest("pageBreakInsideAvoidInOlLiSecondPage");
+    }
+
+    @Test
+    @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
+    public void pageBreakInsideAvoidInOlLiOverflowTest() throws IOException, InterruptedException {
+        runTest("pageBreakInsideAvoidInOlLiOverflow");
+    }
+
+    @Test
+    @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
+    public void pageBreakInsideAvoidInUlLiWithDivTest() throws IOException, InterruptedException {
+        runTest("pageBreakInsideAvoidInUlLiWithDiv");
+    }
+
+    @Test
+    @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
     public void pageBreakInsideAvoidInTdWithBrInsideTest() throws IOException, InterruptedException {
         convertToElements("pageBreakInsideAvoidInTdWithBrInside");
     }
 
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
-    // TODO: DEVSIX-5263 inconsistent behavior when page-break-inside: avoid set in td and td contains inline elements
     public void pageBreakInsideAvoidInTdWithSpanInsideTest() throws IOException, InterruptedException {
         convertToElements("pageBreakInsideAvoidInTdWithSpanInside");
     }
 
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
-    // TODO: DEVSIX-5263 inconsistent behavior when page-break-inside: avoid set in td and td contains inline elements
     public void pageBreakInsideAvoidInTdWithHeadingsTest() throws IOException, InterruptedException {
         convertToElements("pageBreakInsideAvoidInTdWithHeadings");
     }
 
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
-    // TODO: DEVSIX-5263 inconsistent behavior when page-break-inside: avoid set in td and td contains inline elements
     public void pageBreakInsideAvoidInTdWithParaTest() throws IOException, InterruptedException {
         convertToElements("pageBreakInsideAvoidInTdWithPara");
     }
@@ -226,14 +246,12 @@ public class PageBreakTest extends ExtendedHtmlConversionITextTest {
             @LogMessage(messageTemplate =  IoLogMessageConstant.LAST_ROW_IS_NOT_COMPLETE),
             @LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)
     })
-    // TODO: DEVSIX-5263 inconsistent behavior when page-break-inside: avoid set in td and td contains inline elements
     public void pageBreakInsideAvoidInTdWithTableTest() throws IOException, InterruptedException {
         convertToElements("pageBreakInsideAvoidInTdWithTable");
     }
 
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = LayoutLogMessageConstant.ELEMENT_DOES_NOT_FIT_AREA)})
-    // TODO: DEVSIX-5263 inconsistent behavior when page-break-inside: avoid set in td and td contains inline elements
     public void pageBreakInsideAvoidInTdWithDivTest() throws IOException, InterruptedException {
         convertToElements("pageBreakInsideAvoidInTdWithDiv");
     }

@@ -72,4 +72,25 @@ public class FontSizeTest extends ExtendedHtmlConversionITextTest {
     public void defaultFontDiffFontSizeSpanTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("defaultFontDiffFontSizeSpan", sourceFolder, destinationFolder);
     }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION)
+    })
+    public void inheritedFontSizeTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("inheritedFontSize", sourceFolder, destinationFolder);
+    }
+
+    @Test
+    public void nestingTagsFontSizeTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("nestingTagsFontSize", sourceFolder, destinationFolder);
+    }
+
+    @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 2)
+    })
+    public void garbageFontSizeTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("garbageFontSize", sourceFolder, destinationFolder);
+    }
 }

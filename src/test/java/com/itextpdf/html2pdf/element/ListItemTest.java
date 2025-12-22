@@ -22,10 +22,11 @@
  */
 package com.itextpdf.html2pdf.element;
 
+import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.io.logs.IoLogMessageConstant;
 import com.itextpdf.kernel.utils.CompareTool;
-import com.itextpdf.test.ExtendedITextTest;
+import com.itextpdf.layout.logs.LayoutLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 import org.junit.jupiter.api.Assertions;
@@ -37,111 +38,66 @@ import java.io.File;
 import java.io.IOException;
 
 @Tag("IntegrationTest")
-public class ListItemTest extends ExtendedITextTest {
+public class ListItemTest extends ExtendedHtmlConversionITextTest {
 
-	public static final String sourceFolder = "./src/test/resources/com/itextpdf/html2pdf/element/ListItemTest/";
-	public static final String destinationFolder = "./target/test/com/itextpdf/html2pdf/element/ListItemTest/";
+	public static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/element/ListItemTest/";
+	public static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/element/ListItemTest/";
 
 	@BeforeAll
 	public static void beforeClass() {
-		createDestinationFolder(destinationFolder);
+		createDestinationFolder(DESTINATION_FOLDER);
 	}
 
 	@Test
 	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 14)})
 	public void rtlListItemInsideLtrOrderedListTest() throws IOException, InterruptedException {
-		String name = "rtlListItemInsideLtrOrderedListTest";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("rtlListItemInsideLtrOrderedListTest", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
 	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 16)})
 	public void listItemWithDifferentDirAndPositionInsideTest() throws IOException, InterruptedException {
-		String name = "listItemWithDifferentDirAndPositionInsideTest";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("listItemWithDifferentDirAndPositionInsideTest", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
 	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 12)})
 	public void rtlListItemInsideLtrUnorderedListTest() throws IOException, InterruptedException {
-		String name = "rtlListItemInsideLtrUnorderedListTest";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("rtlListItemInsideLtrUnorderedListTest", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
 	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 12)})
 	public void drawBulletRtlTest() throws IOException, InterruptedException {
-		String name = "drawBulletRtl";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("drawBulletRtl", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
 	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 16)})
 	public void drawBulletLtrTest() throws IOException, InterruptedException {
-		String name = "drawBulletLtr";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("drawBulletLtr", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
 	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 8)})
 	public void bulletsAreNotDrawnAsTheyAreInPageMarginsTest() throws IOException, InterruptedException {
-		String name = "bulletsAreNotDrawnAsTheyAreInPageMargins";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("bulletsAreNotDrawnAsTheyAreInPageMargins", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
 	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 20)})
 	public void rltListItemWithDifferentMarginsTest() throws IOException, InterruptedException {
-		String name = "rltListItemWithDifferentMargins";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("rltListItemWithDifferentMargins", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
 	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 16)})
 	public void diffListItemsInsideDiffListsWithDiffDirectionsWithoutWidthTest() throws IOException, InterruptedException {
-		String name = "diffListItemsInsideDiffListsWithDiffDirectionsWithoutWidth";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("diffListItemsInsideDiffListsWithDiffDirectionsWithoutWidth", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
 	public void listItemWithBlockDisplayTest() throws IOException, InterruptedException {
-		String name = "listItemWithBlockDisplay";
-		HtmlConverter.convertToPdf(new File(sourceFolder + name + ".html"),
-		                           new File(destinationFolder + name +".pdf"));
-		Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + name + ".pdf",
-		                                                     sourceFolder + "cmp_" + name + ".pdf",
-		                                                     destinationFolder, "diff01_"));
+        convertToPdfAndCompare("listItemWithBlockDisplay", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 }

@@ -88,6 +88,16 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
+    public void longLinkBrokenAcrossPagesTest(PdfUAConformance conformance) throws IOException, InterruptedException {
+        String sourceHtml = SOURCE_FOLDER + "longLinkBrokenAcrossPages.html";
+
+        String cmpPdf = SOURCE_FOLDER + "cmp_longLinkBrokenAcrossPagesUa" + conformance.getPart() + ".pdf";
+        String destinationPdf = DESTINATION_FOLDER + "twolongLinkBrokenAcrossPagesUa" + conformance.getPart() + ".pdf";
+        convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdf, cmpPdf, null, true, null);
+    }
+
+    @ParameterizedTest
+    @MethodSource("conformanceLevels")
     public void imageLinkTest(PdfUAConformance conformance) throws IOException, InterruptedException {
         String sourceHtml = SOURCE_FOLDER + "imageLink.html";
         String cmpFile = SOURCE_FOLDER + "cmp_imageLinkUa" + conformance.getPart() + ".pdf";
@@ -255,26 +265,25 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
-    // TODO DDEVSIX-9036 current VeraPdf version behaves incorrectly.
     public void svgBase64Test(PdfUAConformance conformance) throws IOException, InterruptedException {
         String sourceHtml = SOURCE_FOLDER + "svgBase64.html";
 
         if (conformance == PdfUAConformance.PDF_UA_1) {
             String cmpPdfUa1 = SOURCE_FOLDER + "cmp_svgBase64Ua1.pdf";
             String destinationPdfUa1 = DESTINATION_FOLDER + "svgBase64Ua1.pdf";
-            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa1, cmpPdfUa1, null, false, null);
+            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa1, cmpPdfUa1, null, true, null);
         }
 
         if (conformance == PdfUAConformance.PDF_UA_2) {
             String cmpPdfUa2 = SOURCE_FOLDER + "cmp_svgBase64Ua2.pdf";
             String destinationPdfUa2 = DESTINATION_FOLDER + "svgBase64Ua2.pdf";
-            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa2, cmpPdfUa2, null, false, null);
+            convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdfUa2, cmpPdfUa2, null, true, null);
         }
     }
 
     @ParameterizedTest
     @MethodSource("conformanceLevels")
-    // TODO DDEVSIX-9036 current VeraPdf version behaves incorrectly.
+    // TODO DEVSIX-9580 current VeraPdf version behaves incorrectly.
     public void pngInDivStyleTest(PdfUAConformance conformance) throws IOException, InterruptedException {
         // Investigate why VeraPdf doesn't complain about the missing tag.
         String sourceHtml = SOURCE_FOLDER + "pngInDivStyle.html";
@@ -359,6 +368,16 @@ public class HtmlConverterPdfUA1UA2Test extends ExtendedITextTest {
 
         String cmpPdf = SOURCE_FOLDER + "cmp_emptyTableDataCellUa" + conformance.getPart() + ".pdf";
         String destinationPdf = DESTINATION_FOLDER + "emptyTableDataCellUa" + conformance.getPart() + ".pdf";
+        convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdf, cmpPdf, null, true, null);
+    }
+
+    @ParameterizedTest
+    @MethodSource("conformanceLevels")
+    public void zeroFontSizeTest(PdfUAConformance conformance) throws IOException, InterruptedException {
+        String sourceHtml = SOURCE_FOLDER + "zeroFontSize.html";
+
+        String cmpPdf = SOURCE_FOLDER + "cmp_zeroFontSizeUa" + conformance.getPart() + ".pdf";
+        String destinationPdf = DESTINATION_FOLDER + "zeroFontSizeUa" + conformance.getPart() + ".pdf";
         convertToUaAndCheckCompliance(conformance, sourceHtml, destinationPdf, cmpPdf, null, true, null);
     }
 

@@ -63,6 +63,15 @@ public class HtmlStylesToCssConverterTest extends ExtendedITextTest {
     }
 
     @Test
+    public void invalidAttributeValue() {
+        final Element element = new Element(Tag.valueOf(TagConstants.OL), "");
+        element.attr("type", "circle");
+        JsoupElementNode node = new JsoupElementNode(element);
+        List<CssDeclaration> cssDeclarations = HtmlStylesToCssConverter.convert(node);
+        assertCssDeclarationListWithOneElement(cssDeclarations, "list-style-type", null);
+    }
+
+    @Test
     public void withoutSemicolonsHeightAttributeTest() {
         final Element element = new Element(Tag.valueOf(TagConstants.IMG), "");
         element.attr("height", "50%");
