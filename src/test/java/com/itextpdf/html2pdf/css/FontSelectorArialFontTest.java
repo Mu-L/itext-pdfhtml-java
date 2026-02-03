@@ -41,15 +41,16 @@ import org.junit.jupiter.api.Tag;
 
 @Tag("IntegrationTest")
 public class FontSelectorArialFontTest extends ExtendedITextTest {
-    public static final String sourceFolder = "./src/test/resources/com/itextpdf/html2pdf/css/FontSelectorArialFontTest/";
-    public static final String destinationFolder = "./target/test/com/itextpdf/html2pdf/css/FontSelectorArialFontTest/";
+    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/FontSelectorArialFontTest/";
+    private static final String FONT_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/fonts/";
+    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/FontSelectorArialFontTest/";
 
     public static final String SOURCE_HTML_NAME = "arialTest";
 
     @BeforeAll
     public static void beforeClass() {
-        createDestinationFolder(destinationFolder);
-        createDestinationFolder(sourceFolder);
+        createDestinationFolder(DESTINATION_FOLDER);
+        createDestinationFolder(SOURCE_FOLDER);
     }
 
     @Test
@@ -65,7 +66,7 @@ public class FontSelectorArialFontTest extends ExtendedITextTest {
     public void testArialWithHelveticaAsAnAlias() throws IOException, InterruptedException {
         String fileName = "testArialWithHelveticaAsAnAlias";
         FontProvider fontProvider = new BasicFontProvider();
-        fontProvider.getFontSet().addFont(sourceFolder + "FreeSans.ttf", null, "Arial");
+        fontProvider.getFontSet().addFont(FONT_FOLDER + "FreeSans.ttf", null, "Arial");
         ConverterProperties converterProperties = new ConverterProperties()
                 .setMediaDeviceDescription(new MediaDeviceDescription(MediaType.PRINT))
                 .setFontProvider(fontProvider);
@@ -73,11 +74,11 @@ public class FontSelectorArialFontTest extends ExtendedITextTest {
     }
 
     private void runTest(String name, ConverterProperties converterProperties) throws IOException, InterruptedException {
-        String htmlPath = sourceFolder + SOURCE_HTML_NAME + ".html";
-        String pdfPath = destinationFolder + name + ".pdf";
-        String cmpPdfPath = sourceFolder + "cmp_" + name + ".pdf";
+        String htmlPath = SOURCE_FOLDER + SOURCE_HTML_NAME + ".html";
+        String pdfPath = DESTINATION_FOLDER + name + ".pdf";
+        String cmpPdfPath = SOURCE_FOLDER + "cmp_" + name + ".pdf";
         String diffPrefix = "diff_" + name + "_";
         HtmlConverter.convertToPdf(new File(htmlPath), new File(pdfPath), converterProperties);
-        Assertions.assertNull(new CompareTool().compareByContent(pdfPath, cmpPdfPath, destinationFolder, diffPrefix));
+        Assertions.assertNull(new CompareTool().compareByContent(pdfPath, cmpPdfPath, DESTINATION_FOLDER, diffPrefix));
     }
 }

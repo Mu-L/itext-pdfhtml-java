@@ -43,6 +43,7 @@ import java.io.IOException;
 @Tag("IntegrationTest")
 public class FontProviderTest extends ExtendedITextTest {
     public static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/FontProviderTest/";
+    public static final String FONT_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/fonts/";
     public static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/FontProviderTest/";
 
     @BeforeAll
@@ -99,36 +100,36 @@ public class FontProviderTest extends ExtendedITextTest {
         ConverterProperties properties = new ConverterProperties();
 
         FontProvider pro = new BasicFontProvider();
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSansArabic-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSansArabic-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSansGurmukhi-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSansGurmukhi-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSansMyanmar-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSansMyanmar-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSansOriya-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSansOriya-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifBengali-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifBengali-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifDevanagari-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifDevanagari-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifGujarati-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifGujarati-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifHebrew-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifHebrew-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifKannada-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifKannada-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifKhmer-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifKhmer-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifMalayalam-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifMalayalam-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifMyanmar-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifMyanmar-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifTamil-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifTamil-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifTelugu-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifTelugu-Bold.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifThai-Regular.ttf"));
-        pro.addFont(FontProgramFactory.createFont(SOURCE_FOLDER + "NotoSerifThai-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSansArabic-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSansArabic-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSansGurmukhi-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSansGurmukhi-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSansMyanmar-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSansMyanmar-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSansOriya-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSansOriya-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifBengali-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifBengali-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifDevanagari-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifDevanagari-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifGujarati-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifGujarati-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifHebrew-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifHebrew-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifKannada-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifKannada-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifKhmer-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifKhmer-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifMalayalam-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifMalayalam-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifMyanmar-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifMyanmar-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifTamil-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifTamil-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifTelugu-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifTelugu-Bold.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifThai-Regular.ttf"));
+        pro.addFont(FontProgramFactory.createFont(FONT_FOLDER + "NotoSerifThai-Bold.ttf"));
 
         properties.setFontProvider(pro);
 
@@ -151,7 +152,7 @@ public class FontProviderTest extends ExtendedITextTest {
     public void differentFontFamiliesTest() throws IOException, InterruptedException {
         ConverterProperties properties = new ConverterProperties();
         FontProvider fontProvider = new BasicFontProvider(false, false, false);
-        fontProvider.addDirectory(SOURCE_FOLDER + "Lato_fonts");
+        fontProvider.addDirectory(FONT_FOLDER);
         properties.setFontProvider(fontProvider);
 
         HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "differentFontFamilies.html"), new File(
