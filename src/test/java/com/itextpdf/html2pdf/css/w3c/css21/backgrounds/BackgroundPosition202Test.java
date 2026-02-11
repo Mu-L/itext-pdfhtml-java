@@ -27,7 +27,6 @@ import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-// TODO DEVSIX-2431 Positioned elements are lost when block is split across pages.
 @LogMessages(messages = {
         @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.INVALID_CSS_PROPERTY_DECLARATION, count = 21)
 })

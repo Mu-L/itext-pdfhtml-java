@@ -145,4 +145,19 @@ public class AbsolutePositionTest extends ExtendedHtmlConversionITextTest {
         // TODO DEVSIX-1950
         convertToPdfAndCompare("absPosNoTopBottomTest01", sourceFolder, destinationFolder);
     }
+
+    @Test
+    public void absolutePositionSplitPagesBeforeTextTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("absolutePositionSplitPagesBeforeText", sourceFolder, destinationFolder);
+    }
+
+    @Test
+    public void absolutePositionSplitPagesAfterTextTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("absolutePositionSplitPagesAfterText", sourceFolder, destinationFolder);
+    }
+
+    @Test
+    public void absolutePositionSplitPagesAfterTextInImageBlockTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("absolutePositionSplitPagesAfterTextInImageBlock", sourceFolder, destinationFolder);
+    }
 }
