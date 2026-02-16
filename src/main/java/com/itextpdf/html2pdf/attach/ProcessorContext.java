@@ -48,8 +48,6 @@ import com.itextpdf.styledxmlparser.css.CssStyleSheet;
 import com.itextpdf.styledxmlparser.css.media.MediaDeviceDescription;
 import com.itextpdf.styledxmlparser.resolver.resource.ResourceResolver;
 
-import java.util.Map;
-
 /**
  * Keeps track of the context of the processor.
  */
@@ -227,8 +225,8 @@ public class ProcessorContext {
         pdfAConformanceFromProperties = new PdfConformance(converterProperties.getPdfAConformance());
         processingInlineSvg = false;
         continuousContainerEnabled = converterProperties.isContinuousContainerEnabled();
-        for (Map.Entry<Class<?>, Object> entry : converterProperties.getDependencies().entrySet()) {
-            diContainer.register(entry.getKey(), entry.getValue());
+        for (Class<?> clazz : converterProperties.getDependenciesClasses()) {
+            diContainer.register(clazz, converterProperties.getDependencySupplier(clazz).get());
         }
     }
 

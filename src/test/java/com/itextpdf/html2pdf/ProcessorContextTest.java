@@ -89,7 +89,7 @@ public class ProcessorContextTest extends ExtendedITextTest {
         String html = "<html><body><a href='https://itextpdf.com'  alt=\"some description\"/>Hello</a></body></html>";
         ConverterProperties properties = new ConverterProperties();
         final String exceptionMessage = "Test me";
-        properties.getDependencies().put(AlternateDescriptionResolver.class, new AlternateDescriptionResolver() {
+        properties.registerDependency(AlternateDescriptionResolver.class, () -> new AlternateDescriptionResolver() {
             @Override
             protected void resolveFallback(IAccessibleElement accessibleElement, IElementNode element) {
                 throw new RuntimeException(exceptionMessage);

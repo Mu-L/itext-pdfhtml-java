@@ -27,6 +27,7 @@ import com.itextpdf.html2pdf.attach.ITagWorkerFactory;
 import com.itextpdf.html2pdf.attach.impl.OutlineHandler;
 import com.itextpdf.html2pdf.attach.util.AlternateDescriptionResolver;
 import com.itextpdf.html2pdf.css.apply.ICssApplierFactory;
+import com.itextpdf.kernel.exceptions.KernelExceptionMessageConstant;
 import com.itextpdf.kernel.pdf.PdfAConformance;
 import com.itextpdf.kernel.pdf.PdfConformance;
 import com.itextpdf.kernel.pdf.PdfOutputIntent;
@@ -38,6 +39,8 @@ import com.itextpdf.styledxmlparser.resolver.resource.IResourceRetriever;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Supplier;
 
 /**
  * Properties that will be used by the {@link com.itextpdf.html2pdf.HtmlConverter}.
@@ -49,7 +52,7 @@ public class ConverterProperties {
      */
     private static final int DEFAULT_LIMIT_OF_LAYOUTS = 10;
 
-    private final HashMap<Class<?>, Object> dependencies = new HashMap<>();
+    private final Map<Class<?>, Supplier<Object>> dependencies = new HashMap<>();
 
     /**
      * The media device description.
@@ -130,7 +133,7 @@ public class ConverterProperties {
      * Instantiates a new {@link ConverterProperties} instance.
      */
     public ConverterProperties() {
-        this.dependencies.put(AlternateDescriptionResolver.class, new AlternateDescriptionResolver());
+        this.dependencies.put(AlternateDescriptionResolver.class, () -> new AlternateDescriptionResolver());
     }
 
     /**
@@ -155,9 +158,7 @@ public class ConverterProperties {
         this.continuousContainerEnabled = other.continuousContainerEnabled;
         this.conformance = other.conformance;
         this.outputIntent = other.outputIntent;
-        for (Class<?> aClass : other.dependencies.keySet()) {
-            this.dependencies.put(aClass, other.dependencies.get(aClass));
-        }
+        this.dependencies.putAll(other.dependencies);
     }
 
     /**
@@ -571,8 +572,56 @@ public class ConverterProperties {
      * Gets the dependencies.
      *
      * @return the dependencies
+     *
+     * @deprecated in favor of {@link ConverterProperties#getDependenciesClasses()},
+     * {@link ConverterProperties#getDependencySupplier(Class)}
      */
+    @Deprecated
     public Map<Class<?>, Object> getDependencies() {
-        return dependencies;
+        Map<Class<?>, Object> currentInstances = new HashMap<>();
+        for (Map.Entry<Class<?>, Supplier<Object>> entry : dependencies.entrySet()) {
+            currentInstances.put(entry.getKey(), entry.getValue().get());
+        }
+        return currentInstances;
+    }
+
+    /**
+     * Register custom dependency for the document.
+     *
+     * @param clazz    type of the dependency
+     * @param instanceSupplier the instance of the supplier for the dependency
+     *
+     * @return this {@link ConverterProperties} instance
+     */
+    public ConverterProperties registerDependency(Class<?> clazz, Supplier<Object> instanceSupplier) {
+        if (clazz == null) {
+            throw new IllegalArgumentException(KernelExceptionMessageConstant.TYPE_SHOULD_NOT_BE_NULL);
+        }
+        if (instanceSupplier == null) {
+            throw new IllegalArgumentException(KernelExceptionMessageConstant.INSTANCE_SUPPLIER_SHOULD_NOT_BE_NULL);
+        }
+        dependencies.put(clazz, instanceSupplier);
+        return this;
+    }
+
+    /**
+     * Get all dependencies classes.
+     *
+     * @return the set of dependencies classes
+     */
+    public Set<Class<?>> getDependenciesClasses() {
+        return dependencies.keySet();
+    }
+
+    /**
+     * Get specific dependency supplier.
+     *
+     * @param clazz the dependency class to return supplier for
+     *
+     * @return supplier for the dependency.
+     * May return {code null} if no dependency supplier is present for specified class.
+     */
+    public Supplier<Object> getDependencySupplier(Class<?> clazz) {
+        return dependencies.get(clazz);
     }
 }

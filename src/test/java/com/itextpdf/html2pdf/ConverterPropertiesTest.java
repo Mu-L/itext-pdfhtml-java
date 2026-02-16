@@ -24,8 +24,11 @@ package com.itextpdf.html2pdf;
 
 import com.itextpdf.commons.actions.NamespaceConstant;
 import com.itextpdf.commons.actions.contexts.IMetaInfo;
+import com.itextpdf.html2pdf.attach.util.AlternateDescriptionResolver;
 import com.itextpdf.test.ExtendedITextTest;
 
+import java.util.Map;
+import java.util.function.Supplier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
@@ -69,6 +72,35 @@ public class ConverterPropertiesTest extends ExtendedITextTest {
         Assertions.assertFalse(propertiesCopied.isImmediateFlush());
         Assertions.assertTrue(propertiesCopied.isCreateAcroForm());
         Assertions.assertEquals(20, propertiesCopied.getLimitOfLayouts());
+    }
+
+    @Test
+    public void converterPropsSetDependencyWithNullInstance() {
+        ConverterProperties converterProperties = new ConverterProperties();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            converterProperties.registerDependency(AlternateDescriptionResolver.class, null);
+        });
+    }
+
+    @Test
+    public void converterPropsSetDependencyWithNullType() {
+        ConverterProperties converterProperties = new ConverterProperties();
+        Supplier<Object> dummySupplier = () -> new Object();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            converterProperties.registerDependency(null, dummySupplier);
+        });
+    }
+
+    @Test
+    public void getDependenciesTest() {
+        ConverterProperties converterProperties = new ConverterProperties();
+        Object dummyObject = new Object();
+        Supplier<Object> dummySupplier = () -> dummyObject;
+        converterProperties.registerDependency(AlternateDescriptionResolver.class, dummySupplier);
+
+        Map<Class<?>, Object> dependencies = converterProperties.getDependencies();
+        Assertions.assertEquals(1, dependencies.size());
+        Assertions.assertSame(dummyObject, dependencies.get(AlternateDescriptionResolver.class));
     }
 
     private static class TestMetaInfo implements IMetaInfo {
