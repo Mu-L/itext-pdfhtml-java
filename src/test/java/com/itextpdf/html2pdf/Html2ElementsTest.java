@@ -44,6 +44,7 @@ import com.itextpdf.kernel.pdf.WriterProperties;
 import com.itextpdf.kernel.utils.CompareTool;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.element.Div;
 import com.itextpdf.layout.element.IAbstractElement;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.IElement;
@@ -54,6 +55,7 @@ import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.properties.Leading;
 import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.UnitValue;
+import com.itextpdf.layout.renderer.MetaInfoContainer;
 import com.itextpdf.pdfa.PdfADocument;
 import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
 import com.itextpdf.test.ExtendedITextTest;
@@ -427,6 +429,12 @@ public class Html2ElementsTest extends ExtendedITextTest {
         Assertions.assertNull(new CompareTool().compareByContent(outPdf, cmpPdf, destinationFolder));
     }
 
+    @Test
+    public  void unsetLetterSpacingTest() {
+        String unsetDoc = "<div style=\"letter-spacing: unset;\">Test</div>";
+        Div div = (Div) HtmlConverter.convertToElements(unsetDoc).get(0);
+        Assertions.assertNull(div.<Integer>getProperty(Property.CHARACTER_SPACING));
+    }
 
     private static void addElementsToDocument(Document document, List<IElement> elements) {
         for (IElement elem : elements) {

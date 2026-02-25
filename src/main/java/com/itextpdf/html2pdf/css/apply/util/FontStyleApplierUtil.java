@@ -207,7 +207,8 @@ public final class FontStyleApplierUtil {
         String letterSpacing = cssProps.get(CssConstants.LETTER_SPACING);
         if (letterSpacing != null && !CssConstants.NORMAL.equals(letterSpacing)) {
             UnitValue letterSpacingValue = CssDimensionParsingUtils.parseLengthValueToPt(letterSpacing, em, rem);
-            if (letterSpacingValue.isPointValue()) {
+            //TODO DEVSIX-4723 Remove null check, should be already processed properly in case unset value
+            if (letterSpacingValue != null && letterSpacingValue.isPointValue()) {
                 element.setProperty(Property.CHARACTER_SPACING, letterSpacingValue.getValue());
             } else {
                 // browsers ignore values in percents
