@@ -24,7 +24,6 @@ package com.itextpdf.html2pdf.css.w3c.css_backgrounds;
 
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
 
-// TODO DEVSIX-4538 consider whether it is possible not to draw a rectangle when width or height equals to zero
 public class BackgroundClip007Test extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {
