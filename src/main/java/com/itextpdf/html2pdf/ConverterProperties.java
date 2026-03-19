@@ -32,6 +32,7 @@ import com.itextpdf.kernel.pdf.PdfAConformance;
 import com.itextpdf.kernel.pdf.PdfConformance;
 import com.itextpdf.kernel.pdf.PdfOutputIntent;
 import com.itextpdf.kernel.pdf.PdfUAConformance;
+import com.itextpdf.kernel.pdf.WellTaggedPdfConformance;
 import com.itextpdf.layout.font.FontProvider;
 import com.itextpdf.styledxmlparser.css.media.MediaDeviceDescription;
 import com.itextpdf.styledxmlparser.resolver.resource.IResourceRetriever;
@@ -487,12 +488,39 @@ public class ConverterProperties {
      * Required parameter, when converting to PDF/UA one has to specify an explicit PDF/UA conformance.
      *
      * @param uaConformance a {@link PdfUAConformance} constant
+     *
      * @return the {@link ConverterProperties} instance
      */
     public ConverterProperties setPdfUAConformance(PdfUAConformance uaConformance) {
         this.conformance = new PdfConformance(conformance.getAConformance(), uaConformance);
         return this;
     }
+
+    /**
+     * Sets the generation and strictness level of the WTPDF that must be followed.
+     * Required parameter, when converting to WTPDF one has to specify an explicit WTPDF conformance.
+     * <p>
+     * For pdfHtml currently we only support 1 WTPDF conformance level.
+     *
+     * @param wtPdfConformance a {@link WellTaggedPdfConformance} constant
+     *
+     * @return the {@link ConverterProperties} instance
+     */
+    public ConverterProperties setWtPdfConformance(WellTaggedPdfConformance wtPdfConformance) {
+        this.conformance = new PdfConformance(conformance.getAConformance(), conformance.getUAConformance(),
+                wtPdfConformance);
+        return this;
+    }
+
+    /**
+     * Gets the generation and strictness level of the conformance that must be followed.
+     *
+     * @return The conformance level
+     */
+    public PdfConformance getPdfConformance() {
+        return conformance;
+    }
+
 
     /**
      * Checks if immediateFlush is set.
