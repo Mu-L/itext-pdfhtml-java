@@ -1,6 +1,6 @@
 /*
     This file is part of the iText (R) project.
-    Copyright (c) 1998-2025 Apryse Group NV
+    Copyright (c) 1998-2026 Apryse Group NV
     Authors: Apryse Software.
 
     This program is offered under a commercial and under the AGPL license.
@@ -79,5 +79,10 @@ public class CssInheritanceTest extends ExtendedHtmlConversionITextTest {
     @Test
     public void cssFontFamilyInheritanceTest01() throws IOException, InterruptedException {
         convertToPdfAndCompare("cssFontFamilyInheritanceTest01", sourceFolder, destinationFolder);
+    }
+
+    @Test
+    public void unsetPropertyInheritanceTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("unsetCssInheritance", sourceFolder, destinationFolder);
     }
 }

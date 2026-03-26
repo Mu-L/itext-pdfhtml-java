@@ -1,6 +1,6 @@
 /*
     This file is part of the iText (R) project.
-    Copyright (c) 1998-2025 Apryse Group NV
+    Copyright (c) 1998-2026 Apryse Group NV
     Authors: Apryse Software.
 
     This program is offered under a commercial and under the AGPL license.
@@ -38,6 +38,7 @@ import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.logs.LayoutLogMessageConstant;
 import com.itextpdf.test.ExtendedITextTest;
+import com.itextpdf.test.LogLevelConstants;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
@@ -519,10 +520,9 @@ public class TableTest extends ExtendedITextTest {
     }
 
     @Test
-    // TODO DEVSIX-5036
-    public void collapsedBorderWithWrongRowspanTableTest() {
-        Assertions.assertThrows(RuntimeException.class,
-                () -> runTest("collapsedBorderWithWrongRowspanTable", false, new PageSize(PageSize.A5).rotate()));
+    @LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.LAST_ROW_IS_NOT_COMPLETE, logLevel = LogLevelConstants.WARN)})
+    public void collapsedBorderWithWrongRowspanTableTest() throws IOException, InterruptedException {
+        runTest("collapsedBorderWithWrongRowspanTable", false, new PageSize(PageSize.A5).rotate());
     }
 
     @Test
@@ -651,6 +651,16 @@ public class TableTest extends ExtendedITextTest {
     })
     public void nestedTableWithSpecifiedWidthTest() throws IOException, InterruptedException {
         runTest("nestedTableWithSpecifiedWidth");
+    }
+
+    @Test
+    public void collapsedBordersRowspanOnPageSplitTest() throws IOException, InterruptedException {
+        runTest("collapsedBordersRowspanOnPageSplit");
+    }
+
+    @Test
+    public void collapsedBordersRowspanOnPageSplit2Test() throws IOException, InterruptedException {
+        runTest("collapsedBordersRowspanOnPageSplit2");
     }
 
     private void runTest(String testName) throws IOException, InterruptedException {

@@ -1,6 +1,6 @@
 /*
     This file is part of the iText (R) project.
-    Copyright (c) 1998-2025 Apryse Group NV
+    Copyright (c) 1998-2026 Apryse Group NV
     Authors: Apryse Software.
 
     This program is offered under a commercial and under the AGPL license.
@@ -144,5 +144,20 @@ public class AbsolutePositionTest extends ExtendedHtmlConversionITextTest {
     public void absPosNoTopBottomTest01() throws IOException, InterruptedException {
         // TODO DEVSIX-1950
         convertToPdfAndCompare("absPosNoTopBottomTest01", sourceFolder, destinationFolder);
+    }
+
+    @Test
+    public void absolutePositionSplitPagesBeforeTextTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("absolutePositionSplitPagesBeforeText", sourceFolder, destinationFolder);
+    }
+
+    @Test
+    public void absolutePositionSplitPagesAfterTextTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("absolutePositionSplitPagesAfterText", sourceFolder, destinationFolder);
+    }
+
+    @Test
+    public void absolutePositionSplitPagesAfterTextInImageBlockTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("absolutePositionSplitPagesAfterTextInImageBlock", sourceFolder, destinationFolder);
     }
 }

@@ -1,6 +1,6 @@
 /*
     This file is part of the iText (R) project.
-    Copyright (c) 1998-2025 Apryse Group NV
+    Copyright (c) 1998-2026 Apryse Group NV
     Authors: Apryse Software.
 
     This program is offered under a commercial and under the AGPL license.
@@ -187,25 +187,21 @@ public class ListTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    //TODO DEVSIX-2431 Positioned elements (e.g. absolute positioning) are lost when block is split across pages
     public void positionAbsolutePageSplitTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("positionAbsolutePageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    //TODO DEVSIX-2431 Positioned elements (e.g. absolute positioning) are lost when block is split across pages
     public void noPositionPageSplitTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("noPositionPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    //TODO DEVSIX-2431 Positioned elements (e.g. absolute positioning) are lost when block is split across pages
     public void relativePositionPageSplitTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("relativePositionPageSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    //TODO DEVSIX-2431 Positioned elements (e.g. absolute positioning) are lost when block is split across pages
     public void listItemAbsolutePositionTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("list-item-absolute", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

@@ -1,6 +1,6 @@
 /*
     This file is part of the iText (R) project.
-    Copyright (c) 1998-2025 Apryse Group NV
+    Copyright (c) 1998-2026 Apryse Group NV
     Authors: Apryse Software.
 
     This program is offered under a commercial and under the AGPL license.
@@ -42,88 +42,88 @@ import org.junit.jupiter.api.Tag;
 @Tag("IntegrationTest")
 public class WordBreakTest extends ExtendedITextTest {
 
-    public static final String sourceFolder = "./src/test/resources/com/itextpdf/html2pdf/css/WordBreakTest/";
-    public static final String destinationFolder = "./target/test/com/itextpdf/html2pdf/css/WordBreakTest/";
-    public static final String fontsFolder = "./src/test/resources/com/itextpdf/html2pdf/css/CJKFonts/";
+    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/css/WordBreakTest/";
+    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/css/WordBreakTest/";
+    private static final String FONTS_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/fonts/";
 
     @BeforeAll
     public static void beforeClass() {
-        createDestinationFolder(destinationFolder);
+        createDestinationFolder(DESTINATION_FOLDER);
     }
 
     @Test
     public void wordBreakCommonScenarioTest() throws IOException, InterruptedException {
         FontProvider fontProvider = new BasicFontProvider();
-        fontProvider.addFont(fontsFolder + "NotoSansCJKjp-Regular.otf");
+        fontProvider.addFont(FONTS_FOLDER + "NotoSansCJKjp-Regular.otf");
 
         ConverterProperties converterProperties = new ConverterProperties();
         converterProperties.setFontProvider(fontProvider);
 
-        HtmlConverter.convertToPdf(new File(sourceFolder + "wordBreakCommonScenario.html"),
-                new File(destinationFolder + "wordBreakCommonScenario.pdf"), converterProperties);
-        Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + "wordBreakCommonScenario.pdf",
-                sourceFolder + "cmp_wordBreakCommonScenario.pdf", destinationFolder));
+        HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "wordBreakCommonScenario.html"),
+                new File(DESTINATION_FOLDER + "wordBreakCommonScenario.pdf"), converterProperties);
+        Assertions.assertNull(new CompareTool().compareByContent(DESTINATION_FOLDER + "wordBreakCommonScenario.pdf",
+                SOURCE_FOLDER + "cmp_wordBreakCommonScenario.pdf", DESTINATION_FOLDER));
     }
 
     @Test
     public void overflowXWordBreakTest() throws IOException, InterruptedException {
         FontProvider fontProvider = new BasicFontProvider();
-        fontProvider.addFont(fontsFolder + "NotoSansCJKjp-Regular.otf");
+        fontProvider.addFont(FONTS_FOLDER + "NotoSansCJKjp-Regular.otf");
 
         ConverterProperties converterProperties = new ConverterProperties();
         converterProperties.setFontProvider(fontProvider);
 
-        HtmlConverter.convertToPdf(new File(sourceFolder + "overflowXWordBreak.html"),
-                new File(destinationFolder + "overflowXWordBreak.pdf"), converterProperties);
-        Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + "overflowXWordBreak.pdf",
-                sourceFolder + "cmp_overflowXWordBreak.pdf", destinationFolder));
+        HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "overflowXWordBreak.html"),
+                new File(DESTINATION_FOLDER + "overflowXWordBreak.pdf"), converterProperties);
+        Assertions.assertNull(new CompareTool().compareByContent(DESTINATION_FOLDER + "overflowXWordBreak.pdf",
+                SOURCE_FOLDER + "cmp_overflowXWordBreak.pdf", DESTINATION_FOLDER));
     }
 
     @Test
     public void whiteSpaceAndWordBreakTest() throws IOException, InterruptedException {
-        HtmlConverter.convertToPdf(new File(sourceFolder + "whiteSpaceAndWordBreak.html"),
-                new File(destinationFolder + "whiteSpaceAndWordBreak.pdf"));
-        Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + "whiteSpaceAndWordBreak.pdf",
-                sourceFolder + "cmp_whiteSpaceAndWordBreak.pdf", destinationFolder));
+        HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "whiteSpaceAndWordBreak.html"),
+                new File(DESTINATION_FOLDER + "whiteSpaceAndWordBreak.pdf"));
+        Assertions.assertNull(new CompareTool().compareByContent(DESTINATION_FOLDER + "whiteSpaceAndWordBreak.pdf",
+                SOURCE_FOLDER + "cmp_whiteSpaceAndWordBreak.pdf", DESTINATION_FOLDER));
     }
 
     @Test
     public void wordBreakMidNumbersTest() throws IOException, InterruptedException {
         FontProvider fontProvider = new BasicFontProvider();
-        fontProvider.addFont(fontsFolder + "NotoSansCJKjp-Regular.otf");
+        fontProvider.addFont(FONTS_FOLDER + "NotoSansCJKjp-Regular.otf");
 
         ConverterProperties converterProperties = new ConverterProperties();
         converterProperties.setFontProvider(fontProvider);
 
-        HtmlConverter.convertToPdf(new File(sourceFolder + "wordBreakMidNumbers.html"),
-                new File(destinationFolder + "wordBreakMidNumbers.pdf"), converterProperties);
-        Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + "wordBreakMidNumbers.pdf",
-                sourceFolder + "cmp_wordBreakMidNumbers.pdf", destinationFolder));
+        HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "wordBreakMidNumbers.html"),
+                new File(DESTINATION_FOLDER + "wordBreakMidNumbers.pdf"), converterProperties);
+        Assertions.assertNull(new CompareTool().compareByContent(DESTINATION_FOLDER + "wordBreakMidNumbers.pdf",
+                SOURCE_FOLDER + "cmp_wordBreakMidNumbers.pdf", DESTINATION_FOLDER));
     }
 
     @Test
     public void wordBreakMidPunctuationTest() throws IOException, InterruptedException {
-        HtmlConverter.convertToPdf(new File(sourceFolder + "wordBreakMidPunctuation.html"),
-                new File(destinationFolder + "wordBreakMidPunctuation.pdf"));
-        Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + "wordBreakMidPunctuation.pdf",
-                sourceFolder + "cmp_wordBreakMidPunctuation.pdf", destinationFolder));
+        HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "wordBreakMidPunctuation.html"),
+                new File(DESTINATION_FOLDER + "wordBreakMidPunctuation.pdf"));
+        Assertions.assertNull(new CompareTool().compareByContent(DESTINATION_FOLDER + "wordBreakMidPunctuation.pdf",
+                SOURCE_FOLDER + "cmp_wordBreakMidPunctuation.pdf", DESTINATION_FOLDER));
     }
 
     @Test
     public void wordBreakAllAndFloatTest() throws IOException, InterruptedException {
-        HtmlConverter.convertToPdf(new File(sourceFolder + "wordBreakAllAndFloat.html"),
-                new File(destinationFolder + "wordBreakAllAndFloat.pdf"));
-        Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + "wordBreakAllAndFloat.pdf",
-                sourceFolder + "cmp_wordBreakAllAndFloat.pdf", destinationFolder));
+        HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "wordBreakAllAndFloat.html"),
+                new File(DESTINATION_FOLDER + "wordBreakAllAndFloat.pdf"));
+        Assertions.assertNull(new CompareTool().compareByContent(DESTINATION_FOLDER + "wordBreakAllAndFloat.pdf",
+                SOURCE_FOLDER + "cmp_wordBreakAllAndFloat.pdf", DESTINATION_FOLDER));
     }
 
     @Test
     @LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant
             .TABLE_WIDTH_IS_MORE_THAN_EXPECTED_DUE_TO_MIN_WIDTH, count = 3)})
     public void wordBreakTableScenarioTest() throws IOException, InterruptedException {
-        HtmlConverter.convertToPdf(new File(sourceFolder + "wordBreakTableScenario.html"),
-                new File(destinationFolder + "wordBreakTableScenario.pdf"));
-        Assertions.assertNull(new CompareTool().compareByContent(destinationFolder + "wordBreakTableScenario.pdf",
-                sourceFolder + "cmp_wordBreakTableScenario.pdf", destinationFolder));
+        HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "wordBreakTableScenario.html"),
+                new File(DESTINATION_FOLDER + "wordBreakTableScenario.pdf"));
+        Assertions.assertNull(new CompareTool().compareByContent(DESTINATION_FOLDER + "wordBreakTableScenario.pdf",
+                SOURCE_FOLDER + "cmp_wordBreakTableScenario.pdf", DESTINATION_FOLDER));
     }
 }

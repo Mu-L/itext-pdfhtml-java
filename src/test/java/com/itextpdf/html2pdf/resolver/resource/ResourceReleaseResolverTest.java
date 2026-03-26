@@ -1,6 +1,6 @@
 /*
     This file is part of the iText (R) project.
-    Copyright (c) 1998-2025 Apryse Group NV
+    Copyright (c) 1998-2026 Apryse Group NV
     Authors: Apryse Software.
 
     This program is offered under a commercial and under the AGPL license.
@@ -42,12 +42,13 @@ import org.junit.jupiter.api.Tag;
 @Tag("IntegrationTest")
 public class ResourceReleaseResolverTest extends ExtendedITextTest {
 
-    public static final String sourceFolder = "./src/test/resources/com/itextpdf/html2pdf/resolver/resource/";
-    public static final String destinationFolder = "./target/test/com/itextpdf/html2pdf/resolver/resource/release/";
+    private static final String SOURCE_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/resolver/resource/";
+    private static final String FONT_FOLDER = "./src/test/resources/com/itextpdf/html2pdf/fonts/";
+    private static final String DESTINATION_FOLDER = "./target/test/com/itextpdf/html2pdf/resolver/resource/release/";
 
     @BeforeAll
     public static void beforeClass() {
-        createOrClearDestinationFolder(destinationFolder);
+        createOrClearDestinationFolder(DESTINATION_FOLDER);
     }
 
     @Test
@@ -56,11 +57,11 @@ public class ResourceReleaseResolverTest extends ExtendedITextTest {
         String htmlFileName = "testWithSvg.html";
         String svgFileName = "imageWithMultipleShapes.svg";
         String imageFileName = "image.png";
-        String sourceHtmlFile = sourceFolder + dirName + htmlFileName;
-        String sourceSvgFile = sourceFolder + dirName + svgFileName;
-        String sourceImageFile = sourceFolder + dirName + imageFileName;
+        String sourceHtmlFile = SOURCE_FOLDER + dirName + htmlFileName;
+        String sourceSvgFile = SOURCE_FOLDER + dirName + svgFileName;
+        String sourceImageFile = SOURCE_FOLDER + dirName + imageFileName;
 
-        String workDir = destinationFolder + dirName;
+        String workDir = DESTINATION_FOLDER + dirName;
         createDestinationFolder(workDir);
         String targetPdfFile = workDir + "target.pdf";
 
@@ -89,10 +90,10 @@ public class ResourceReleaseResolverTest extends ExtendedITextTest {
         String dirName = "LocalFontIsReleased/";
         String htmlFileName = "localFontIsReleased.html";
         String fontFileName = "NotoSans-Regular.ttf";
-        String sourceHtmlFile = sourceFolder + dirName + htmlFileName;
-        String sourceFontFile = sourceFolder + dirName + fontFileName;
+        String sourceHtmlFile = SOURCE_FOLDER + dirName + htmlFileName;
+        String sourceFontFile = FONT_FOLDER + fontFileName;
 
-        String workDir = destinationFolder + dirName;
+        String workDir = DESTINATION_FOLDER + dirName;
         createDestinationFolder(workDir);
         String targetPdfFile = workDir + "target.pdf";
 
@@ -122,10 +123,10 @@ public class ResourceReleaseResolverTest extends ExtendedITextTest {
         String dirName = "AddedFontIsReleased/";
         String htmlFileName = "addedFontIsReleased.html";
         String fontFileName = "NotoSans-Regular.ttf";
-        String sourceHtmlFile = sourceFolder + dirName + htmlFileName;
-        String sourceFontFile = sourceFolder + dirName + fontFileName;
+        String sourceHtmlFile = SOURCE_FOLDER + dirName + htmlFileName;
+        String sourceFontFile = FONT_FOLDER + dirName + fontFileName;
 
-        String workDir = destinationFolder + dirName;
+        String workDir = DESTINATION_FOLDER + dirName;
         createDestinationFolder(workDir);
         String targetPdfFile = workDir + "target.pdf";
 
@@ -136,7 +137,7 @@ public class ResourceReleaseResolverTest extends ExtendedITextTest {
         fontProvider.addDirectory(workDir);
 
         ConverterProperties properties = new ConverterProperties()
-                .setBaseUri(sourceFolder)
+                .setBaseUri(SOURCE_FOLDER)
                 .setFontProvider(fontProvider);
         HtmlConverter.convertToPdf(new File(sourceHtmlFile), new File(targetPdfFile), properties);
 
@@ -151,10 +152,10 @@ public class ResourceReleaseResolverTest extends ExtendedITextTest {
         String dirName = "CssIsReleased/";
         String htmlFileName = "cssIsReleased.html";
         String cssFileName = "cssIsReleased.css";
-        String sourceHtmlFile = sourceFolder + dirName + htmlFileName;
-        String sourceCssFile = sourceFolder + dirName + cssFileName;
+        String sourceHtmlFile = SOURCE_FOLDER + dirName + htmlFileName;
+        String sourceCssFile = SOURCE_FOLDER + dirName + cssFileName;
 
-        String workDir = destinationFolder + dirName;
+        String workDir = DESTINATION_FOLDER + dirName;
         createDestinationFolder(workDir);
         String targetPdfFile = workDir + "target.pdf";
 

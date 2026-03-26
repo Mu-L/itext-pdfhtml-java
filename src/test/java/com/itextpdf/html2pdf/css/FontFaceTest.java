@@ -1,6 +1,6 @@
 /*
     This file is part of the iText (R) project.
-    Copyright (c) 1998-2025 Apryse Group NV
+    Copyright (c) 1998-2026 Apryse Group NV
     Authors: Apryse Software.
 
     This program is offered under a commercial and under the AGPL license.
@@ -68,33 +68,33 @@ public class FontFaceTest extends ExtendedITextTest {
 
 
     @Test
-    public void droidSerifWebFontTest() throws IOException, InterruptedException {
-        runTest("droidSerifWebFontTest");
+    public void robotoSerifWebFontTest() throws IOException, InterruptedException {
+        runTest("robotoSerifWebFontTest");
     }
 
     @Test
-    public void droidSerifLocalFontTest() throws IOException, InterruptedException {
-        runTest("droidSerifLocalFontTest");
+    public void robotoSerifLocalFontTest() throws IOException, InterruptedException {
+        runTest("robotoSerifLocalFontTest");
     }
 
     @Test
-    public void droidSerifLocalLocalFontTest() throws IOException, InterruptedException {
-        runTest("droidSerifLocalLocalFontTest");
+    public void robotoSerifLocalLocalFontTest() throws IOException, InterruptedException {
+        runTest("robotoSerifLocalLocalFontTest");
     }
 
     @Test
-    public void droidSerifLocalWithMediaFontTest() throws IOException, InterruptedException {
-        runTest("droidSerifLocalWithMediaFontTest");
+    public void robotoSerifLocalWithMediaFontTest() throws IOException, InterruptedException {
+        runTest("robotoSerifLocalWithMediaFontTest");
     }
 
     @Test
-    public void droidSerifLocalWithMediaRuleFontTest() throws IOException, InterruptedException {
-        runTest("droidSerifLocalWithMediaRuleFontTest");
+    public void robotoSerifLocalWithMediaRuleFontTest() throws IOException, InterruptedException {
+        runTest("robotoSerifLocalWithMediaRuleFontTest");
     }
 
     @Test
-    public void droidSerifLocalWithMediaRuleFontTest2() throws IOException, InterruptedException {
-        runTest("droidSerifLocalWithMediaRuleFontTest2");
+    public void robotoSerifLocalWithMediaRuleFontTest2() throws IOException, InterruptedException {
+        runTest("robotoSerifLocalWithMediaRuleFontTest2");
     }
 
     @Test
