@@ -51,7 +51,7 @@ final class PathUtil{
             return Paths.get("").toUri() + "src/test/resources/com/itextpdf/html2pdf/resolver/"
                     + "resource/HtmlResourceResolverTest/res/";
         }
-        // Test is run on Android, so "./src/test/resources" substring will be replaced as abosulte path.
+        // Test is run on Android, so "./src/test/resources" substring will be replaced as absolute path.
         // It is important to put a trailing slash in the end: if you specify base URI via absolute URI string,
         // you need to follow URI standards, in which a path without trailing slash is referring to a file.
         return "./src/test/resources/com/itextpdf/html2pdf/resolver/resource/HtmlResourceResolverTest/res/";
