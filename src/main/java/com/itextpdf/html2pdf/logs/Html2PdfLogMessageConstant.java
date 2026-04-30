@@ -111,6 +111,7 @@ public final class Html2PdfLogMessageConstant {
     /** The Constant PADDING_VALUE_IN_PERCENT_NOT_SUPPORTED. */
     public static final String PADDING_VALUE_IN_PERCENT_NOT_SUPPORTED = "Padding value in percents not supported";
 
+    @Deprecated
     public static final String PAGE_MARGIN_BOX_CONTENT_CANNOT_BE_DRAWN = "Page margin box {0} content cannot be drawn.";
 
     public static final String PAGE_MARGIN_BOX_SOME_PROPERTIES_NOT_PROCESSED =
