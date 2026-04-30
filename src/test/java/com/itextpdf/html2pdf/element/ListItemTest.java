@@ -49,49 +49,41 @@ public class ListItemTest extends ExtendedHtmlConversionITextTest {
 	}
 
 	@Test
-	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 14)})
 	public void rtlListItemInsideLtrOrderedListTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("rtlListItemInsideLtrOrderedListTest", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
-	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 16)})
 	public void listItemWithDifferentDirAndPositionInsideTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("listItemWithDifferentDirAndPositionInsideTest", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
-	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 12)})
 	public void rtlListItemInsideLtrUnorderedListTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("rtlListItemInsideLtrUnorderedListTest", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
-	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 12)})
 	public void drawBulletRtlTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("drawBulletRtl", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
-	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 16)})
 	public void drawBulletLtrTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("drawBulletLtr", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
-	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 8)})
 	public void bulletsAreNotDrawnAsTheyAreInPageMarginsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("bulletsAreNotDrawnAsTheyAreInPageMargins", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
-	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 20)})
 	public void rltListItemWithDifferentMarginsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("rltListItemWithDifferentMargins", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
 
 	@Test
-	@LogMessages(messages = {@LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 16)})
 	public void diffListItemsInsideDiffListsWithDiffDirectionsWithoutWidthTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("diffListItemsInsideDiffListsWithDiffDirectionsWithoutWidth", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}

@@ -65,9 +65,6 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 84, logLevel = LogLevelConstants.WARN)
-    })
     // TODO DEVSIX-9436 Flex: alignment doesn't work correctly with direction: rtl
     public void startFlexDirColumnFlexWrapDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("startFlexDirColumnFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -89,9 +86,6 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 84, logLevel = LogLevelConstants.WARN)
-    })
     public void endFlexDirColumnFlexWrapDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("endFlexDirColumnFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -142,9 +136,6 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 84, logLevel = LogLevelConstants.WARN)
-    })
     // TODO DEVSIX-9436 Flex: alignment doesn't work correctly with direction: rtl
     public void flexStartFlexDirColumnFlexWrapDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexStartFlexDirColumnFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);
@@ -171,9 +162,6 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 84, logLevel = LogLevelConstants.WARN)
-    })
     public void flexEndFlexDirColumnReverseFlexWrapDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("flexEndFlexDirColumnReverseFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -225,36 +213,24 @@ public class FlexAlignSelfTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 84, logLevel = LogLevelConstants.WARN)
-    })
     // TODO DEVSIX-9436 Flex: alignment doesn't work correctly with direction: rtl
     public void selfStartFlexDirColumnFlexWrapDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("selfStartFlexDirColumnFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 84, logLevel = LogLevelConstants.WARN)
-    })
     // TODO DEVSIX-9436 Flex: alignment doesn't work correctly with direction: rtl
     public void selfStartFlexDirColumnReverseFlexWrapDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("selfStartFlexDirColumnReverseFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 108, logLevel = LogLevelConstants.WARN)
-    })
     // TODO DEVSIX-9436 Flex: alignment doesn't work correctly with direction: rtl
     public void selfStartFlexDirRowFlexWrapDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("selfStartFlexDirRowFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 84, logLevel = LogLevelConstants.WARN)
-    })
     // TODO DEVSIX-9436 Flex: alignment doesn't work correctly with direction: rtl
     public void selfEndFlexDirColumnFlexWrapDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("selfEndFlexDirColumnFlexWrapDirTest", SOURCE_FOLDER, DESTINATION_FOLDER);

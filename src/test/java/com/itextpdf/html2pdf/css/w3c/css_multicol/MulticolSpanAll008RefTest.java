@@ -27,7 +27,6 @@ import com.itextpdf.io.logs.IoLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-@LogMessages(messages = @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 2))
 public class MulticolSpanAll008RefTest extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

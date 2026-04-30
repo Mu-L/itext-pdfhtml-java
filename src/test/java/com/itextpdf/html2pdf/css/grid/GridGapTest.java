@@ -264,17 +264,11 @@ public class GridGapTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 32)
-    })
     public void colGapRtlDirectionTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("colGapRtlDirection", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 32)
-    })
     public void rowGapRtlDirectionTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("rowGapRtlDirection", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

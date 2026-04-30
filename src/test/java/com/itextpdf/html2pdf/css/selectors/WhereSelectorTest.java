@@ -36,7 +36,6 @@ public class WhereSelectorTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48))
     public void whereFlexDirReadDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereFlexDirReadDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
@@ -85,7 +84,6 @@ public class WhereSelectorTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48))
     public void whereReadDirFlexTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereReadDirFlex", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

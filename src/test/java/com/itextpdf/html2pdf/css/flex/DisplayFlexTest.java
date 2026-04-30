@@ -568,17 +568,11 @@ public class DisplayFlexTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, ignore = true)
-    })
     public void splitWrappedFlexContainersTest9() throws IOException, InterruptedException {
         convertToPdfAndCompare("wrappedRowReverseRtlFlexStartSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, ignore = true)
-    })
     public void splitWrappedFlexContainersTest10() throws IOException, InterruptedException {
         convertToPdfAndCompare("wrappedRowRtlFlexStartSplit", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

@@ -51,10 +51,6 @@ public class DirectionTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 2, logLevel =
-                    LogLevelConstants.WARN)
-    })
     public void simpleLtrDocTest() throws IOException {
         Assertions.assertTrue(getTextFromDocument(convertToHtmlDocument("SimpleLtrDoc"),
                 1).contains("123456789."));
@@ -75,10 +71,6 @@ public class DirectionTest extends ExtendedHtmlConversionITextTest {
 
     //TODO DEVSIX-2437 : Change test after fix
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 4, logLevel =
-                    LogLevelConstants.WARN)
-    })
     public void ltrInRtlDocTest() throws IOException {
         Assertions.assertFalse(getTextFromDocument(convertToHtmlDocument("LtrInRtlDoc"),
                 1).contains("!Right to left text"));
@@ -86,10 +78,6 @@ public class DirectionTest extends ExtendedHtmlConversionITextTest {
 
     //TODO DEVSIX-2437 : Change test after fix
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 4, logLevel =
-                    LogLevelConstants.WARN)
-    })
     public void rtlInLtrDocTest() throws IOException {
         Assertions.assertFalse(getTextFromDocument(convertToHtmlDocument("RtlInLtrDoc"),
                 1).contains("!Right to left text"));
@@ -98,8 +86,6 @@ public class DirectionTest extends ExtendedHtmlConversionITextTest {
     //TODO DEVSIX-3069: Change test after fix
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 34, logLevel =
-                    LogLevelConstants.WARN),
             @LogMessage(messageTemplate = IoLogMessageConstant.TABLE_WIDTH_IS_MORE_THAN_EXPECTED_DUE_TO_MIN_WIDTH,
                     count = 1, logLevel =
                     LogLevelConstants.WARN)

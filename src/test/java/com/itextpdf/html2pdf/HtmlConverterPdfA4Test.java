@@ -23,6 +23,7 @@
 package com.itextpdf.html2pdf;
 
 import com.itextpdf.commons.utils.MessageFormatUtil;
+import com.itextpdf.layout.logs.LayoutLogMessageConstant;
 import com.itextpdf.kernel.pdf.PdfAConformance;
 import com.itextpdf.kernel.pdf.PdfOutputIntent;
 import com.itextpdf.kernel.pdf.PdfReader;
@@ -129,6 +130,10 @@ public class HtmlConverterPdfA4Test extends ExtendedITextTest {
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = LayoutLogMessageConstant.TYPOGRAPHY_NOT_FOUND_WARNING,
+                    logLevel = LogLevelConstants.WARN, count = 1)
+    })
     public void convertToPdfA4ArabicFontTest() throws IOException, InterruptedException {
         String cmpPdf = SOURCE_FOLDER + "cmp_pdfA4ArabicFontTest.pdf";
         String destinationPdf = DESTINATION_FOLDER + "pdfA4ArabicFontTest.pdf";
@@ -155,6 +160,9 @@ public class HtmlConverterPdfA4Test extends ExtendedITextTest {
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = LayoutLogMessageConstant.TYPOGRAPHY_NOT_FOUND_WARNING)
+    })
     public void convertToPdfA4UnreferencedGlyphsTest() throws IOException {
         String destinationPdf = DESTINATION_FOLDER + "pdfA4UnrefFontTest.pdf";
         String html = "<html>\n" +

@@ -47,7 +47,6 @@ public class StyleDirectionTest extends ExtendedHtmlConversionITextTest {
     @Test
     // TODO DEVSIX-5034 Incorrect direction of dot
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 8),
             @LogMessage(messageTemplate = IoLogMessageConstant.TABLE_WIDTH_IS_MORE_THAN_EXPECTED_DUE_TO_MIN_WIDTH,
                     count = 1)
     })
