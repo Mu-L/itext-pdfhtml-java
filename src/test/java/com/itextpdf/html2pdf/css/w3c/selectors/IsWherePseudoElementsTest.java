@@ -27,9 +27,7 @@ import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-@LogMessages(messages = {
-        @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 4)
-})
+// TODO DEVSIX-4425 first-letter pseudo element is not supported
 public class IsWherePseudoElementsTest extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

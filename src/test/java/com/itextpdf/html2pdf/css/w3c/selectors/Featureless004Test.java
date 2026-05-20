@@ -29,7 +29,7 @@ import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
 @LogMessages(messages = {
-        @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 9),
+        @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 5),
         @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 2)
 })
 public class Featureless004Test extends W3CCssTest {

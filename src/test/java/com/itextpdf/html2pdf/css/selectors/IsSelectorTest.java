@@ -21,123 +21,107 @@ public class IsSelectorTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 2)})
     public void isClassOverridesListTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isClassOverridesList", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
+    // TODO DEVSIX-9519 display:flex is not supported with ul/ol elements.
     public void isDeepNestedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isDeepNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isDeepNested2Test() throws IOException, InterruptedException {
         convertToPdfAndCompare("isDeepNested2", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isFirstVsClassTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isFirstVsClass", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR),
-            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48)})
+    @LogMessages(messages = @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48))
     public void isFlexDirReadDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isFlexDirReadDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isFlexWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isFlexWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isFlexWrapAlignTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isFlexWrapAlign", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isGapJustifyContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isGapJustifyContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isGroupedSelectorsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isGroupedSelectors", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isNestedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
+    // TODO DEVSIX-9519 display:flex is not supported with ul/ol elements.
     public void isNestedListsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isNestedLists", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
+    // TODO DEVSIX-9519 display:flex is not supported with ul/ol elements.
     public void isNestedListsFlexTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isNestedListsFlex", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 2)})
+    // TODO DEVSIX-9519 display:flex is not supported with ul/ol elements.
     public void isNthChildTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isNthChild", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 2),
-            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48)})
+    @LogMessages(messages = @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48))
     public void isReadDirFlexTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isReadDirFlex", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 2)})
     public void isSelectoreBasicTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isSelectoreBasic", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isSpecificOverrideTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isSpecificOverride", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isWinsFromClassTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isWinsFromClass", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 3)})
     public void isWithIdTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isWithId", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void isWithJustifyAndAlignContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("isWithJustifyAndAlignContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

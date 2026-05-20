@@ -28,10 +28,8 @@ import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-@LogMessages(messages = {
-        @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.ERROR_PARSING_CSS_SELECTOR),
-        @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 6)
-})
+@LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 6))
+// TODO DEVSIX-5182 "writing-mode" style is not supported
 public class PositionAbsoluteFitContentAutoMarginTest extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

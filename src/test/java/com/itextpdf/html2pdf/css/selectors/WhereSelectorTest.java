@@ -21,99 +21,87 @@ public class WhereSelectorTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
+    // TODO DEVSIX-9519 display:flex is not supported with ul/ol elements.
     public void whereDeepNestedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereDeepNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereDeepNested2Test() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereDeepNested2", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereFlexDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereFlexDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR),
-            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48)})
+    @LogMessages(messages = @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48))
     public void whereFlexDirReadDirTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereFlexDirReadDir", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereFlexWrapTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereFlexWrap", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereFlexWrapAlignTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereFlexWrapAlign", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereGapJustifyContentTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereGapJustifyContent", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereLosesFromClassTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereLosesFromClass", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereNestedTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereNested", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
+    // TODO DEVSIX-9519 display:flex is not supported with ul/ol elements.
     public void whereNestedListsTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereNestedLists", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
+    // TODO DEVSIX-9519 display:flex is not supported with ul/ol elements.
     public void whereNestedListsFlexTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereNestedListsFlex", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 2)})
+    // TODO DEVSIX-9519 display:flex is not supported with ul/ol elements.
     public void whereNthChildTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereNthChild", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 2),
-            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48)})
+    @LogMessages(messages = @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 48))
     public void whereReadDirFlexTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereReadDirFlex", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereSelectorBasicTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereSelectorBasic", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
     public void whereSpecificOverrideTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereSpecificOverride", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
-    @LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 3)})
     public void whereWithIdTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("whereWithId", SOURCE_FOLDER, DESTINATION_FOLDER);
     }

@@ -28,10 +28,8 @@ import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-@LogMessages(messages = {
-        @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.ERROR_PARSING_CSS_SELECTOR, count = 2),
-        @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 3)
-})
+@LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG, count = 3))
+// TODO DEVSIX-9971 ":enabled" css pseudo selector is not supported
 public class IsWherePseudoClassesTest extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

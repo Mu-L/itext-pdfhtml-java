@@ -22,13 +22,10 @@
  */
 package com.itextpdf.html2pdf.css.w3c.css3_selectors;
 
-import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
-import com.itextpdf.test.annotations.LogMessage;
-import com.itextpdf.test.annotations.LogMessages;
 
-@LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
-public class Css3Modsel_83_NegationPseudoClassCannotBeAnArgumentOfItselfTest extends W3CCssTest {
+// In Selectors level 4 specification ":not" pseudo-class selector can be an argument of another ":not" selector.
+public class Css3Modsel_83_NegationPseudoClassCanBeAnArgumentOfItselfTest extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {
         return "css3-modsel-83.html";

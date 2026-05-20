@@ -28,10 +28,7 @@ import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-@LogMessages(messages = {
-        @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.ERROR_PARSING_CSS_SELECTOR),
-        @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG)
-})
+@LogMessages(messages = @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG))
 public class NthChildOfInIsTest extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {
