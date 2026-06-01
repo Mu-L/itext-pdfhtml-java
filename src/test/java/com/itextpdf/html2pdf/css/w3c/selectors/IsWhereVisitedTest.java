@@ -23,9 +23,6 @@
 package com.itextpdf.html2pdf.css.w3c.selectors;
 
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
-import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
-import com.itextpdf.test.annotations.LogMessage;
-import com.itextpdf.test.annotations.LogMessages;
 
 public class IsWhereVisitedTest extends W3CCssTest {
     @Override
