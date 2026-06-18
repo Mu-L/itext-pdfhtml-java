@@ -23,18 +23,10 @@
 package com.itextpdf.html2pdf.element;
 
 import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
-import com.itextpdf.html2pdf.HtmlConverter;
-import com.itextpdf.io.logs.IoLogMessageConstant;
-import com.itextpdf.kernel.utils.CompareTool;
-import com.itextpdf.layout.logs.LayoutLogMessageConstant;
-import com.itextpdf.test.annotations.LogMessage;
-import com.itextpdf.test.annotations.LogMessages;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
 
-import java.io.File;
 import java.io.IOException;
 
 @Tag("IntegrationTest")
@@ -92,4 +84,14 @@ public class ListItemTest extends ExtendedHtmlConversionITextTest {
 	public void listItemWithBlockDisplayTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("listItemWithBlockDisplay", SOURCE_FOLDER, DESTINATION_FOLDER);
 	}
+
+    @Test
+    public void duplicateListMarkersInGridTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("duplicateListMarkersInGrid", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    public void duplicateListMarkersInFlexTest() throws IOException, InterruptedException {
+        convertToPdfAndCompare("duplicateListMarkersInFlex", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
 }
