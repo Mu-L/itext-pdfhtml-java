@@ -26,7 +26,6 @@ import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.attach.impl.layout.BodyHtmlStylesContainer;
 import com.itextpdf.html2pdf.css.CssConstants;
-import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.colors.gradients.AbstractLinearGradientBuilder;
 import com.itextpdf.kernel.colors.gradients.StrategyBasedLinearGradientBuilder;
@@ -310,9 +309,9 @@ public class BackgroundApplierUtilTest extends ExtendedITextTest {
                     Assertions.assertNotNull(expectedGradientBuilder);
                     StrategyBasedLinearGradientBuilder actualGradientBuilder =
                             (StrategyBasedLinearGradientBuilder) builder;
-                    Assertions.assertEquals(expectedGradientBuilder.getSpreadMethod(),
-                            actualGradientBuilder.getSpreadMethod());
-                    Assertions.assertEquals(expectedGradientBuilder.getColorStops(), actualGradientBuilder.getColorStops());
+                    Assertions.assertEquals(expectedGradientBuilder.getSpread(),
+                            actualGradientBuilder.getSpread());
+                    Assertions.assertEquals(expectedGradientBuilder.getStopColors(), actualGradientBuilder.getStopColors());
                 }
             }
         };
@@ -346,9 +345,9 @@ public class BackgroundApplierUtilTest extends ExtendedITextTest {
                     Assertions.assertNotNull(expectedGradientBuilder);
                     StrategyBasedLinearGradientBuilder actualGradientBuilder =
                             (StrategyBasedLinearGradientBuilder) builder;
-                    Assertions.assertEquals(expectedGradientBuilder.getSpreadMethod(),
-                            actualGradientBuilder.getSpreadMethod());
-                    Assertions.assertEquals(expectedGradientBuilder.getColorStops(), actualGradientBuilder.getColorStops());
+                    Assertions.assertEquals(expectedGradientBuilder.getSpread(),
+                            actualGradientBuilder.getSpread());
+                    Assertions.assertEquals(expectedGradientBuilder.getStopColors(), actualGradientBuilder.getStopColors());
                 }
             }
         };
