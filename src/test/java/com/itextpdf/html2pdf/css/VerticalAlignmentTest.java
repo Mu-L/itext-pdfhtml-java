@@ -153,7 +153,6 @@ public class VerticalAlignmentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    // TODO DEVSIX-8994 Improve vertical-align css property related calculations
     public void verticalAlignMiddleWithTtfOS2Version1() throws IOException, InterruptedException {
         convertToPdfAndCompare("verticalAlignMiddleWithTtfOS2Version1", sourceFolder, destinationFolder);
     }

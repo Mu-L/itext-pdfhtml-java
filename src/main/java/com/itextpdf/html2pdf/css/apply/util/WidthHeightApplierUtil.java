@@ -66,19 +66,25 @@ public final class WidthHeightApplierUtil {
         String widthVal = cssProps.get(CssConstants.WIDTH);
         if (!CssConstants.AUTO.equals(widthVal) && widthVal != null) {
             UnitValue width = CssDimensionParsingUtils.parseLengthValueToPt(widthVal, em, rem);
-            element.setProperty(Property.WIDTH, width);
+            if (width != null) {
+                element.setProperty(Property.WIDTH, width);
+            }
         }
 
         String minWidthVal = cssProps.get(CssConstants.MIN_WIDTH);
         if (!CssConstants.AUTO.equals(minWidthVal) && minWidthVal != null) {
             UnitValue minWidth = CssDimensionParsingUtils.parseLengthValueToPt(minWidthVal, em, rem);
-            element.setProperty(Property.MIN_WIDTH, minWidth);
+            if (minWidth != null) {
+                element.setProperty(Property.MIN_WIDTH, minWidth);
+            }
         }
 
         String maxWidthVal = cssProps.get(CssConstants.MAX_WIDTH);
         if (!CssConstants.AUTO.equals(maxWidthVal) && maxWidthVal != null) {
             UnitValue maxWidth = CssDimensionParsingUtils.parseLengthValueToPt(maxWidthVal, em, rem);
-            element.setProperty(Property.MAX_WIDTH, maxWidth);
+            if (maxWidth != null) {
+                element.setProperty(Property.MAX_WIDTH, maxWidth);
+            }
         }
 
         boolean applyToTable = element instanceof Table;

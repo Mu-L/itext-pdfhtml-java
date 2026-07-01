@@ -22,12 +22,12 @@
  */
 package com.itextpdf.html2pdf.attach.impl.layout;
 
-import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.html2pdf.attach.ITagWorker;
 import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.css.apply.ICssApplier;
 import com.itextpdf.html2pdf.css.page.PageMarginRunningElementNode;
 import com.itextpdf.html2pdf.css.resolve.DefaultCssResolver;
+import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -36,10 +36,9 @@ import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.minmaxwidth.MinMaxWidthUtils;
 import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.UnitValue;
-import com.itextpdf.layout.renderer.AreaBreakRenderer;
+import com.itextpdf.layout.properties.margins.PageMarginBoxes;
 import com.itextpdf.layout.renderer.DocumentRenderer;
 import com.itextpdf.layout.renderer.IRenderer;
-import com.itextpdf.layout.tagging.LayoutTaggingHelper;
 import com.itextpdf.styledxmlparser.css.CssRuleName;
 import com.itextpdf.styledxmlparser.css.page.PageMarginBoxContextNode;
 import com.itextpdf.styledxmlparser.css.util.CssUtils;
@@ -47,10 +46,8 @@ import com.itextpdf.styledxmlparser.node.IElementNode;
 import com.itextpdf.styledxmlparser.node.INode;
 import com.itextpdf.styledxmlparser.node.IStylesContainer;
 import com.itextpdf.styledxmlparser.node.ITextNode;
-
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -164,14 +161,17 @@ class PageMarginBoxBuilder {
         for (int i = 0; i < 4; i++) {
             renderers[i * 4] = createCornerRenderer(elements[i * 4], documentRenderer, pdfDocument, i);
             for (int j = 1; j <= 3; j++) {
-                renderers[i * 4 + j] = createRendererFromElement(elements[i * 4 + j], documentRenderer, pdfDocument);
+                renderers[i * 4 + j] = PageMarginBoxes.createRendererFromElement(elements[i * 4 + j], documentRenderer,
+                        pdfDocument);
             }
             determineSizes(i);
         }
     }
 
-    private IRenderer createCornerRenderer(IElement cornerBoxElement, DocumentRenderer documentRenderer, PdfDocument pdfDocument, int indexOfCorner) {
-        IRenderer cornerRenderer = createRendererFromElement(cornerBoxElement, documentRenderer, pdfDocument);
+    private IRenderer createCornerRenderer(IElement cornerBoxElement, DocumentRenderer documentRenderer,
+                                           PdfDocument pdfDocument, int indexOfCorner) {
+        IRenderer cornerRenderer = PageMarginBoxes.createRendererFromElement(cornerBoxElement, documentRenderer,
+                pdfDocument);
         if (cornerRenderer != null) {
             float rendererWidth =
                     margins[indexOfCorner % 3 == 0 ? 3 : 1]
@@ -194,42 +194,6 @@ class PageMarginBoxBuilder {
         }
 
         return null;
-    }
-
-    private IRenderer createRendererFromElement(IElement element, DocumentRenderer documentRenderer, PdfDocument pdfDocument) {
-        if (element != null) {
-            IRenderer renderer = element.createRendererSubTree();
-            removeAreaBreaks(renderer);
-            renderer.setParent(documentRenderer);
-            if (pdfDocument.isTagged()) {
-                LayoutTaggingHelper taggingHelper = renderer.<LayoutTaggingHelper>getProperty(Property.TAGGING_HELPER);
-                LayoutTaggingHelper.addTreeHints(taggingHelper, renderer);
-            }
-            return renderer;
-        }
-        return null;
-    }
-
-    /**
-     * Gets rid of all page breaks that might have occurred inside page margin boxes because of the running elements.
-     *
-     * @param renderer root renderer of renderers subtree
-     */
-    private static void removeAreaBreaks(IRenderer renderer) {
-        List<IRenderer> areaBreaks = null;
-        for (IRenderer child : renderer.getChildRenderers()) {
-            if (child instanceof AreaBreakRenderer) {
-                if (areaBreaks == null) {
-                    areaBreaks = new ArrayList<>();
-                }
-                areaBreaks.add(child);
-            } else {
-                removeAreaBreaks(child);
-            }
-        }
-        if (areaBreaks != null) {
-            renderer.getChildRenderers().removeAll(areaBreaks);
-        }
     }
 
     private void determineSizes(int side) {
@@ -378,10 +342,11 @@ class PageMarginBoxBuilder {
      * See the algorithm detailed at https://www.w3.org/TR/css3-page/#margin-dimension
      * Divide the available dimension along the A,B and C according to their properties.
      *
-     * @param dimA               object containing the dimension-related properties of A
-     * @param dimB               object containing the dimension-related properties of B
-     * @param dimC               object containing the dimension-related properties of C
+     * @param dimA object containing the dimension-related properties of A
+     * @param dimB object containing the dimension-related properties of B
+     * @param dimC object containing the dimension-related properties of C
      * @param availableDimension maximum available dimension that can be taken up
+     *
      * @return float[3] containing the distributed dimensions of A at [0], B at [1] and C at [2]
      */
     private float[] calculatePageMarginBoxDimensions(DimensionContainer dimA, DimensionContainer dimB, DimensionContainer dimC, float availableDimension) {
@@ -508,8 +473,9 @@ class PageMarginBoxBuilder {
      * Calculate the starting coordinate in a given dimension for a center of middle box
      *
      * @param availableDimension size of the available area
-     * @param dimensionResult    the calculated dimensions of the middle (center) box
-     * @param offset             offset from the start of the page (page margins and padding included)
+     * @param dimensionResult the calculated dimensions of the middle (center) box
+     * @param offset offset from the start of the page (page margins and padding included)
+     *
      * @return starting coordinate in a given dimension for a center of middle box
      */
     private float getStartCoordForCenterOrMiddleBox(float availableDimension, float dimensionResult, float offset) {
@@ -519,9 +485,9 @@ class PageMarginBoxBuilder {
     /**
      * Set the calculated dimension to the manually set dimension in the passed float array
      *
-     * @param dim        Dimension Container containing the manually set dimension
+     * @param dim Dimension Container containing the manually set dimension
      * @param dimensions array of calculated auto values for boxes in the given dimension
-     * @param index      position in the array to replace
+     * @param index position in the array to replace
      */
     private void setManualDimension(DimensionContainer dim, float[] dimensions, int index) {
         if (dim != null && !dim.isAutoDimension()) {
@@ -537,7 +503,8 @@ class PageMarginBoxBuilder {
      * @param minContentDimensionA minimum of the dimension the content in A occupies
      * @param maxContentDimensionC maximum of the dimension the content in C occupies
      * @param minContentDimensionC minimum of the dimension the content in C occupies
-     * @param availableDimension   maximum available dimension to distribute
+     * @param availableDimension maximum available dimension to distribute
+     *
      * @return float[2], distributed dimension for A in [0], distributed dimension for B in [1]
      */
     private float[] distributeDimensionBetweenTwoBoxes(float maxContentDimensionA, float minContentDimensionA, float maxContentDimensionC, float minContentDimensionC, float availableDimension) {
@@ -571,9 +538,10 @@ class PageMarginBoxBuilder {
     /**
      * Check if a calculated dimension value needs to be recalculated
      *
-     * @param dim        Dimension container containing min and max dimension info
+     * @param dim Dimension container containing min and max dimension info
      * @param dimensions array of calculated auto values for boxes in the given dimension
-     * @param index      position in the array to look at
+     * @param index position in the array to look at
+     *
      * @return <code>true</code> if the values in dimensions trigger a recalculation, <code>false</code> otherwise
      */
     private boolean recalculateIfNecessary(DimensionContainer dim, float[] dimensions, int index) {
@@ -637,8 +605,9 @@ class PageMarginBoxBuilder {
     /**
      * Calculate containing block sizes for margin box.
      *
-     * @param marginBoxInd           the margin box index
+     * @param marginBoxInd the margin box index
      * @param pageMarginBoxRectangle a {@link Rectangle} defining dimensions of the page margin box corresponding to the given index
+     *
      * @return the corresponding rectangle
      */
     private Rectangle calculateContainingBlockSizesForMarginBox(int marginBoxInd, Rectangle pageMarginBoxRectangle) {
@@ -661,6 +630,7 @@ class PageMarginBoxBuilder {
      * Maps a margin box name to an index.
      *
      * @param marginBoxName the margin box name
+     *
      * @return the index corresponding with the margin box name
      */
     int mapMarginBoxNameToIndex(String marginBoxName) {

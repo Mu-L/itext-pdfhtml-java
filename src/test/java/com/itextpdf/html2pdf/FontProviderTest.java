@@ -52,9 +52,6 @@ public class FontProviderTest extends ExtendedITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 4)
-    })
     public void hebrewTest() throws IOException, InterruptedException {
         HtmlConverter.convertToPdf(new File(SOURCE_FOLDER + "hebrew.html"), new File(DESTINATION_FOLDER + "hebrew.pdf"));
         Assertions.assertNull(new CompareTool().compareByContent(DESTINATION_FOLDER + "hebrew.pdf", SOURCE_FOLDER + "cmp_hebrew.pdf",

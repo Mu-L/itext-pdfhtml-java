@@ -27,9 +27,6 @@ import com.itextpdf.io.logs.IoLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-@LogMessages(messages = {
-        @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 54)
-})
 public class FlexDirectionRowTest extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {

@@ -20,17 +20,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.itextpdf.html2pdf.css.w3c.css3_selectors;
+package com.itextpdf.html2pdf.css.w3c.selectors;
 
-import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.html2pdf.css.w3c.W3CCssTest;
+import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-@LogMessages(messages = {@LogMessage(messageTemplate = Html2PdfLogMessageConstant.ERROR_PARSING_CSS_SELECTOR)})
-public class Css3Modsel_83_NegationPseudoClassCannotBeAnArgumentOfItselfTest extends W3CCssTest {
+@LogMessages(messages = {
+        @LogMessage(messageTemplate = Html2PdfLogMessageConstant.NO_WORKER_FOUND_FOR_TAG)
+})
+public class NthChildOfIsTest extends W3CCssTest {
     @Override
     protected String getHtmlFileName() {
-        return "css3-modsel-83.html";
+        return "nth-child-of-is.html";
     }
 }

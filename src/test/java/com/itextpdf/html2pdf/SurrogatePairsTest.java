@@ -46,8 +46,6 @@ public class SurrogatePairsTest extends ExtendedITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 2)})
     public void surrogatePairFrom2Chars() throws IOException, InterruptedException {
         HtmlConverter.convertToPdf(new File(sourceFolder + "surrogatePairFrom2Chars.html"),
                 new File(destinationFolder + "surrogatePairFrom2Chars.pdf"));
@@ -56,8 +54,6 @@ public class SurrogatePairsTest extends ExtendedITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 2)})
     public void surrogatePair2Pairs() throws IOException, InterruptedException {
         HtmlConverter.convertToPdf(new File(sourceFolder + "surrogatePair2Pairs.html"),
                 new File(destinationFolder + "surrogatePair2Pairs.pdf"));
@@ -66,8 +62,6 @@ public class SurrogatePairsTest extends ExtendedITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 2)})
     public void surrogatePairFullCharacter() throws IOException, InterruptedException {
         HtmlConverter.convertToPdf(new File(sourceFolder + "surrogatePairFullCharacter.html"),
                 new File(destinationFolder + "surrogatePairFullCharacter.pdf"));
@@ -78,7 +72,6 @@ public class SurrogatePairsTest extends ExtendedITextTest {
     @Test
     //TODO DEVSIX-3307: It is required to update cmp files when the ticket will be implemented.
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 2),
             @LogMessage(messageTemplate = IoLogMessageConstant.FONT_SUBSET_ISSUE)})
     public void surrogatePairCombingFullSurrs() throws IOException, InterruptedException {
         HtmlConverter.convertToPdf(new File(sourceFolder + "surrogatePairCombingFullSurrs.html"),
@@ -90,7 +83,6 @@ public class SurrogatePairsTest extends ExtendedITextTest {
     @Test
     //TODO DEVSIX-3307: It is required to update cmp files when the ticket will be implemented.
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 2),
             @LogMessage(messageTemplate = IoLogMessageConstant.FONT_SUBSET_ISSUE)})
     public void surrogatePairCombingFullSurrsWithNoSurrs() throws IOException, InterruptedException {
         HtmlConverter.convertToPdf(new File(sourceFolder + "surrogatePairCombingFullSurrsWithNoSurrs.html"),
@@ -100,8 +92,6 @@ public class SurrogatePairsTest extends ExtendedITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = IoLogMessageConstant.TYPOGRAPHY_NOT_FOUND, count = 2)})
     public void surrogatePairCombinationOf3TypesPairs() throws IOException, InterruptedException {
         HtmlConverter.convertToPdf(new File(sourceFolder + "surrogatePairCombinationOf3TypesPairs.html"),
                 new File(destinationFolder + "surrogatePairCombinationOf3TypesPairs.pdf"));

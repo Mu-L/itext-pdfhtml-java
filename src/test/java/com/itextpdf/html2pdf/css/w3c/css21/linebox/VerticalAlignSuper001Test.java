@@ -41,6 +41,7 @@ public class VerticalAlignSuper001Test extends W3CCssTest {
     @Override
     @LogMessages(messages = {
             @LogMessage(messageTemplate = IoLogMessageConstant.OCCUPIED_AREA_HAS_NOT_BEEN_INITIALIZED, count = 2),
+            @LogMessage(messageTemplate = IoLogMessageConstant.FONT_PROPERTY_MUST_BE_PDF_FONT_OBJECT, count = 2)
     })
     public void test() throws IOException, InterruptedException {
         super.test();

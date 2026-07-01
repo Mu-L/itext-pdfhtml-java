@@ -23,11 +23,16 @@
 package com.itextpdf.html2pdf.element;
 
 
+import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.ExtendedHtmlConversionITextTest;
+import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.html2pdf.logs.Html2PdfLogMessageConstant;
+import com.itextpdf.io.image.WebPLogMessageConstant;
+import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
@@ -580,5 +585,23 @@ public class ImageTest extends ExtendedHtmlConversionITextTest {
     @Test
     public void percentHeightImgContainer2() throws IOException, InterruptedException {
         convertToPdfAndCompare("percentHeightImgContainer2", SOURCE_FOLDER, DESTINATION_FOLDER);
+    }
+
+    @Test
+    // TODO DEVSIX-10012 Extra misleading log messages are produced when WebP module is missing
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate = WebPLogMessageConstant.WEBP_NOT_FOUND),
+            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.UNABLE_TO_RETRIEVE_IMAGE_WITH_GIVEN_BASE_URI),
+            @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER),
+    })
+    public void webPImageWithoutWebPModuleTest() throws IOException {
+        String html = "<!DOCTYPE html><html><body>"
+                + "<img src=\"opaqueWebPImage.webp\">"
+                + "</body></html>";
+
+        try (FileOutputStream outputStream = new FileOutputStream(
+                DESTINATION_FOLDER + "webPImageWithoutWebPModule.pdf")) {
+            HtmlConverter.convertToPdf(html, outputStream, new ConverterProperties().setBaseUri(SOURCE_FOLDER));
+        }
     }
 }

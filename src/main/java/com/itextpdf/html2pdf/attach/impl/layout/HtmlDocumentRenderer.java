@@ -485,8 +485,12 @@ public class HtmlDocumentRenderer extends DocumentRenderer {
         return !isPageLeft(pageNum);
     }
 
-    private static class PageMarginBoxesDrawingHandler extends AbstractPdfDocumentEventHandler {
+    private static final class PageMarginBoxesDrawingHandler extends AbstractPdfDocumentEventHandler {
         private HtmlDocumentRenderer htmlDocumentRenderer;
+
+        public PageMarginBoxesDrawingHandler() {
+            // Default constructor.
+        }
 
         PageMarginBoxesDrawingHandler setHtmlDocumentRenderer(HtmlDocumentRenderer htmlDocumentRenderer) {
             this.htmlDocumentRenderer = htmlDocumentRenderer;

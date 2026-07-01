@@ -81,9 +81,6 @@ public class FlexJustifyContentTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
-    @LogMessages(messages = {
-            @LogMessage(messageTemplate = "Cannot find pdfCalligraph module, which was implicitly required by one of the layout properties", count = 24)
-    })
     // TODO DEVSIX-9436 Flex: alignment/justify-content doesn't work correctly with direction: rtl
     public void leftValueTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("leftValue", SOURCE_FOLDER, DESTINATION_FOLDER);

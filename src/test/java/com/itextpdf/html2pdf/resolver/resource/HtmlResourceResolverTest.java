@@ -59,7 +59,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
 
-// TODO: DEVSIX-5968 Add new tests in HtmlResourceResolverTest
 @Tag("IntegrationTest")
 public class HtmlResourceResolverTest extends ExtendedITextTest {
 
@@ -84,7 +83,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
     @Test
     @LogMessages(messages = {
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 2),
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.UNABLE_TO_RETRIEVE_IMAGE_WITH_GIVEN_BASE_URI, count = 2)
+            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.UNABLE_TO_RETRIEVE_IMAGE_WITH_GIVEN_BASE_URI,
+                    count = 2)
     })
     // Android-Conversion-Ignore-Test (TODO DEVSIX-6612 Unignore tests related to "#" symbol in URL path)
     public void resourceResolverHtmlWithSvgTest02() throws IOException, InterruptedException {
@@ -92,7 +92,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverHtmlWithSvgTest02.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverHtmlWithSvgTest02.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverHtmlWithSvgTest02.html", outPdf, cmpPdf, baseUri);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverHtmlWithSvgTest02.html", outPdf, cmpPdf,
+                baseUri);
     }
 
     @Test
@@ -118,7 +119,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverWithoutSharpSymbolTest07A.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverTest07A.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverWithoutSharpSymbolTest07A.html", outPdf, cmpPdf, baseUri);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverWithoutSharpSymbolTest07A.html", outPdf,
+                cmpPdf, baseUri);
     }
 
     @Test
@@ -174,7 +176,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverHtmlWithSvgTest03.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverHtmlWithSvgTest03.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverHtmlWithSvgTest03.html", outPdf, cmpPdf, baseUri);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverHtmlWithSvgTest03.html", outPdf, cmpPdf,
+                baseUri);
     }
 
     @Test
@@ -187,7 +190,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverHtmlWithSvgWithoutSharpSymbolTest03.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverHtmlWithSvgTest03.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverHtmlWithSvgWithoutSharpSymbolTest03.html", outPdf, cmpPdf, baseUri);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverHtmlWithSvgWithoutSharpSymbolTest03.html",
+                outPdf, cmpPdf, baseUri);
     }
 
     @Test
@@ -196,7 +200,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverHtmlWithSvgTest04.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverHtmlWithSvgTest04.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverHtmlWithSvgTest04.html", outPdf, cmpPdf, SOURCE_FOLDER);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverHtmlWithSvgTest04.html", outPdf, cmpPdf,
+                SOURCE_FOLDER);
     }
 
     @Test
@@ -233,7 +238,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         HtmlResourceResolver resourceResolver = new HtmlResourceResolver(SOURCE_FOLDER, context);
 
         ISvgConverterProperties svgConverterProperties = ContextMappingHelper.mapToSvgConverterProperties(context);
-        ISvgProcessorResult res = SvgConverter.parseAndProcess(resourceResolver.retrieveResourceAsInputStream(fileName), svgConverterProperties);
+        ISvgProcessorResult res = SvgConverter.parseAndProcess(resourceResolver.retrieveResourceAsInputStream(fileName),
+                svgConverterProperties);
         ISvgNodeRenderer imageRenderer = ((SvgTagSvgNodeRenderer) res.getRootRenderer()).getChildren().get(0);
         // Remove the previous result of the resource resolving in order to demonstrate that the resource will be
         // resolved due to setting of baseUri in the SvgProcessingUtil#createXObjectFromProcessingResult method.
@@ -295,7 +301,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
             imageRenderer.setAttribute(SvgConstants.Attributes.XLINK_HREF, "res/itextpdf.com/doggo.jpg");
             svgRenderer.setAttribute(SvgConstants.Attributes.XLINK_HREF, "res/itextpdf.com/lines.svg");
 
-            document.add(new SvgImage(new SvgProcessingUtil(resourceResolver).createXObjectFromProcessingResult(result, context, true)));
+            document.add(new SvgImage(new SvgProcessingUtil(resourceResolver).createXObjectFromProcessingResult(result,
+                    context, true)));
         }
         Assertions.assertNull(new CompareTool().compareByContent(outFileName, cmpFileName, DESTINATION_FOLDER, "diff"));
     }
@@ -306,7 +313,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverSvgEmbeddedSvg.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverSvgEmbeddedSvg.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverSvgEmbeddedSvg.html", outPdf, cmpPdf, SOURCE_FOLDER);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverSvgEmbeddedSvg.html", outPdf, cmpPdf,
+                SOURCE_FOLDER);
     }
 
     @Test
@@ -335,7 +343,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverSvgWithImageInline.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverSvgWithImageInline.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverSvgWithImageInline.html", outPdf, cmpPdf, SOURCE_FOLDER);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverSvgWithImageInline.html", outPdf, cmpPdf,
+                SOURCE_FOLDER);
     }
 
     @Test
@@ -353,12 +362,14 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverSvgWithImageObject.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverSvgWithImageObject.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverSvgWithImageObject.html", outPdf, cmpPdf, SOURCE_FOLDER);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverSvgWithImageObject.html", outPdf, cmpPdf,
+                SOURCE_FOLDER);
     }
 
     @Test
     @LogMessages(messages = {
-            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.UNABLE_TO_RETRIEVE_IMAGE_WITH_GIVEN_DATA_URI, count = 3),
+            @LogMessage(messageTemplate = StyledXmlParserLogMessageConstant.UNABLE_TO_RETRIEVE_IMAGE_WITH_GIVEN_DATA_URI,
+                    count = 3),
             @LogMessage(messageTemplate = Html2PdfLogMessageConstant.WORKER_UNABLE_TO_PROCESS_OTHER_WORKER, count = 3)
     })
     public void resourceResolverSvgDifferentFormatsTest() throws IOException, InterruptedException {
@@ -389,7 +400,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "resourceResolverIncorrectSyntaxObject.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_resourceResolverIncorrectSyntaxObject.pdf";
 
-        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverIncorrectSyntaxObject.html", outPdf, cmpPdf, SOURCE_FOLDER);
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "resourceResolverIncorrectSyntaxObject.html", outPdf, cmpPdf,
+                SOURCE_FOLDER);
     }
 
     @Test
@@ -486,7 +498,8 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "baseHrefViaHtmlResourceReferenceTest.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_baseHrefViaHtmlResourceReferenceTest.pdf";
 
-        convertHtmlFileToPdf(SOURCE_FOLDER + "baseHrefViaHtmlResourceReferenceTest.html", outPdf, cmpPdf, new ConverterProperties());
+        convertHtmlFileToPdf(SOURCE_FOLDER + "baseHrefViaHtmlResourceReferenceTest.html", outPdf, cmpPdf,
+                new ConverterProperties());
     }
 
     @Test
@@ -498,7 +511,32 @@ public class HtmlResourceResolverTest extends ExtendedITextTest {
         String outPdf = DESTINATION_FOLDER + "baseHrefViaHtmlStylesheetReferenceTest.pdf";
         String cmpPdf = SOURCE_FOLDER + "cmp_baseHrefViaHtmlStylesheetReferenceTest.pdf";
 
-        convertHtmlFileToPdf(SOURCE_FOLDER + "baseHrefViaHtmlStylesheetReferenceTest.html", outPdf, cmpPdf, new ConverterProperties());
+        convertHtmlFileToPdf(SOURCE_FOLDER + "baseHrefViaHtmlStylesheetReferenceTest.html", outPdf, cmpPdf,
+                new ConverterProperties());
+    }
+
+    //Be aware that this test uses resources from https://github.com/XodoDocs/itext-sdk-html2pdf-java,
+    //so extra attention needs to be paid when changing related resources
+    @Test
+    public void convertToPdfWithAbsoluteHttpTest() throws IOException, InterruptedException {
+        String outPdf = DESTINATION_FOLDER + "convertToPdfWithAbsoluteHttp.pdf";
+        String cmpPdf = SOURCE_FOLDER + "cmp_convertToPdfWithAbsoluteHttp.pdf";
+
+        convertHtmlFileToPdf(SOURCE_FOLDER + "convertToPdfWithAbsoluteHttp.html", outPdf,
+                cmpPdf, new ConverterProperties());
+    }
+
+    //Be aware that this test uses resources from https://github.com/XodoDocs/itext-sdk-html2pdf-java,
+    //so extra attention needs to be paid when changing related resources
+    @Test
+    public void convertToPdfWithHttpBaseUriTest() throws IOException, InterruptedException {
+        String baseUri = "https://raw.githubusercontent.com/itext/itext-pdfhtml-java/develop/src/test/" +
+                "resources/com/itextpdf/html2pdf/resolver/resource/HtmlResourceResolverTest/";
+        String outPdf = DESTINATION_FOLDER + "convertToPdfWithHttpBaseUriTest.pdf";
+        String cmpPdf = SOURCE_FOLDER + "cmp_convertToPdfWithHttpBaseUriTest.pdf";
+
+        convertHtmlStreamToPdf(SOURCE_FOLDER + "convertToPdfWithHttpBaseUriTest.html", outPdf, cmpPdf,
+                baseUri);
     }
 
     private void convertHtmlStreamToPdf(String htmlPath, String outPdf, String cmpPdf, String baseUri)

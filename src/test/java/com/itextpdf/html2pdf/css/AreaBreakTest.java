@@ -50,16 +50,27 @@ public class AreaBreakTest extends ExtendedHtmlConversionITextTest {
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate =
+                    LayoutLogMessageConstant.FLEX_CONTAINER_SHOULD_NOT_CONTAIN_AREA_OR_SECTION_BREAK,
+                    count = 13)})
     public void areaBreakFlexReverseTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("area-break-flex-reverse-test", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate =
+                    LayoutLogMessageConstant.FLEX_CONTAINER_SHOULD_NOT_CONTAIN_AREA_OR_SECTION_BREAK,
+                    count = 10)})
     public void areaBreakFlexTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("area-break-flex-test", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
 
     @Test
+    @LogMessages(messages = {
+            @LogMessage(messageTemplate =
+                    LayoutLogMessageConstant.FLEX_CONTAINER_SHOULD_NOT_CONTAIN_AREA_OR_SECTION_BREAK)})
     public void areaBreakNestedFlexTest() throws IOException, InterruptedException {
         convertToPdfAndCompare("area-break-nested-flex-items", SOURCE_FOLDER, DESTINATION_FOLDER);
     }
