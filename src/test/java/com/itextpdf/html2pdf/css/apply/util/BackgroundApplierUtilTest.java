@@ -27,7 +27,7 @@ import com.itextpdf.html2pdf.attach.ProcessorContext;
 import com.itextpdf.html2pdf.attach.impl.layout.BodyHtmlStylesContainer;
 import com.itextpdf.html2pdf.css.CssConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
-import com.itextpdf.kernel.colors.gradients.AbstractLinearGradientBuilder;
+import com.itextpdf.kernel.colors.gradients.IGradientBuilder;
 import com.itextpdf.kernel.colors.gradients.StrategyBasedLinearGradientBuilder;
 import com.itextpdf.kernel.pdf.xobject.PdfImageXObject;
 import com.itextpdf.kernel.pdf.xobject.PdfXObject;
@@ -39,22 +39,21 @@ import com.itextpdf.layout.properties.BackgroundPosition;
 import com.itextpdf.layout.properties.BackgroundRepeat.BackgroundRepeatValue;
 import com.itextpdf.layout.properties.Property;
 import com.itextpdf.layout.properties.UnitValue;
-import com.itextpdf.styledxmlparser.css.util.CssGradientUtil;
 import com.itextpdf.styledxmlparser.css.util.CssDimensionParsingUtils;
+import com.itextpdf.styledxmlparser.css.util.CssGradientUtil;
 import com.itextpdf.styledxmlparser.css.util.CssUtils;
 import com.itextpdf.styledxmlparser.logs.StyledXmlParserLogMessageConstant;
 import com.itextpdf.test.ExtendedITextTest;
 import com.itextpdf.test.annotations.LogMessage;
 import com.itextpdf.test.annotations.LogMessages;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Tag;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 @Tag("UnitTest")
 public class BackgroundApplierUtilTest extends ExtendedITextTest {
@@ -300,8 +299,8 @@ public class BackgroundApplierUtilTest extends ExtendedITextTest {
                 Assertions.assertEquals(gradientsArray.size(), values.size());
                 for (int i = 0; i < values.size(); ++i) {
                     Assertions.assertTrue(values.get(i) instanceof BackgroundImage);
-                    AbstractLinearGradientBuilder builder =
-                            ((BackgroundImage) values.get(i)).getLinearGradientBuilder();
+                    IGradientBuilder builder =
+                            ((BackgroundImage) values.get(i)).getGradientBuilder();
                     Assertions.assertTrue(builder instanceof StrategyBasedLinearGradientBuilder);
 
                     StrategyBasedLinearGradientBuilder expectedGradientBuilder =
@@ -337,7 +336,7 @@ public class BackgroundApplierUtilTest extends ExtendedITextTest {
                 Assertions.assertEquals(1, values.size());
                 for (Object value : values) {
                     Assertions.assertTrue(value instanceof BackgroundImage);
-                    AbstractLinearGradientBuilder builder = ((BackgroundImage) value).getLinearGradientBuilder();
+                    IGradientBuilder builder = ((BackgroundImage) value).getGradientBuilder();
                     Assertions.assertTrue(builder instanceof StrategyBasedLinearGradientBuilder);
 
                     StrategyBasedLinearGradientBuilder expectedGradientBuilder =
